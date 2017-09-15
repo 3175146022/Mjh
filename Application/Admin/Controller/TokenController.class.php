@@ -10,5 +10,8 @@ class TokenController extends Controller{
     public function add_token(){
         $this->display();
     }
+    public function update_token(){
+        $this->display();
+    }
 }
 ?>
