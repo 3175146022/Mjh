@@ -27,7 +27,7 @@
                                 <span class="block m-t-xs">
                                     <strong class="font-bold">江湖管理员</strong>
                                 </span>
-                                <span class="text-muted text-xs block">王建</span>
+                                <span class="text-muted text-xs block"><?php echo ($admin); ?></span>
                             </span>
                         </a>
                     </div>
@@ -65,6 +65,9 @@
                         <li>
                             <a class="J_menuItem" href="<?php echo U('News/add_news');?>" data-index="0">添加新闻</a>
                         </li>
+                        <li>
+                            <a class="J_menuItem" href="<?php echo U('News/news_cate');?>" data-index="0">新闻分类</a>
+                        </li>
                     </ul>
                 </li>
                 <li>
@@ -91,6 +94,36 @@
                         </li>
                         <li>
                             <a class="J_menuItem" href="<?php echo U('Activity/add_activity');?>" data-index="0">添加活动</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <i class="fa fa-th-large"></i>
+                        <span class="nav-label">令牌管理</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="J_menuItem" href="<?php echo U('Token/index');?>" data-index="0">令牌列表</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="<?php echo U('Token/add_token');?>" data-index="0">添加令牌</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <i class="fa fa-user"></i>
+                        <span class="nav-label">后台管理</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="J_menuItem" href="<?php echo U('Admin/index');?>" data-index="0">管理员列表</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="<?php echo U('Admin/add_user');?>" data-index="0">添加管理员</a>
                         </li>
                     </ul>
                 </li>
@@ -141,7 +174,7 @@
                     </li>
                 </ul>
             </div>
-            <a href="<?php echo U('Login/index');?>" class="roll-nav roll-right J_tabExit">
+            <a href="<?php echo U('Login/login_out');?>" class="roll-nav roll-right J_tabExit">
                 <i class="fa fa fa-sign-out"></i> 退出</a>
         </div>
 

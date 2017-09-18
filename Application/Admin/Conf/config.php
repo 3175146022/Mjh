@@ -1,6 +1,7 @@
 <?php
 return array(
     //表单令牌
+    'view_filter' => array('Behavior\TokenBuild'),
     'TOKEN_ON'      =>    true,  // 是否开启令牌验证 默认关闭
     'TOKEN_NAME'    =>    '__hash__',    // 令牌验证的表单隐藏字段名称，默认为__hash__
     'TOKEN_TYPE'    =>    'md5',  //令牌哈希验证规则 默认为MD5
