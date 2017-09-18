@@ -14,9 +14,16 @@ class AdminController extends Controller{
         if($_POST){
             $data['admin_name'] = $_POST['admin_name'];
             $data['password'] = md5($_POST['password']);
-            $result = M('Admin')->add($data);
-            if($result){
-                $this->success('修改成功！',U('Admin/add_user'));
+            //$result = M('Admin')->add($data);
+            $admin_password = md5($_POST['admin_password']);
+            $admin = M('Admin')->where(array('status'=>1))->select();
+            if($admin[0]['password'] == $admin_password){
+                $result = M('Admin')->add($data);
+                if($result){
+                    $this->success('修改成功！',U('Admin/add_user'));
+                }
+            }else{
+                echo "<script>alert('超级管理员密码错误！');window.history.go(-1)</script>";
             }
         }
         $this->display();
@@ -48,9 +55,14 @@ class AdminController extends Controller{
     //删除管理员
     public function delete_user(){
         $id = $_GET['id'];
-        $result = M('Admin')->where(array('id'=>$id))->delete();
-        if($result){
-            $this->redirect('Admin/index');
+        $admin_status = M('Admin')->where(array('id'=>session('admin_id')))->field('status')->select();
+        if($admin_status[0]['status'] == '1'){
+            $result = M('Admin')->where(array('id'=>$id))->delete();
+            if($result){
+                $this->redirect('Admin/index');
+            }
+        }else{
+            echo "<script>alert('您没有权限删除！');window.history.go(-1)</script>";
         }
     }
 }
