@@ -5,6 +5,8 @@ use Think\Controller;
 class TokenController extends Controller{
     //令牌列表
     public function index(){
+        $data = M('Token')->select();
+        $this->assign('data',$data);
         $this->display();
     }
     //添加令牌
@@ -16,10 +18,14 @@ class TokenController extends Controller{
             if(!$verify->create()){
                 $this->error($verify->getError());
             }else{
-                var_dump($_POST);
+                $data['tok_num'] = $_POST['tok_num'];
+                $data['tok_level'] = $_POST['tok_level'];
+                $result = M('Token')->add($data);
+                if($result){
+                    $this->success('添加成功！');
+                }
             }
         }
-
         $this->display();
     }
     //修改令牌

@@ -2,7 +2,11 @@
 namespace Admin\Controller;
 use Think\Controller;
 
-class AdminController extends Controller{
+class AdminController extends CommonController{
+    //公共方法
+    public function _initialize(){
+        $this->check_login();//检查登录
+    }
     //后台管理员列表
     public function index(){
         $data = M('Admin')->select();
@@ -13,25 +17,29 @@ class AdminController extends Controller{
     public function add_user(){
         //关闭表单令牌
         C('TOKEN_ON',false);
-        if($_POST){
-            $data['admin_name'] = $_POST['admin_name'];
-            $data['password'] = md5($_POST['password']);
-            //$result = M('Admin')->add($data);
-            $admin_password = md5($_POST['admin_password']);
-            $admin = M('Admin')->where(array('status'=>1))->select();
-            if($admin[0]['password'] == $admin_password){
-                $verify = D('Admin');
-                if(!$verify->create()){
-                    $this->error($verify->getError());
-                }else{
-                    $result = M('Admin')->add($data);
-                    if($result){
-                        $this->success('添加成功！');
-                    }
-                }
+        if(IS_POST){
+            $verify = D('Admin');
+            if(!$verify->create()){
+                $this->error($verify->getError());
             }else{
-                echo "<script>alert('超级管理员密码错误！');window.history.go(-1)</script>";
+                $data['admin_name'] = $_POST['admin_name'];
+                $data['password'] = md5($_POST['password']);
+                $admin_password = md5($_POST['admin_password']);
+                $admin = M('Admin')->where(array('status'=>1))->select();
+                if($admin[0]['password'] == $admin_password){
+                    if(!$verify->create()){
+                        $this->error($verify->getError());
+                    }else{
+                        $result = M('Admin')->add($data);
+                        if($result){
+                            $this->success('添加成功！');
+                        }
+                    }
+                }else{
+                    echo "<script>alert('超级管理员密码错误！');window.history.go(-1)</script>";
+                }
             }
+
         }
         $this->display();
     }
@@ -39,7 +47,7 @@ class AdminController extends Controller{
     public function update_user(){
         $id = $_GET['id'];
         $data = M('Admin')->where(array('id'=>$id))->find();
-        if($_POST){
+        if(IS_POST){
             $old_password = md5($_POST['password_old']);
             //判断旧密码是否正确
             if($data['password'] == $old_password){

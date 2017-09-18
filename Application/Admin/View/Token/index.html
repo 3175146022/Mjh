@@ -32,44 +32,28 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="gradeX">
-                            <td>Trident</td>
-                            <td>Internet Explorer 4.0</td>
-                            <td>Win 95+</td>
-                            <td>Win 95+</td>
-                            <td class="center">4</td>
-                            <td>Win 95+</td>
-                            <td>
-                                <a class="btn btn-primary btn-rounded" href="{:U('Token/update_token')}">修改</a>
-                                <a class="btn btn-primary btn-rounded" href="#">删除</a>
-                            </td>
-                        </tr>
-                        <tr class="gradeC">
-                            <td>Trident</td>
-                            <td>Internet Explorer 5.0
-                            </td>
-                            <td>Win 95+</td>
-                            <td>Win 95+</td>
-                            <td class="center">5</td>
-                            <td>Win 95+</td>
-                            <td>
-                                <a class="btn btn-primary btn-rounded" href="#">修改</a>
-                                <a class="btn btn-primary btn-rounded" href="#">删除</a>
-                            </td>
-                        </tr>
-                        <tr class="gradeA">
-                            <td>Trident</td>
-                            <td>Internet Explorer 5.5
-                            </td>
-                            <td>Win 95+</td>
-                            <td>Win 95+</td>
-                            <td class="center">5.5</td>
-                            <td>Win 95+</td>
-                            <td>
-                                <a class="btn btn-primary btn-rounded" href="#">修改</a>
-                                <a class="btn btn-primary btn-rounded" href="#">删除</a>
-                            </td>
-                        </tr>
+                        <volist name="data" id="list">
+                            <tr class="gradeX">
+                                <td>{$list.token_id}</td>
+                                <td>{$list.tok_num}</td>
+                                <td>{$list.user_id}</td>
+                                <td><?php
+                                        switch($list['tok_level']){
+                                            case 0: echo "欢喜令";break;
+                                            case 1: echo "义士令";break;
+                                            case 2: echo "英雄令";break;
+                                            case 3: echo "大侠令";break;
+                                            case 4: echo "大谦令";break;
+                                        }
+                                    ?></td>
+                                <td></td>
+                                <td>{$list.tok_status}</td>
+                                <td>
+                                    <a class="btn btn-primary btn-rounded" href="{:U('Token/update_token')}">修改</a>
+                                    <a class="btn btn-primary btn-rounded" href="#">删除</a>
+                                </td>
+                            </tr>
+                        </volist>
                         </tbody>
                     </table>
                 </div>
