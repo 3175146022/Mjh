@@ -18,5 +18,13 @@ class NewsController extends Controller{
     public function update_news(){
         $this->display();
     }
+    //分类列表
+    public function news_cate(){
+        $this->display();
+    }
+    //添加分类
+    public function add_cate(){
+        $this->display();
+    }
 }
 ?>
