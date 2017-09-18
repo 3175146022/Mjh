@@ -24,34 +24,22 @@
                         <tr>
                             <th>管理员编号</th>
                             <th>管理员账号</th>
+                            <th>超级管理员</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="gradeX">
-                            <td>Win 95+</td>
-                            <td>Win 95+</td>
-                            <td>
-                                <a class="btn btn-primary btn-rounded" href="{:U('Admin/update_user')}">修改</a>
-                                <a class="btn btn-primary btn-rounded" href="#">删除</a>
-                            </td>
-                        </tr>
-                        <tr class="gradeC">
-                            <td>Win 95+</td>
-                            <td>Win 95+</td>
-                            <td>
-                                <a class="btn btn-primary btn-rounded" href="#">修改</a>
-                                <a class="btn btn-primary btn-rounded" href="#">删除</a>
-                            </td>
-                        </tr>
-                        <tr class="gradeA">
-                            <td>Win 95+</td>
-                            <td>Win 95+</td>
-                            <td>
-                                <a class="btn btn-primary btn-rounded" href="#">修改</a>
-                                <a class="btn btn-primary btn-rounded" href="#">删除</a>
-                            </td>
-                        </tr>
+                        <volist name="data" id="user_list">
+                            <tr class="gradeX">
+                                <td>{$user_list.id}</td>
+                                <td>{$user_list.admin_name}</td>
+                                <td><?php if($user_list['status'] == "1"){echo "是";}else{echo "否";}?></td>
+                                <td>
+                                    <a class="btn btn-primary btn-rounded" href="{:U('Admin/update_user',array('id'=>$user_list['id']))}">修改</a>
+                                    <a class="btn btn-primary btn-rounded" href="{:U('Admin/delete_user',array('id'=>$user_list['id']))}" onclick="if(confirm('确定删除此条数据？')){alert('删除成功！'); return true;}return false;">删除</a>
+                                </td>
+                            </tr>
+                        </volist>
                         </tbody>
                     </table>
                 </div>
