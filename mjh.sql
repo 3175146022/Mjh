@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2017-09-15 18:22:23
+Date: 2017-09-18 17:33:25
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -77,12 +77,15 @@ CREATE TABLE `admin` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '管理员编号',
   `admin_name` varchar(100) NOT NULL COMMENT '管理员账号',
   `password` varchar(255) NOT NULL COMMENT '管理员密码',
+  `status` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否是超级管理员',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
+INSERT INTO `admin` VALUES ('1', 'mmjh', '7b8ba283fe880ccde9443b307e7b93c5', '1');
+INSERT INTO `admin` VALUES ('4', 'wangjian', '44bc64daf3c37a7ada23e63a137310bd', '0');
 
 -- ----------------------------
 -- Table structure for comment
@@ -126,6 +129,7 @@ CREATE TABLE `news` (
   `content` text NOT NULL COMMENT '新闻内容',
   `add_time` int(80) unsigned DEFAULT NULL COMMENT '添加时间',
   `update_time` int(80) unsigned DEFAULT NULL COMMENT '修改时间',
+  `cate_id` int(11) unsigned NOT NULL COMMENT '分类',
   PRIMARY KEY (`news_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -140,13 +144,14 @@ DROP TABLE IF EXISTS `news_cate`;
 CREATE TABLE `news_cate` (
   `cate_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '新闻分类编号',
   `cate_name` varchar(100) NOT NULL COMMENT '新闻分类名',
-  `column` char(100) NOT NULL COMMENT '栏目',
+  `pid` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '父id',
   PRIMARY KEY (`cate_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of news_cate
 -- ----------------------------
+INSERT INTO `news_cate` VALUES ('1', '江湖须知', '0');
 
 -- ----------------------------
 -- Table structure for reward
