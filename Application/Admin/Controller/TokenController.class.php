@@ -9,6 +9,8 @@ class TokenController extends Controller{
     }
     //添加令牌
     public function add_token(){
+        //关闭表单令牌
+        C('TOKEN_ON',false);
         $verify = D('Token');
         if(IS_POST){
             if(!$verify->create()){
