@@ -58,9 +58,22 @@ class AdminController extends Controller{
         $admin_status = M('Admin')->where(array('id'=>session('admin_id')))->field('status')->select();
         if($admin_status[0]['status'] == '1'){
             $result = M('Admin')->where(array('id'=>$id))->delete();
-            if($result){
-                $this->redirect('Admin/index');
+            if ($result){
+                $data = [
+                    'status' => 1,
+                    'msg'    => '删除成功'
+                ];
+                echo json_encode($data);
+            }else{
+                $data = [
+                    'status' => 0,
+                    'msg'    => '删除失败，请稍后重试！'
+                ];
+                echo json_encode($data);
             }
+//            if($result){
+//                $this->redirect('Admin/index');
+//            }
         }else{
             echo "<script>alert('您没有权限删除！');window.history.go(-1)</script>";
         }

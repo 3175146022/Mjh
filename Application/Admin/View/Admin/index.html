@@ -9,6 +9,7 @@
     <link href="__STYLE__css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
     <link href="__STYLE__css/animate.min.css" rel="stylesheet">
     <link href="__STYLE__css/style.min.css?v=3.1.0" rel="stylesheet">
+
 </head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
@@ -36,7 +37,7 @@
                                 <td><?php if($user_list['status'] == "1"){echo "是";}else{echo "否";}?></td>
                                 <td>
                                     <a class="btn btn-primary btn-rounded" href="{:U('Admin/update_user',array('id'=>$user_list['id']))}">修改</a>
-                                    <a class="btn btn-primary btn-rounded" href="{:U('Admin/delete_user',array('id'=>$user_list['id']))}" onclick="if(confirm('确定删除此条数据？')){return true;}return false;">删除</a>
+                                    <a class="btn btn-primary btn-rounded" href="javascript:;" onclick="delete_user('{$user_list.id}')">删除</a>
                                 </td>
                             </tr>
                         </volist>
@@ -47,6 +48,31 @@
         </div>
     </div>
 </div>
+<script>
+    function delete_user(id) {
+        layer.confirm('是否删除分类', {
+            btn: ['确定','取消'] //按钮
+        }, function(){
+            $.post("__ROOT__/admin/admin/delete_user/id/"+id,{},function (data) {
+                var json = eval('('+data+')');
+                if (json.status==1){
+                    layer.msg(json.msg, {icon:6},function(){
+                        window.location.href = window.location.href;
+                    });
+                }else if (json.status == 2){
+                    layer.msg(json.msg,{icon:5})
+                }else {
+                    layer.msg(json.msg,{icon:5})
+                }
+            });
+        }, function(){
+//            layer.msg('也可以这样', {
+//                time: 20000, //20s后自动关闭
+//                btn: ['明白了', '知道了']
+//            });
+        });
+    }
+</script>
 <!-- 全局js -->
 <script src="__STYLE__js/jquery-2.1.1.min.js"></script>
 <script src="__STYLE__js/bootstrap.min.js?v=3.4.0"></script>
@@ -64,5 +90,6 @@
 </script>
 <!--<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>-->
 <!--&lt;!&ndash;统计代码，可删除&ndash;&gt;-->
+
 </body>
 </html>
