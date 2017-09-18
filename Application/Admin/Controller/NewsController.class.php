@@ -50,33 +50,60 @@ class NewsController extends Controller{
             }
         }
     }
+    //修改分类
+    public function update_cate()
+    {
+        if ($_GET['id']){
+            $id =$_GET['id'];
+            $p = M('news_cate')->where('pid = 0')->select();
+            $data = M('news_cate')->where('cate_id = '.$id)->select();
+
+            $this->assign('p',$p);
+            $this->assign('data',$data);
+            $this->display();
+        }
+    }
+
+    public function save_update()
+    {
+        if ($_POST){
+            $a = M('news_cate')->where('cate_id = '.$_GET['id'])->save($_POST);
+            if (is_numeric($a)){
+                $this->success('修改成功',U('News/news_cate'));
+            }else{
+                $this->error('修改失败，请稍后重试!');
+            }
+        }
+    }
     //删除分类
     public function destroy_cate()
     {
-        $id = $_GET['id'];
-        $response = M('news')->where('cate_id = '.$id)->select();
+        if ($_GET['id']){
+            $id = $_GET['id'];
+            $response = M('news')->where('cate_id = '.$id)->select();
 
-        if (empty($response)){
-            $res = M('news_cate')->where('cate_id = '.$id)->delete();
-            if ($res){
-                $data = [
-                    'status' => 1,
-                    'msg'    => '删除成功'
-                ];
-                echo json_encode($data);
+            if (empty($response)){
+                $res = M('news_cate')->where('cate_id = '.$id)->delete();
+                if ($res){
+                    $data = [
+                        'status' => 1,
+                        'msg'    => '删除成功'
+                    ];
+                    echo json_encode($data);
+                }else{
+                    $data = [
+                        'status' => 0,
+                        'msg'    => '删除失败，请稍后重试！'
+                    ];
+                    echo json_encode($data);
+                }
             }else{
                 $data = [
-                    'status' => 0,
-                    'msg'    => '删除失败，请稍后重试！'
+                    'status' => 2,
+                    'msg'    => '此分类下含有文章，请删除文章后再试！'
                 ];
                 echo json_encode($data);
             }
-        }else{
-            $data = [
-                'status' => 2,
-                'msg'    => '此分类下含有文章，请删除文章后再试！'
-            ];
-            echo json_encode($data);
         }
     }
 }
