@@ -11,6 +11,8 @@ class AdminController extends Controller{
     }
     //添加管理员
     public function add_user(){
+        //关闭表单令牌
+        C('TOKEN_ON',false);
         if($_POST){
             $data['admin_name'] = $_POST['admin_name'];
             $data['password'] = md5($_POST['password']);
@@ -18,9 +20,14 @@ class AdminController extends Controller{
             $admin_password = md5($_POST['admin_password']);
             $admin = M('Admin')->where(array('status'=>1))->select();
             if($admin[0]['password'] == $admin_password){
-                $result = M('Admin')->add($data);
-                if($result){
-                    $this->success('修改成功！',U('Admin/add_user'));
+                $verify = D('Admin');
+                if(!$verify->create()){
+                    $this->error($verify->getError());
+                }else{
+                    $result = M('Admin')->add($data);
+                    if($result){
+                        $this->success('添加成功！');
+                    }
                 }
             }else{
                 echo "<script>alert('超级管理员密码错误！');window.history.go(-1)</script>";
@@ -71,9 +78,6 @@ class AdminController extends Controller{
                 ];
                 echo json_encode($data);
             }
-//            if($result){
-//                $this->redirect('Admin/index');
-//            }
         }else{
             echo "<script>alert('您没有权限删除！');window.history.go(-1)</script>";
         }
