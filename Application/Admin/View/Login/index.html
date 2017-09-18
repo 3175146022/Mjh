@@ -29,7 +29,7 @@
             <div class="col-sm-5">
                 <form method="post" action="{:U('Login/index')}">
                     <h1 class="no-margins" style="color: black;font-family: 'my_font'">登录：</h1>
-                    <input type="text" class="form-control uname" name="username" placeholder="用户名" />
+                    <input type="text" class="form-control uname" name="admin_name" placeholder="用户名" />
                     <input type="password" class="form-control pword m-b" name="password" placeholder="密码" />
                     <input type="text" class="form-control pword m-b" name="verify" id="verify" placeholder="验证码" />
                     <img src="{:U('verify')}" alt="验证码" onClick="this.src=this.src+'?'+Math.random()"/>
