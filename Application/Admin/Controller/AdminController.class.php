@@ -17,7 +17,7 @@ class AdminController extends CommonController{
     public function add_user(){
         //关闭表单令牌
         C('TOKEN_ON',false);
-        if($_POST){
+        if(IS_POST){
             $verify = D('Admin');
             if(!$verify->create()){
                 $this->error($verify->getError());
@@ -47,7 +47,7 @@ class AdminController extends CommonController{
     public function update_user(){
         $id = $_GET['id'];
         $data = M('Admin')->where(array('id'=>$id))->find();
-        if($_POST){
+        if(IS_POST){
             $old_password = md5($_POST['password_old']);
             //判断旧密码是否正确
             if($data['password'] == $old_password){
