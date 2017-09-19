@@ -1,8 +1,16 @@
 <?php
+/*
+ * 王建
+ *
+ * */
 namespace Admin\Controller;
 use Think\Controller;
 
-class TokenController extends Controller{
+class TokenController extends CommonController{
+    //公共方法
+    public function _initialize(){
+        $this->check_login();//检查登录
+    }
     //令牌列表
     public function index(){
         $data = M('Token')->select();
