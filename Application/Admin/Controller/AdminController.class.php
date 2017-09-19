@@ -45,9 +45,11 @@ class AdminController extends CommonController{
     }
     //修改管理员
     public function update_user(){
-        $id = $_GET['id'];
-        $data = M('Admin')->where(array('id'=>$id))->find();
         if(IS_POST){
+            $post = array(
+                'id' => I('post.id'),
+            );
+            $data = M('Admin')->where(array('id'=>$post['id']))->find();
             $old_password = md5($_POST['password_old']);
             //判断旧密码是否正确
             if($data['password'] == $old_password){
@@ -55,17 +57,20 @@ class AdminController extends CommonController{
                 $data['password'] = md5($_POST['password']);
                 //判断提交新密码是否为空
                 if(!empty($data['admin_name']) && $data['password'] != 'd41d8cd98f00b204e9800998ecf8427e'){
-                    $result = M('Admin')->where(array('id'=>$id))->save($data);
+                    $result = M('Admin')->where(array('id'=>$post['id']))->save($data);
                     $this->success('修改成功！',U('Admin/index'));
                 }else{
-                    echo "<script>alert('请重新输入账号或密码！')</script>";
+                    echo "<script>alert('请重新输入账号或密码！');window.history.go(-1)</script>";
                 }
             }else{
-                echo "<script>alert('旧密码错误，请重新输入！')</script>";
+                echo "<script>alert('旧密码错误，请重新输入！');window.history.go(-1)</script>";
             }
+        }else{
+            $id = I('get.id');
+            $data = M('Admin')->where(array('id'=>$id))->find();
+            $this->assign('data',$data);
+            $this->display();
         }
-        $this->assign('data',$data);
-        $this->display();
     }
     //删除管理员
     public function delete_user(){

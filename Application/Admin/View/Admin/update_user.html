@@ -38,7 +38,8 @@
                     <h5>修改管理员</h5>
                 </div>
                 <div class="ibox-content">
-                    <form method="post" action="" role="form" class="form-horizontal m-t">
+                    <form method="post" action="{:U('Admin/update_user')}" role="form" class="form-horizontal m-t">
+                        <input type="hidden" value="{$data.id}" name="id">
                         <div class="form-group draggable">
                             <label class="col-sm-3 control-label">管理员账号：</label>
                             <div class="col-sm-3">
