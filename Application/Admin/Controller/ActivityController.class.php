@@ -1,8 +1,16 @@
 <?php
+/*
+ * 王建
+ *
+ * */
 namespace Admin\Controller;
 use Think\Controller;
 
-class ActivityController extends Controller{
+class ActivityController extends CommonController{
+    //公共方法
+    public function _initialize(){
+        $this->check_login();//检查登录
+    }
     //活动列表页
     public function index(){
         $this->display();
