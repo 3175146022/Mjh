@@ -39,9 +39,9 @@ class AdminController extends CommonController{
                     echo "<script>alert('超级管理员密码错误！');window.history.go(-1)</script>";
                 }
             }
-
+        }else{
+            $this->display();
         }
-        $this->display();
     }
     //修改管理员
     public function update_user(){
