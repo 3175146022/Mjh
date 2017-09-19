@@ -49,8 +49,8 @@
                                 <td></td>
                                 <td>{$list.tok_status}</td>
                                 <td>
-                                    <a class="btn btn-primary btn-rounded" href="{:U('Token/update_token')}">修改</a>
-                                    <a class="btn btn-primary btn-rounded" href="#">删除</a>
+                                    <a class="btn btn-primary btn-rounded" href="{:U('Token/update_token',array('id'=>$list['token_id']))}">修改</a>
+                                    <a class="btn btn-primary btn-rounded" href="javascript:;" onclick="delete_token('{$list.token_id}')">删除</a>
                                 </td>
                             </tr>
                         </volist>
@@ -61,6 +61,31 @@
         </div>
     </div>
 </div>
+<script>
+    function delete_token(id) {
+        layer.confirm('是否删除该条数据', {
+            btn: ['确定','取消'] //按钮
+        }, function(){
+            $.post("__ROOT__/admin/token/delete_token/id/"+id,{},function (data) {
+                var json = eval('('+data+')');
+                if (json.status==1){
+                    layer.msg(json.msg, {icon:6},function(){
+                        window.location.href = window.location.href;
+                    });
+                }else if (json.status == 2){
+                    layer.msg(json.msg,{icon:5})
+                }else {
+                    layer.msg(json.msg,{icon:5})
+                }
+            });
+        }, function(){
+//            layer.msg('也可以这样', {
+//                time: 20000, //20s后自动关闭
+//                btn: ['明白了', '知道了']
+//            });
+        });
+    }
+</script>
 <!-- 全局js -->
 <script src="__STYLE__js/jquery-2.1.1.min.js"></script>
 <script src="__STYLE__js/bootstrap.min.js?v=3.4.0"></script>
