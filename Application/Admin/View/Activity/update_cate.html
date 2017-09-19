@@ -36,29 +36,34 @@
                     <h5>修改分类</h5>
                 </div>
                 <div class="ibox-content">
-                    <form method="post" action="{:U('Activity/add_cate')}" role="form" class="form-horizontal m-t" enctype="multipart/form-data">
+                    <form method="post" action="{:U('Activity/update_cate')}" role="form" class="form-horizontal m-t" enctype="multipart/form-data">
+                        <input type="hidden" name="act_cate_id" value="{$data.act_cate_id}">
                         <div class="form-group draggable">
                             <label class="col-sm-3 control-label">活动标题：</label>
                             <div class="col-sm-3">
-                                <input type="text" name="act_cate_title" class="form-control" placeholder="请输入活动标题">
+                                <input type="text" name="act_cate_title" class="form-control" value="{$data.act_cate_title}">
                             </div>
                         </div>
                         <div class="form-group draggable">
                             <label class="col-sm-3 control-label">封面详解：</label>
                             <div class="col-sm-3">
-                                <input type="text" name="img_detail" class="form-control" placeholder="请输入封面详解">
+                                <input type="text" name="img_detail" class="form-control" value="{$data.img_detail}">
                             </div>
                         </div>
                         <div class="form-group draggable">
                             <label class="col-sm-3 control-label">活动图标：</label>
                             <div class="col-sm-3">
-                                <input type="file" name="act_icon" class="form-control">
+                                <input type="file" name="act_icon" class="form-control" onchange="imgPreview(this)">
+                                <img src="__ROOT__/{$data.act_icon}" style="width: 50%;" id="preview">
+                                <input type="hidden" name="act_icon" value="{$data.act_icon}">
                             </div>
                         </div>
                         <div class="form-group draggable">
                             <label class="col-sm-3 control-label">封面图片：</label>
                             <div class="col-sm-3">
-                                <input type="file" name="act_img" class="form-control">
+                                <input type="file" name="act_img" class="form-control" onchange="Preview(this)">
+                                <img src="__ROOT__/{$data.act_img}" style="width: 50%;" id="preview1">
+                                <input type="hidden" name="act_img" value="{$data.act_img}">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
@@ -77,5 +82,42 @@
 
 </div>
 </body>
-
+<script type="text/javascript">
+    function imgPreview(fileDom){
+        //判断是否支持FileReader
+        if (window.FileReader) {
+            var reader = new FileReader();
+        } else {
+            alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
+        }
+        //获取文件
+        var file = fileDom.files[0];
+        //读取完成
+        reader.onload = function(e) {
+            //获取图片dom
+            var img = document.getElementById("preview");
+            //图片路径设置为读取的图片
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+    function Preview(fileDom){
+        //判断是否支持FileReader
+        if (window.FileReader) {
+            var reader = new FileReader();
+        } else {
+            alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
+        }
+        //获取文件
+        var file = fileDom.files[0];
+        //读取完成
+        reader.onload = function(e) {
+            //获取图片dom
+            var img = document.getElementById("preview1");
+            //图片路径设置为读取的图片
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+</script>
 </html>

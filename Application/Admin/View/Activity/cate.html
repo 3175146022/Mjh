@@ -51,8 +51,8 @@
                                                                     <td><img src="__ROOT__/<?php echo $vo['act_icon']?>" style="width: 100px;height: 50px;"></td>
                                                                     <td><img src="__ROOT__/<?php echo $vo['act_img']?>" style="width: 100px;height: 50px;"></td>
                                                                     <td>
-                                                                        <a class="btn btn-primary btn-rounded" href="{:U('Activity/update_cate')}">修改</a>
-                                                                        <a class="btn btn-primary btn-rounded" href="#">删除</a>
+                                                                        <a class="btn btn-primary btn-rounded" href="{:U('Activity/update_cate',array('id'=>$vo['act_cate_id']))}">修改</a>
+                                                                        <a class="btn btn-primary btn-rounded" href="javascript:;" onclick="delete_cate('{$vo.act_cate_id}')">删除</a>
                                                                     </td>
                                                                 </tr>
                                                                 </tbody>
@@ -77,11 +77,36 @@
         </div>
     </div>
 </div>
-
+<script>
+    function delete_cate(id) {
+        layer.confirm('是否删除该条数据', {
+            btn: ['确定','取消'] //按钮
+        }, function(){
+            $.post("__ROOT__/admin/activity/delete_cate/id/"+id,{},function (data) {
+                var json = eval('('+data+')');
+                if (json.status==1){
+                    layer.msg(json.msg, {icon:6},function(){
+                        window.location.href = window.location.href;
+                    });
+                }else if (json.status == 2){
+                    layer.msg(json.msg,{icon:5})
+                }else {
+                    layer.msg(json.msg,{icon:5})
+                }
+            });
+        }, function(){
+//            layer.msg('也可以这样', {
+//                time: 20000, //20s后自动关闭
+//                btn: ['明白了', '知道了']
+//            });
+        });
+    }
+</script>
 
 <!-- 全局js -->
 <script src="__STYLE__js/jquery-2.1.1.min.js"></script>
 <script src="__STYLE__js/bootstrap.min.js?v=3.4.0"></script>
+<script src="__STYLE__js/plugins/layer/layer.min.js"></script>
 <!-- 自定义js -->
 <script src="__STYLE__js/content.min.js?v=1.0.0"></script>
 <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
