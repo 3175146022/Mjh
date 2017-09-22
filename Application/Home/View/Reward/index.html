@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>江湖须知</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
+    <link rel="stylesheet" type="text/css" href="__HOME__css/style.css"/>
+</head>
+
+<body>
+<div class="xs-list cf">
+    <i class="doing active"></i>
+    <i class="did"></i>
+    <i class="done"></i>
+    <span class="slider slider0"></span>
+</div>
+
+<form action="" method="post" class="search cf">
+    <input type="text" value="" placeholder="搜索" class="f">
+    <input type="submit" value="" class="btn fr">
+</form>
+
+<div class="hide">
+    <div class="tab cf">
+        <ul class="card-list fl">
+            <li>
+                <a href="{:U('Reward/show')}">
+                    <div class="card-img" style="background: url(__HOME__images/a2.jpg) no-repeat center center;"></div>
+                    <h5>悬赏一个故事计划？</h5>
+                    <p>来说说你曾经扶危济困、斩奸锄恶的快意...</p>
+                    <div class="author">
+                        <span><i class="user"></i>许愿者：Arthas</span>
+                        <span class="fr"><i class="time"></i>倒计时：80天 12:43:47</span>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="{:U('Reward/show')}">
+                    <div class="card-img" style="background: url(__HOME__images/a2.jpg) no-repeat center center;"></div>
+                    <h5>悬赏一个故事计划？</h5>
+                    <p>来说说你曾经扶危济困、斩奸锄恶的快意...</p>
+                    <div class="author">
+                        <span><i class="user"></i>许愿者：Arthas</span>
+                        <span class="fr"><i class="time"></i>倒计时：80天 12:43:47</span>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="{:U('Reward/show')}">
+                    <div class="card-img" style="background: url(__HOME__images/a2.jpg) no-repeat center center;"></div>
+                    <h5>悬赏一个故事计划？</h5>
+                    <p>来说说你曾经扶危济困、斩奸锄恶的快意...</p>
+                    <div class="author">
+                        <span><i class="user"></i>许愿者：Arthas</span>
+                        <span class="fr"><i class="time"></i>倒计时：80天 12:43:47</span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+
+        <ul class="card-list fl">
+            <li>
+                <a href="{:U('Reward/show')}">
+                    <div class="card-img" style="background: url(__HOME__images/a2.jpg) no-repeat center center;"></div>
+                    <h5>悬赏一个故事计划？</h5>
+                    <p>来说说你曾经扶危济困、斩奸锄恶的快意...</p>
+                    <div class="author">
+                        <span><i class="user"></i>许愿者：Arthas</span>
+                        <span class="fr"><i class="time"></i>倒计时：80天 12:43:47</span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+
+        <ul class="card-list fl">
+            <li>
+                <a href="{:U('Reward/show')}">
+                    <div class="card-img" style="background: url(__HOME__images/a2.jpg) no-repeat center center;"></div>
+                    <h5>悬赏一个故事计划？</h5>
+                    <p>来说说你曾经扶危济困、斩奸锄恶的快意...</p>
+                    <div class="author">
+                        <span><i class="user"></i>许愿者：Arthas</span>
+                        <span class="fr"><i class="time"></i>倒计时：80天 12:43:47</span>
+                    </div>
+                </a>
+            </li>
+
+            <li>
+                <a href="{:U('Reward/show')}">
+                    <div class="card-img" style="background: url(__HOME__images/a2.jpg) no-repeat center center;"></div>
+                    <h5>悬赏一个故事计划？</h5>
+                    <p>来说说你曾经扶危济困、斩奸锄恶的快意...</p>
+                    <div class="author">
+                        <span><i class="user"></i>许愿者：Arthas</span>
+                        <span class="fr"><i class="time"></i>倒计时：80天 12:43:47</span>
+                    </div>
+                </a>
+            </li>
+
+            <li>
+                <a href="{:U('Reward/show')}">
+                    <div class="card-img" style="background: url(__HOME__images/a2.jpg) no-repeat center center;"></div>
+                    <h5>悬赏一个故事计划？</h5>
+                    <p>来说说你曾经扶危济困、斩奸锄恶的快意...</p>
+                    <div class="author">
+                        <span><i class="user"></i>许愿者：Arthas</span>
+                        <span class="fr"><i class="time"></i>倒计时：80天 12:43:47</span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<a href="" class="publish">
+
+</a>
+</body>
+</html>
+<script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    window.onload = function(){
+
+        $(".xs-list i").on("click",function(){
+            $(this).addClass("active").siblings().removeClass("active");
+            var i = $(this).index();
+            var w = $(window).width();
+
+            var klass = "slider" + i
+            $(".slider").removeClass().addClass("slider " + klass)
+            $(".tab").css("transform","translate("+ -i * w+"px)")
+
+        })
+    }
+
+
+
+
+
+</script>
