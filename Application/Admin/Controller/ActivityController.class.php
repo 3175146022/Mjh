@@ -57,7 +57,39 @@ class ActivityController extends CommonController{
     }
     //修改活动
     public function update_activity(){
-        $this->display();
+        //关闭表单令牌
+        C('TOKEN_ON',false);
+        $post = array(
+            'activity_id' => I('post.activity_id'),
+            'act_title' => I('post.act_title'),
+            'start_time' => I('post.start_time'),
+            'end_time' => I('post.end_time'),
+            'astrict' => I('post.astrict'),
+            'act_detail' => I('post.act_detail'),
+            'act_content' => I('post.act_content'),
+            'is_sold' => I('post.is_sold'),
+            'type' => I('post.type'),
+            'act_cate_id' => I('post.act_cate_id'),
+        );
+        if(IS_POST){
+            $verify = D('Activity');
+            if(!$verify->create()){
+                $this->error($verify->getError());
+            }else {
+                $info = $this->upload();
+                $res = D('Activity')->update_act($post,$info);
+                if($res){
+                    $this->success('修改成功！',U('Activity/index'));
+                }else{
+                    echo "<script>alert('修改失败！');window.history.go(-1)</script>";
+                }
+            }
+        }else{
+            $id = I('get.id');
+            $data = M('Activity')->where(array('activity_id'=>$id))->find();
+            $this->assign('data',$data);
+            $this->display();
+        }
     }
 
     //活动分类

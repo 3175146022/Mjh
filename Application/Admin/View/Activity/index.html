@@ -28,8 +28,10 @@
                             <th>活动类型</th>
                             <th>开始时间</th>
                             <th>结束时间</th>
+                            <th>封面图片</th>
                             <th>报名人数限制</th>
                             <th>目前报名人数</th>
+                            <th>下架活动</th>
                             <th>操作</th>
                         </tr>
                         </thead>
@@ -44,12 +46,18 @@
                                             case 1: echo "短线活动";break;
                                         }?>
                                 </td>
-                                <td>{$vo.start_time|date='Y-m-d H:i:s',###}</td>
-                                <td>{$vo.end_time|date='Y-m-d H:i:s',###}</td>
+                                <td>{$vo.start_time|date='Y-m-d',###}</td>
+                                <td>{$vo.end_time|date='Y-m-d',###}</td>
+                                <td><img src="__ROOT__/<?php echo $vo['img']?>" style="height: 50px;width: 100px;"></td>
                                 <td>{$vo.astrict}</td>
                                 <td>{$vo.sign_up}</td>
+                                <td><?php switch($vo['is_sold']){
+                                        case 0: echo "否";break;
+                                        case 1: echo "是";break;
+                                    }?>
+                                </td>
                                 <td>
-                                    <a class="btn btn-primary btn-rounded" href="{:U('Activity/update_activity')}">修改</a>
+                                    <a class="btn btn-primary btn-rounded" href="{:U('Activity/update_activity',array('id'=>$vo['activity_id']))}">修改</a>
                                     <a class="btn btn-primary btn-rounded" href="#">删除</a>
                                 </td>
                             </tr>
