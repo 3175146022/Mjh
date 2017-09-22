@@ -28,53 +28,32 @@
                             <th>活动类型</th>
                             <th>开始时间</th>
                             <th>结束时间</th>
+                            <th>封面图片</th>
                             <th>报名人数限制</th>
                             <th>目前报名人数</th>
+                            <th>下架活动</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="gradeX">
-                            <td>Trident</td>
-                            <td>Internet Explorer 4.0</td>
-                            <td>Win 95+</td>
-                            <td class="center">4</td>
-                            <td class="center">4</td>
-                            <td>Internet Explorer 4.0</td>
-                            <td>Win 95+</td>
-                            <td>
-                                <a class="btn btn-primary btn-rounded" href="<?php echo U('Activity/update_activity');?>">修改</a>
-                                <a class="btn btn-primary btn-rounded" href="#">删除</a>
-                            </td>
-                        </tr>
-                        <tr class="gradeC">
-                            <td>Trident</td>
-                            <td>Internet Explorer 5.0
-                            </td>
-                            <td>Win 95+</td>
-                            <td class="center">5</td>
-                            <td class="center">4</td>
-                            <td>Internet Explorer 4.0</td>
-                            <td>Win 95+</td>
-                            <td>
-                                <a class="btn btn-primary btn-rounded" href="#">修改</a>
-                                <a class="btn btn-primary btn-rounded" href="#">删除</a>
-                            </td>
-                        </tr>
-                        <tr class="gradeA">
-                            <td>Trident</td>
-                            <td>Internet Explorer 5.5
-                            </td>
-                            <td>Win 95+</td>
-                            <td class="center">5.5</td>
-                            <td class="center">4</td>
-                            <td>Internet Explorer 4.0</td>
-                            <td>Win 95+</td>
-                            <td>
-                                <a class="btn btn-primary btn-rounded" href="#">修改</a>
-                                <a class="btn btn-primary btn-rounded" href="#">删除</a>
-                            </td>
-                        </tr>
+                        <?php if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr class="gradeX">
+                                <td><?php echo ($vo["activity_id"]); ?></td>
+                                <td><?php echo ($vo["act_title"]); ?></td>
+                                <td><?php
+ switch($vo['type']){ case 0: echo "长线活动";break; case 1: echo "短线活动";break; }?>
+                                </td>
+                                <td><?php echo (date('Y-m-d',$vo["start_time"])); ?></td>
+                                <td><?php echo (date('Y-m-d',$vo["end_time"])); ?></td>
+                                <td><img src="/Mjh/<?php echo $vo['img']?>" style="height: 50px;width: 100px;"></td>
+                                <td><?php echo ($vo["astrict"]); ?></td>
+                                <td><?php echo ($vo["sign_up"]); ?></td>
+                                <td><?php switch($vo['is_sold']){ case 0: echo "否";break; case 1: echo "是";break; }?>
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary btn-rounded" href="<?php echo U('Activity/update_activity',array('id'=>$vo['activity_id']));?>">修改</a>
+                                    <a class="btn btn-primary btn-rounded" href="#">删除</a>
+                                </td>
+                            </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                         </tbody>
                     </table>
                 </div>
@@ -97,7 +76,7 @@
 <script>
     $(document).ready(function(){$(".dataTables-example").dataTable();var a=$("#editable").dataTable();a.$("td").editable("../example_ajax.php",{"callback":function(d,c){var b=a.fnGetPosition(this);a.fnUpdate(d,b[0],b[1])},"submitdata":function(c,b){return{"row_id":this.parentNode.getAttribute("id"),"column":a.fnGetPosition(this)[2]}},"width":"90%","height":"100%"})});function fnClickAddRow(){$("#editable").dataTable().fnAddData(["Custom row","New row","New row","New row","New row"])};
 </script>
-<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
+<!--<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>-->
 <!--统计代码，可删除-->
 </body>
 </html>

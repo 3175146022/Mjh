@@ -40,59 +40,70 @@
                     <h5>添加活动</h5>
                 </div>
                 <div class="ibox-content">
-                    <form method="post" action="" role="form" class="form-horizontal m-t">
+                    <form method="post" action="<?php echo U('Activity/add_activity');?>" role="form" class="form-horizontal m-t" enctype="multipart/form-data">
                         <div class="form-group draggable">
                             <label class="col-sm-3 control-label">活动名称：</label>
                             <div class="col-sm-3">
-                                <input type="text" name="" class="form-control" placeholder="请输入活动名称">
+                                <input type="text" name="act_title" class="form-control" placeholder="请输入活动名称">
                             </div>
                         </div>
+                        <!--<div class="form-group draggable">-->
+                            <!--<label class="col-sm-3 control-label">活动开始时间：</label>-->
+                            <!--<div class="col-sm-3">-->
+                                <!--<input id="hello" class="laydate-icon form-control layer-date">-->
+                            <!--</div>-->
+                        <!--</div>-->
                         <div class="form-group draggable">
-                            <label class="col-sm-3 control-label">活动开始时间：</label>
-                            <div class="col-sm-3">
-                                <input type="text" name="" class="form-control" placeholder="请输入活动开始时间">
-                            </div>
-                        </div>
-                        <div class="form-group draggable">
-                            <label class="col-sm-3 control-label">活动结束时间：</label>
-                            <div class="col-sm-3">
-                                <input type="text" name="" class="form-control" placeholder="请输入活动结束时间">
+                            <label class="col-sm-3 control-label">活动期限日期：</label>
+                            <div class="col-sm-9">
+                                <input id="hello" placeholder="开始日期" name="start_time" class="form-control layer-date" id="start">
+                                <input id="hello1" placeholder="结束日期" name="end_time" class="form-control layer-date" id="end">
                             </div>
                         </div>
                         <div class="form-group draggable">
                             <label class="col-sm-3 control-label">活动参加人数限制：</label>
                             <div class="col-sm-3">
-                                <input type="text" name="" class="form-control" placeholder="请输入活动参加人数限制">
+                                <input type="text" name="astrict" class="form-control" placeholder="请输入活动参加人数限制">
                             </div>
                         </div>
                         <div class="form-group draggable">
                             <label class="col-sm-3 control-label">活动描述：</label>
                             <div class="col-sm-3">
-                                <input type="text" name="" class="form-control" placeholder="请输入活动描述">
+                                <input type="text" name="act_detail" class="form-control" placeholder="请输入活动描述">
                             </div>
                         </div>
                         <div class="form-group draggable">
                             <label class="col-sm-3 control-label">封面图片：</label>
                             <div class="col-sm-3">
-                                <input type="file" name="" class="form-control">
+                                <input type="file" name="img" class="form-control" onchange="imgPreview(this)">
+                                <img style="width: 50%;" id="preview">
+                                <input type="hidden" name="img" value="<?php echo ($data["img"]); ?>">
                             </div>
                         </div>
                         <div class="form-group draggable">
                             <label class="col-sm-3 control-label">活动类型：</label>
                             <div class="col-sm-3">
                                 <label class="radio-inline">
-                                    <input type="radio" checked="" value="option1" id="optionsRadios1" name="lx" style="height: 15px;width: 15px; margin-top: 1px;">长线活动</label>
+                                    <input type="radio" checked="" value="0" id="optionsRadios1" name="type" style="height: 15px;width: 15px; margin-top: 1px;">长线活动</label>
                                 <label class="radio-inline">
-                                    <input type="radio" value="option2" id="optionsRadios2" name="lx" style="height: 15px;width: 15px; margin-top: 1px;">短线活动</label>
+                                    <input type="radio" value="1" id="optionsRadios2" name="type" style="height: 15px;width: 15px; margin-top: 1px;">短线活动</label>
                             </div>
                         </div>
                         <div class="form-group draggable">
                             <label class="col-sm-3 control-label">下架活动：</label>
                             <div class="col-sm-3">
                                 <label class="radio-inline">
-                                    <input type="radio" checked="" value="option1" id="optionsRadios1" name="xj" style="height: 15px;width: 15px; margin-top: 1px;">是</label>
+                                    <input type="radio" checked="" value="1" id="optionsRadios1" name="is_sold" style="height: 15px;width: 15px; margin-top: 1px;">是</label>
                                 <label class="radio-inline">
-                                    <input type="radio" value="option2" id="optionsRadios2" name="xj" style="height: 15px;width: 15px; margin-top: 1px;">否</label>
+                                    <input type="radio" value="0" id="optionsRadios2" name="is_sold" style="height: 15px;width: 15px; margin-top: 1px;">否</label>
+                            </div>
+                        </div>
+                        <div class="form-group draggable">
+                            <label class="col-sm-3 control-label">活动分类：</label>
+                            <div class="col-sm-3">
+                                <select class="form-control" name="act_cate_id">
+                                    <?php if(is_array($cate)): $i = 0; $__LIST__ = $cate;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["act_cate_id"]); ?>"><?php echo ($vo["act_cate_title"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group draggable">
@@ -101,12 +112,11 @@
                                 <div class="ibox float-e-margins">
                                     <div class="ibox-content no-padding">
                                         <script id="editor" type="text/plain" style="width:100%;height:300px;"></script>
-                                        </div>
                                         <script type="text/javascript">
                                         var ue = UE.getEditor('editor',{
                                             width:'100%',
                                             height:'300px',
-                                            textarea:'content',
+                                            textarea:'act_content',
                                         });
                                         function setContent(data){
                                             ue.setContent(data);
@@ -131,5 +141,31 @@
 
 </div>
 </body>
-
+<script type="text/javascript">
+    function imgPreview(fileDom){
+        //判断是否支持FileReader
+        if (window.FileReader) {
+            var reader = new FileReader();
+        } else {
+            alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
+        }
+        //获取文件
+        var file = fileDom.files[0];
+        //读取完成
+        reader.onload = function(e) {
+            //获取图片dom
+            var img = document.getElementById("preview");
+            //图片路径设置为读取的图片
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+</script>
+<script src="/Mjh/Public/Admin/js/plugins/layer/laydate/laydate.js"></script>
+<script>
+    laydate({elem:"#hello",event:"focus"});var start={elem:"#start",format:"YYYY/MM/DD hh:mm:ss",min:laydate.now(),max:"2099-06-16 23:59:59",istime:true,istoday:false,choose:function(a){end.min=a;end.start=a}};var end={elem:"#end",format:"YYYY/MM/DD hh:mm:ss",min:laydate.now(),max:"2099-06-16 23:59:59",istime:true,istoday:false,choose:function(a){start.max=a}};laydate(start);laydate(end);
+</script>
+<script>
+    laydate({elem:"#hello1",event:"focus"});var start={elem:"#start",format:"YYYY/MM/DD hh:mm:ss",min:laydate.now(),max:"2099-06-16 23:59:59",istime:true,istoday:false,choose:function(a){end.min=a;end.start=a}};var end={elem:"#end",format:"YYYY/MM/DD hh:mm:ss",min:laydate.now(),max:"2099-06-16 23:59:59",istime:true,istoday:false,choose:function(a){start.max=a}};laydate(start);laydate(end);
+</script>
 </html>
