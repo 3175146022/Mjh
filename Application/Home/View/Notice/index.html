@@ -1,35 +1,24 @@
-<extend name="Common/common" />
-<block name="custom">
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>江湖须知</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
 	<link rel="stylesheet" type="text/css" href="__HOME__css/style.css"/>
-</block>
-<block name="content">
-	<ul class="card-list">
-		<li>
-			<h5>什么是江湖？</h5>
-			<div class="card-img" style="background: url(__HOME__images/a2.jpg) no-repeat center center;"></div>
-			<p>江湖是一个团体的代名词......<span class="fr">09月06日</span></p>
-			<a href="{:U('Notice/show')}">阅读全文 <i class="right"></i></a>
-		</li>
+</head>
 
+<body>
+<ul class="card-list">
+	<volist name="list" id="vo">
 		<li>
-			<h5>什么是江湖？</h5>
-			<div class="card-img" style="background: url(__HOME__images/a2.jpg) no-repeat center center;"></div>
-			<p>江湖是一个团体的代名词......<span class="fr">09月06日</span></p>
-			<a href="{:U('Notice/show')}">阅读全文 <i class="right"></i></a>
+			<h5>{$vo.title}</h5>
+			<div class="card-img" style="background: url(__ROOT__/{$vo.picture}) no-repeat center center;"></div>
+			<p>{$vo.content|mb_substr=0,6,'utf-8'}<span class="fr">{$vo.add_time|date='m-d',###}</span></p>
+			<a href="{:U('Notice/show',array('id'=>$vo['news_id']))}">阅读全文 <i class="right"></i></a>
 		</li>
-
-		<li>
-			<h5>什么是江湖？</h5>
-			<div class="card-img" style="background: url(__HOME__images/a2.jpg) no-repeat center center;"></div>
-			<p>江湖是一个团体的代名词......<span class="fr">09月06日</span></p>
-			<a href="{:U('Notice/show')}">阅读全文 <i class="right"></i></a>
-		</li>
-
-		<li>
-			<h5>什么是江湖？</h5>
-			<div class="card-img" style="background: url(__HOME__images/a2.jpg) no-repeat center center;"></div>
-			<p>江湖是一个团体的代名词......<span class="fr">09月06日</span></p>
-			<a href="{:U('Notice/show')}">阅读全文 <i class="right"></i></a>
-		</li>
-	</ul>
-</block>
+	</volist>
+</ul>
+</body>
+</html>
