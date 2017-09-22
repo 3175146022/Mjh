@@ -95,9 +95,6 @@
                         <li>
                             <a class="J_menuItem" href="<?php echo U('Activity/add_activity');?>" data-index="0">添加活动</a>
                         </li>
-                        <li>
-                            <a class="J_menuItem" href="<?php echo U('Activity/cate');?>" data-index="0">活动分类</a>
-                        </li>
                     </ul>
                 </li>
                 <li>

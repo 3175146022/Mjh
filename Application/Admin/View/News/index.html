@@ -25,6 +25,7 @@
                             <th>新闻编号</th>
                             <th>新闻题目</th>
                             <th>新闻内容</th>
+                            <th>封面图</th>
                             <th>新闻类别</th>
                             <th>发布时间</th>
                             <th>修改时间</th>
@@ -32,44 +33,24 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="gradeX">
-                            <td>Trident</td>
-                            <td>Internet Explorer 4.0</td>
-                            <td>Win 95+</td>
-                            <td class="center">4</td>
-                            <td class="center">4</td>
-                            <td>Win 95+</td>
-                            <td>
-                                <a class="btn btn-primary btn-rounded" href="{:U('News/update_news')}">修改</a>
-                                <a class="btn btn-primary btn-rounded" href="#">删除</a>
-                            </td>
-                        </tr>
-                        <tr class="gradeC">
-                            <td>Trident</td>
-                            <td>Internet Explorer 5.0
-                            </td>
-                            <td>Win 95+</td>
-                            <td class="center">5</td>
-                            <td class="center">4</td>
-                            <td>Win 95+</td>
-                            <td>
-                                <a class="btn btn-primary btn-rounded" href="#">修改</a>
-                                <a class="btn btn-primary btn-rounded" href="#">删除</a>
-                            </td>
-                        </tr>
-                        <tr class="gradeA">
-                            <td>Trident</td>
-                            <td>Internet Explorer 5.5
-                            </td>
-                            <td>Win 95+</td>
-                            <td class="center">5.5</td>
-                            <td class="center">4</td>
-                            <td>Win 95+</td>
-                            <td>
-                                <a class="btn btn-primary btn-rounded" href="#">修改</a>
-                                <a class="btn btn-primary btn-rounded" href="#">删除</a>
-                            </td>
-                        </tr>
+                        <volist name="data" id="vo">
+                            <tr class="gradeX">
+                                <td>{$vo.news_id}</td>
+                                <td>{$vo.title}</td>
+                                <td>{$vo.content}</td>
+                                <td><img width="100px" height="50px" src="__ROOT__/{$vo.picture}"></td>
+                                <td class="center">{$vo.cate_name}</td>
+                                <td class="center"><?php echo date('Y-m-d H:i:s',$vo['add_time'])?></td>
+                                <td><?php echo date('Y-m-d H:i:s',$vo['update_time'])?></td>
+                                <td>
+                                    <a class="btn btn-primary btn-rounded"
+                                       href="{:U('News/update_news',array('id'=>$vo['news_id']))}">修改</a>
+                                    <a class="btn btn-primary btn-rounded" onclick="delete_cate('{$vo.news_id}')"
+                                       href="#">删除</a>
+                                </td>
+                            </tr>
+                        </volist>
+
                         </tbody>
                     </table>
                 </div>
@@ -81,16 +62,55 @@
 <script src="__STYLE__js/jquery-2.1.1.min.js"></script>
 <script src="__STYLE__js/bootstrap.min.js?v=3.4.0"></script>
 <script src="__STYLE__js/plugins/jeditable/jquery.jeditable.js"></script>
-<script src="__STYLE__js/plugins/layer/layer.min.js"></script>
 <!-- Data Tables -->
 <script src="__STYLE__js/plugins/dataTables/jquery.dataTables.js"></script>
 <script src="__STYLE__js/plugins/dataTables/dataTables.bootstrap.js"></script>
 <!-- 自定义js -->
 <script src="__STYLE__js/content.min.js?v=1.0.0"></script>
 <!-- Page-Level Scripts -->
+<script src="__ROOT__/public/admin/plugins/layer/layer.js"></script>
 
 <script>
-    $(document).ready(function(){$(".dataTables-example").dataTable();var a=$("#editable").dataTable();a.$("td").editable("../example_ajax.php",{"callback":function(d,c){var b=a.fnGetPosition(this);a.fnUpdate(d,b[0],b[1])},"submitdata":function(c,b){return{"row_id":this.parentNode.getAttribute("id"),"column":a.fnGetPosition(this)[2]}},"width":"90%","height":"100%"})});function fnClickAddRow(){$("#editable").dataTable().fnAddData(["Custom row","New row","New row","New row","New row"])};
+    function delete_cate(id) {
+        layer.confirm('是否删除分类', {
+            btn: ['确定', '取消'] //按钮
+        }, function () {
+            $.post("__ROOT__/admin/news/destroy_news/id/" + id, {}, function (data) {
+                var json = eval('(' + data + ')');
+                if (json.status == 1) {
+                    layer.msg(json.msg, {icon: 6}, function () {
+                        window.location.href = window.location.href;
+                    });
+                } else if (json.status == 2) {
+                    layer.msg(json.msg, {icon: 5})
+                } else {
+                    layer.msg(json.msg, {icon: 5})
+                }
+            });
+        }, function () {
+        });
+    }
+
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        $(".dataTables-example").dataTable();
+        var a = $("#editable").dataTable();
+        a.$("td").editable("../example_ajax.php", {
+            "callback": function (d, c) {
+                var b = a.fnGetPosition(this);
+                a.fnUpdate(d, b[0], b[1])
+            }, "submitdata": function (c, b) {
+                return {"row_id": this.parentNode.getAttribute("id"), "column": a.fnGetPosition(this)[2]}
+            }, "width": "90%", "height": "100%"
+        })
+    });
+
+    function fnClickAddRow() {
+        $("#editable").dataTable().fnAddData(["Custom row", "New row", "New row", "New row", "New row"])
+    };
 </script>
 <!--<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>-->
 <!--&lt;!&ndash;统计代码，可删除&ndash;&gt;-->

@@ -29,7 +29,8 @@
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h5 class="panel-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="tabs_panels.html#collapse{$vo.cate_id}">{$vo.cate_name}</a>
+                                            <a data-toggle="collapse" data-parent="#accordion"
+                                               href="tabs_panels.html#collapse{$vo.cate_id}">{$vo.cate_name}</a>
                                             <a class="btn btn-primary btn-rounded" href="{:U('News/add_cate')}">添加分类</a>
                                         </h5>
                                     </div>
@@ -43,7 +44,6 @@
                                                             <tr>
                                                                 <th>分类编号</th>
                                                                 <th>分类名</th>
-
                                                                 <th>操作</th>
                                                             </tr>
                                                             </thead>
@@ -54,8 +54,11 @@
                                                                     <td class="center">{$vol.cate_name}</td>
 
                                                                     <td>
-                                                                        <a class="btn btn-primary btn-rounded" href="__ROOT__/admin/news/update_cate/id/{$vol.cate_id}">修改</a>
-                                                                        <a onclick="delete_cate('{$vol.cate_id}')" class="btn btn-primary btn-rounded" href="javascript:;">删除</a>
+                                                                        <a class="btn btn-primary btn-rounded"
+                                                                           href="__ROOT__/admin/news/update_cate/id/{$vol.cate_id}">修改</a>
+                                                                        <a onclick="delete_cate('{$vol.cate_id}')"
+                                                                           class="btn btn-primary btn-rounded"
+                                                                           href="javascript:;">删除</a>
                                                                     </td>
                                                                 </tr>
                                                             </volist>
@@ -102,29 +105,27 @@
 //            }
 //        })
         layer.confirm('是否删除分类', {
-            btn: ['确定','取消'] //按钮
-        }, function(){
-            $.post("__ROOT__/admin/news/destroy_cate/id/"+id,{},function (data) {
-                var json = eval('('+data+')');
-                if (json.status==1){
-                    layer.msg(json.msg, {icon:6},function(){
+            btn: ['确定', '取消'] //按钮
+        }, function () {
+            $.post("__ROOT__/admin/news/destroy_cate/id/" + id, {}, function (data) {
+                var json = eval('(' + data + ')');
+                if (json.status == 1) {
+                    layer.msg(json.msg, {icon: 6}, function () {
                         window.location.href = window.location.href;
                     });
-                }else if (json.status == 2){
-                    layer.msg(json.msg,{icon:5})
-                }else {
-                    layer.msg(json.msg,{icon:5})
+                } else if (json.status == 2) {
+                    layer.msg(json.msg, {icon: 5})
+                } else {
+                    layer.msg(json.msg, {icon: 5})
                 }
             });
-        }, function(){
+        }, function () {
 //            layer.msg('也可以这样', {
 //                time: 20000, //20s后自动关闭
 //                btn: ['明白了', '知道了']
 //            });
         });
     }
-
-
 
 
 </script>
