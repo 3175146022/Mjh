@@ -43,8 +43,10 @@
                                 <td class="center"><?php echo date('Y-m-d H:i:s',$vo['add_time'])?></td>
                                 <td><?php echo date('Y-m-d H:i:s',$vo['update_time'])?></td>
                                 <td>
-                                    <a class="btn btn-primary btn-rounded" href="{:U('News/update_news',array('id'=>$vo['news_id']))}">修改</a>
-                                    <a class="btn btn-primary btn-rounded" onclick="delete_cate('{$vo.news_id}')" href="#">删除</a>
+                                    <a class="btn btn-primary btn-rounded"
+                                       href="{:U('News/update_news',array('id'=>$vo['news_id']))}">修改</a>
+                                    <a class="btn btn-primary btn-rounded" onclick="delete_cate('{$vo.news_id}')"
+                                       href="#">删除</a>
                                 </td>
                             </tr>
                         </volist>
@@ -71,31 +73,44 @@
 <script>
     function delete_cate(id) {
         layer.confirm('是否删除分类', {
-            btn: ['确定','取消'] //按钮
-        }, function(){
-            $.post("__ROOT__/admin/news/destroy_news/id/"+id,{},function (data) {
-                var json = eval('('+data+')');
-                if (json.status==1){
-                    layer.msg(json.msg, {icon:6},function(){
+            btn: ['确定', '取消'] //按钮
+        }, function () {
+            $.post("__ROOT__/admin/news/destroy_news/id/" + id, {}, function (data) {
+                var json = eval('(' + data + ')');
+                if (json.status == 1) {
+                    layer.msg(json.msg, {icon: 6}, function () {
                         window.location.href = window.location.href;
                     });
-                }else if (json.status == 2){
-                    layer.msg(json.msg,{icon:5})
-                }else {
-                    layer.msg(json.msg,{icon:5})
+                } else if (json.status == 2) {
+                    layer.msg(json.msg, {icon: 5})
+                } else {
+                    layer.msg(json.msg, {icon: 5})
                 }
             });
-        }, function(){
+        }, function () {
         });
     }
-
-
 
 
 </script>
 
 <script>
-    $(document).ready(function(){$(".dataTables-example").dataTable();var a=$("#editable").dataTable();a.$("td").editable("../example_ajax.php",{"callback":function(d,c){var b=a.fnGetPosition(this);a.fnUpdate(d,b[0],b[1])},"submitdata":function(c,b){return{"row_id":this.parentNode.getAttribute("id"),"column":a.fnGetPosition(this)[2]}},"width":"90%","height":"100%"})});function fnClickAddRow(){$("#editable").dataTable().fnAddData(["Custom row","New row","New row","New row","New row"])};
+    $(document).ready(function () {
+        $(".dataTables-example").dataTable();
+        var a = $("#editable").dataTable();
+        a.$("td").editable("../example_ajax.php", {
+            "callback": function (d, c) {
+                var b = a.fnGetPosition(this);
+                a.fnUpdate(d, b[0], b[1])
+            }, "submitdata": function (c, b) {
+                return {"row_id": this.parentNode.getAttribute("id"), "column": a.fnGetPosition(this)[2]}
+            }, "width": "90%", "height": "100%"
+        })
+    });
+
+    function fnClickAddRow() {
+        $("#editable").dataTable().fnAddData(["Custom row", "New row", "New row", "New row", "New row"])
+    };
 </script>
 <!--<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>-->
 <!--&lt;!&ndash;统计代码，可删除&ndash;&gt;-->
