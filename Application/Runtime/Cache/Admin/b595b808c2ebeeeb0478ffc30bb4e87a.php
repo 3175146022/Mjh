@@ -78,22 +78,7 @@
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="<?php echo U('Award/index');?>" data-index="0">悬赏列表</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript:;">
-                        <i class="fa fa-th-large"></i>
-                        <span class="nav-label">直播管理</span>
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a class="J_menuItem" href="<?php echo U('Solive/index');?>" data-index="0">直播列表</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="<?php echo U('Solive/add_solive');?>" data-index="0">添加直播</a>
+                            <a class="J_menuItem" href="<?php echo U('Award/index');?>" data-index="0">悬赏</a>
                         </li>
                     </ul>
                 </li>
@@ -109,9 +94,6 @@
                         </li>
                         <li>
                             <a class="J_menuItem" href="<?php echo U('Activity/add_activity');?>" data-index="0">添加活动</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="<?php echo U('Activity/cate');?>" data-index="0">活动分类</a>
                         </li>
                     </ul>
                 </li>

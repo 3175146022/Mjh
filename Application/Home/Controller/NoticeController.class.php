@@ -8,4 +8,9 @@ class NoticeController extends Controller{
 
         $this->display();//页面赋值
     }
+
+    public function show()
+    {
+        $this->display();
+    }
 }

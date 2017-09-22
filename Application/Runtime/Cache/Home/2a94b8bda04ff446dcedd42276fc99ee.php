@@ -9,7 +9,7 @@
 </head>
 <body>
 <div id="all">
-    <iframe src="<?php echo U('Story/index');?>"></iframe>
+    <iframe src=""></iframe>
     <div class="mt"></div>
     <div class="nav">
         <i class="list_text fl">
