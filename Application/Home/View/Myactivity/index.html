@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>story</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="__HOME__css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
+    <script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+<div id="content">
+    <div class="user-head">
+        <div class="card-img" style="background: url(__HOME__images/a4.jpg) no-repeat center center;">
+            <i class="head-big head" style="background: url(__HOME__images/hd.jpg);"></i>
+        </div>
+        <div class="sec-tab cf">
+            <i class="active"></i>
+            <i></i>
+        </div>
+    </div>
+    <div class="hide mg-20">
+        <div class="tab cf">
+            <ul class="list">
+                <li class="cf">
+                    <a href="{:U('Story/index')}">
+                        <div class="img_box fl">
+                            <img src="__HOME__images/a1.jpg" alt="" />
+                        </div>
+                        <div class="list_t fr">
+                            <h2>探望少年“第二季冠名，赞助召集令</h2>
+                            <span>2017.9.3</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="cf">
+                    <a href="{:U('Story/index')}">
+                        <div class="img_box fl">
+                            <img src="__HOME__images/a1.jpg" alt="" />
+                        </div>
+                        <div class="list_t fr">
+                            <h2>探望少年“第二季冠名，赞助召集令</h2>
+                            <span>2017.9.3</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="cf">
+                    <a href="{:U('Story/index')}">
+                        <div class="img_box fl">
+                            <img src="__HOME__images/a1.jpg" alt="" />
+                        </div>
+                        <div class="list_t fr">
+                            <h2>探望少年“第二季冠名，赞助召集令</h2>
+                            <span>2017.9.3</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="cf">
+                    <a href="{:U('Story/index')}">
+                        <div class="img_box fl">
+                            <img src="__HOME__images/a1.jpg" alt="" />
+                        </div>
+                        <div class="list_t fr">
+                            <h2>探望少年“第二季冠名，赞助召集令</h2>
+                            <span>2017.9.3</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="list">
+                <li class="cf">
+                    <a href="{:U('Story/index')}">
+                        <div class="img_box fl">
+                            <img src="__HOME__images/a1.jpg" alt="" />
+                        </div>
+                        <div class="list_t fr">
+                            <h2>探望少年“第二季冠名，赞助召集令</h2>
+                            <span>2017.9.3</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="cf">
+                    <a href="{:U('Story/index')}">
+                        <div class="img_box fl">
+                            <img src="__HOME__images/a1.jpg" alt="" />
+                        </div>
+                        <div class="list_t fr">
+                            <h2>探望少年“第二季冠名，赞助召集令</h2>
+                            <span>2017.9.3</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="cf">
+                    <a href="{:U('Story/index')}">
+                        <div class="img_box fl">
+                            <img src="__HOME__images/a1.jpg" alt="" />
+                        </div>
+                        <div class="list_t fr">
+                            <h2>探望少年“第二季冠名，赞助召集令</h2>
+                            <span>2017.9.3</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="cf">
+                    <a href="{:U('Story/index')}">
+                        <div class="img_box fl">
+                            <img src="__HOME__images/a1.jpg" alt="" />
+                        </div>
+                        <div class="list_t fr">
+                            <h2>探望少年“第二季冠名，赞助召集令</h2>
+                            <span>2017.9.3</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+<script type="text/javascript">
+    window.onload = function(){
+        $(".sec-tab i").on("click",function(){
+            $(this).addClass("active").siblings().removeClass("active");
+            var i = $(this).index();
+            var w = $(window).width();
+
+            $(".tab").css("transform","translate("+ -i * w+"px)")
+        })
+    }
+</script>
