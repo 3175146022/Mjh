@@ -11,5 +11,6 @@ return array(
     /* 页面样式路径 */
     'TMPL_PARSE_STRING' => array(
         '__STYLE__' => __ROOT__. '/Public/Admin/',
+        '__HOME__' => __ROOT__.'/Public/Home/',
     )
 );

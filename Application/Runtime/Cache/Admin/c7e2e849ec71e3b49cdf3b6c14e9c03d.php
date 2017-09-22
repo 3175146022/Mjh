@@ -38,7 +38,7 @@
                     <h5>悬赏详情</h5>
                 </div>
                 <div class="ibox-content">
-                    <form method="post" action="<?php echo U('News/add_news');?>" role="form" class="form-horizontal m-t">
+                    <form method="post" action="" role="form" class="form-horizontal m-t">
                         <div class="form-group draggable">
                             <label class="col-sm-3 control-label">悬赏名称：</label>
                             <div class="col-sm-3">
