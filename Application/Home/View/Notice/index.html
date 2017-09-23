@@ -11,33 +11,14 @@
 
 <body>
 	<ul class="card-list">
+		<volist name="list" id="vo">
 		<li>
-			<h5>什么是江湖？</h5>
-			<div class="card-img" style="background: url(__HOME__images/a2.jpg) no-repeat center center;"></div>
-			<p>江湖是一个团体的代名词......<span class="fr">09月06日</span></p>
-			<a href="{:U('Notice/show')}">阅读全文 <i class="right"></i></a>
+			<h5>{$vo.title}</h5>
+			<div class="card-img" style="background: url(__ROOT__/{$vo.picture}) no-repeat center center;"></div>
+			<p>{$vo.content|mb_substr=0,6,'utf-8'}<span class="fr">{$vo.add_time|date='m-d',###}</span></p>
+			<a href="{:U('Notice/show',array('id'=>$vo['news_id']))}">阅读全文 <i class="right"></i></a>
 		</li>
-
-		<li>
-			<h5>什么是江湖？</h5>
-			<div class="card-img" style="background: url(__HOME__images/a2.jpg) no-repeat center center;"></div>
-			<p>江湖是一个团体的代名词......<span class="fr">09月06日</span></p>
-			<a href="{:U('Notice/show')}">阅读全文 <i class="right"></i></a>
-		</li>
-
-		<li>
-			<h5>什么是江湖？</h5>
-			<div class="card-img" style="background: url(__HOME__images/a2.jpg) no-repeat center center;"></div>
-			<p>江湖是一个团体的代名词......<span class="fr">09月06日</span></p>
-			<a href="{:U('Notice/show')}">阅读全文 <i class="right"></i></a>
-		</li>
-
-		<li>
-			<h5>什么是江湖？</h5>
-			<div class="card-img" style="background: url(__HOME__images/a2.jpg) no-repeat center center;"></div>
-			<p>江湖是一个团体的代名词......<span class="fr">09月06日</span></p>
-			<a href="{:U('Notice/show')}">阅读全文 <i class="right"></i></a>
-		</li>
+		</volist>
 	</ul>
 </body>
 </html>
