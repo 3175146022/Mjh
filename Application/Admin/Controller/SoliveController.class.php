@@ -2,7 +2,7 @@
 namespace Admin\Controller;
 use Think\Controller;
 
-class SoliveController extends CommonController{
+class SoliveController extends Controller{
     //直播列表
     public function index(){
         $data = M('Solive')->select();
@@ -58,21 +58,7 @@ class SoliveController extends CommonController{
                 $upload->savePath  =     'solive/'; // 设置附件上传（子）目录
                 // 上传文件
                 $info   =   $upload->upload();
-                $post = array(
-                    'so_title' => $_POST['so_title'],
-                    'so_detail' => $_POST['so_detail'],
-                    'so_author' => $_POST['so_author'],
-                    'so_link' => $_POST['so_link'],
-                );
-                if($info['img']) {
-                    //获取原来的图片地址
-                    $pic = M('Solive')->field('img')->where(array('news_id' => $_POST['solive_id']))->find();
-                    //删除原来的图片
-                    unlink($pic['img']);
-                    $img_path = 'Uploads/' . $info['img']['savepath'] . $info['img']['savename'];
-                    $post['img'] = $img_path;
-                }
-                $res = M('Solive')->where(array('solive_id'=>$_POST['solive_id']))->save($post);
+                $res = D('Solive')->update_solive($_POST,$info);
                 if($res){
                     $this->success('修改成功',U('Solive/index'));
                 }else{
