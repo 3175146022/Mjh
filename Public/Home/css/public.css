@@ -18,12 +18,9 @@ input[type=submit]{
    outline:none;
 }
 
-a:active{
-     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
 body{
 	max-width: 750px;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 *{
@@ -90,10 +87,12 @@ body{
 	transform: translate(-50%);
 	background: #fff;
 	box-shadow: 0 0 20px rgba(95,95,95,.5);
-	z-index: -1;
-	opacity: 0;
-	transition: opacity .5s;
 	display: none;
+	z-index: 1;
+}
+
+.list_text ul.active,#activity ul.active{
+		display: block;
 }
 
 #activity ul{
@@ -115,11 +114,6 @@ body{
 	transform: translate(-50%);
 }
 
-.list_text ul.active,#activity ul.active{
-	z-index: 1;
-	opacity: 1;
-	display: block;
-}
 
 .list_text ul li a,#activity ul li a{
 	display: block;
@@ -210,12 +204,28 @@ body{
 	height: 70px;
 	border-radius: 50px;
 	background:#fff url(../images/7.png) no-repeat center center;
-	background-size: 70%;
+	background-size: 60%!important;
 	box-shadow: 0 0 20px rgba(95,95,95,.5);
 	left: 50%;
 	top:-35px;
 	transform: translate(-50%);
 	z-index: 1;
+}
+
+.nav em.activity1{
+		background:#fff url(../images/10.png) no-repeat center center;
+}
+
+.nav em.zhibo{
+		background:#fff url(../images/9.png) no-repeat center center;
+}
+
+.nav em.tuijie{
+		background:#fff url(../images/8.png) no-repeat center center;
+}
+
+.nav em.huodong{
+		background:#fff url(../images/7.png) no-repeat center center;
 }
 
 #all{
