@@ -15,17 +15,17 @@
 			<i class="list_text fl">
 				<ul>
 					<li><a class="xuzhi" href="xuzhi.html"></a></li>
-					<li><a class="gaoshi" href="{:U('Bulletin/index')}"></a></li>
+					<li><a class="gaoshi" href="gaoshi.html"></a></li>
 					<li><a class="xuanshang" href="xuanshang.html"></a></li>
 					<li><a class="rank" href="rank.html"></a></li>
 				</ul>
 			</i>
 			<em id="activity">
 				<ul>
-					<li><a class="activity1" href=""></a></li>
-					<li><a class="zhibo" href=""></a></li>
-					<li><a class="tuijie" href=""></a></li>
-					<li><a class="huodong" href=""></a></li>
+					<li><a class="activity1" href="activity.html"></a></li>
+					<li><a class="zhibo" href="zhibo.html"></a></li>
+					<li><a class="tuijie" href="story.html"></a></li>
+					<li><a class="huodong" href="story.html"></a></li>
 				</ul>
 			</em>
 			<a href="my.html" class="my_home"><i class="my fr"></i></a>
@@ -38,11 +38,14 @@
 		$("iframe").css("height",$(window).height() - 50)
 //		设置iframe高度
 		$(".list_text").on("click",function(){
-			$(".list_text ul").toggleClass("active")
+				$("#activity ul").removeClass("active")
+				$(".list_text ul").toggleClass("active")
+				
 		})
 		
 		$("#activity").on("click",function(){
-			$("#activity ul").toggleClass("active")
+				$(".list_text ul").removeClass("active")
+				$("#activity ul").toggleClass("active")
 		})
 //		列表弹出框
 
@@ -68,6 +71,19 @@
 		
 			var cls= $el.attr("class")
 			$(".list_text").removeClass().addClass(cls + " list_text fl")
+			
+		  return false;
+		});
+		
+		$("#activity").find('a').on('click', function () {
+		  	var $el = $(this)
+		    	id = $el.attr('href');
+			$('iframe').attr("src",id)
+			$(".active").removeClass("active")	
+			$(this).addClass("active")
+		
+			var cls= $el.attr("class")
+			$("#activity").removeClass().addClass(cls)
 			
 		  return false;
 		});

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+   		<link rel="stylesheet" type="text/css" href="css/style.css"/>	
+   		<link rel="stylesheet" type="text/css" href="css/public.css"/>
+	</head>
+	<body>
+		<div id="partner">
+			<a href="#" class="invit">
+				<img src="images/p1.png" alt="" />
+			</a>
+			<div class="invited">
+				<em></em>
+				<div class="head_box">
+					<i class="head-big head" style="background: url(images/hd.jpg);"></i>
+					<p>张三</p>
+				</div>
+			</div>
+			
+			<div class="my_par">
+				<em></em>
+				<ul>
+					<li><a href="">
+						<div class="head_box">
+							<i class="head-big head" style="background: url(images/hd.jpg);"></i>
+							<p>张三</p>
+						</div>
+					</a></li>
+					<li><a href="">
+						<div class="head_box">
+							<i class="head-big head" style="background: url(images/hd.jpg);"></i>
+							<p>张三</p>
+						</div>
+					</a></li>
+					<li><a href="">
+						<div class="head_box">
+							<i class="head-big head" style="background: url(images/hd.jpg);"></i>
+							<p>张三</p>
+						</div>
+					</a></li>
+					<li><a href="">
+						<div class="head_box">
+							<i class="head-big head" style="background: url(images/hd.jpg);"></i>
+							<p>张三</p>
+						</div>
+					</a></li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="click_invit">
+			
+		</div>
+	</body>
+</html>
+<script src="js/zepto.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	$(".invit").on("click",function(){
+		$(".click_invit").addClass("active")
+	})
+	
+	$(".click_invit").on("click",function(){
+		$(".click_invit").removeClass("active")
+	})
+</script>
+
