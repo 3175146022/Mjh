@@ -11,8 +11,8 @@
     <link href="__STYLE__css/style.min.css?v=3.1.0" rel="stylesheet">
     <style>
         embed{
-            width: 400px!important;
-            height: 250px!important;
+            width: 200px!important;
+            height: 125px!important;
         }
     </style>
 </head>
@@ -32,6 +32,7 @@
                             <th>直播标题</th>
                             <th>直播简介</th>
                             <th>直播链接</th>
+                            <th>封面图片</th>
                             <th>发布人</th>
                             <th>操作</th>
                         </tr>
@@ -43,6 +44,7 @@
                                 <td>{$list.so_title}</td>
                                 <td>{$list.so_detail}</td>
                                 <td>{$list.so_link}</td>
+                                <td><img src="__ROOT__/{$list.img}" style="width: 100px;height: 50px;"></td>
                                 <td>{$list.so_author}</td>
                                 <td>
                                     <a class="btn btn-primary btn-rounded" href="{:U('Solive/update_solive',array('id'=>$list['solive_id']))}">修改</a>

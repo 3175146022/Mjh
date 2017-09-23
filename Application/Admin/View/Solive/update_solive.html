@@ -55,6 +55,20 @@
                             </div>
                         </div>
                         <div class="form-group draggable">
+                            <label class="col-sm-3 control-label">发布者：</label>
+                            <div class="col-sm-3">
+                                <input type="text" name="so_author" class="form-control" value="{$data.so_author}">
+                            </div>
+                        </div>
+                        <div class="form-group draggable">
+                            <label class="col-sm-3 control-label">封面图片：</label>
+                            <div class="col-sm-3">
+                                <input type="file" name="img" class="form-control" onchange="imgPreview(this)">
+                                <img src="__ROOT__/{$data.img}" style="width: 50%;" id="preview">
+                                <input type="hidden" name="img" value="{$data.img}">
+                            </div>
+                        </div>
+                        <div class="form-group draggable">
                             <label class="col-sm-3 control-label">直播链接：</label>
                             <div class="col-sm-9">
                                 <div class="ibox float-e-margins">
@@ -76,12 +90,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group draggable">
-                            <label class="col-sm-3 control-label">发布者：</label>
-                            <div class="col-sm-3">
-                                <input type="text" name="so_author" class="form-control" value="{$data.so_author}">
-                            </div>
-                        </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group draggable">
                             <div class="col-sm-3 col-sm-offset-3">
@@ -98,5 +106,24 @@
 
 </div>
 </body>
-
+<script type="text/javascript">
+    function imgPreview(fileDom){
+        //判断是否支持FileReader
+        if (window.FileReader) {
+            var reader = new FileReader();
+        } else {
+            alert("您的设备不支持图片预览功能，如需该功能请升级您的设备！");
+        }
+        //获取文件
+        var file = fileDom.files[0];
+        //读取完成
+        reader.onload = function(e) {
+            //获取图片dom
+            var img = document.getElementById("preview");
+            //图片路径设置为读取的图片
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+</script>
 </html>
