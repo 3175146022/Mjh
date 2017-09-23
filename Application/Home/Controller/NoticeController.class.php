@@ -4,7 +4,7 @@ namespace Home\Controller;
 use Think\Controller;
 
 class NoticeController extends Controller{
-    //江湖须知
+    //江湖须知列表
     public function index(){
         $list = M('news')->where(array('cate_name'=>'江湖须知'))->join('news_cate on news_cate.cate_id = news.cate_id')->select();
         $this->assign('list',$list);
