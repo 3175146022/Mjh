@@ -47,7 +47,7 @@ class NewsController extends Controller{
 
                     $a = D('news')->data($_POST)->add();
                     if (is_numeric($a)){
-                        $this->success('添加成功',U('News/index'));
+                        $this->success('添加成功',U('News/add_news'));
                     }
                 }
             }
