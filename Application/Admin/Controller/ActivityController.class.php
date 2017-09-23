@@ -21,17 +21,6 @@ class ActivityController extends CommonController{
     public function add_activity(){
         //关闭表单令牌
         C('TOKEN_ON',false);
-        $post = array(
-            'act_title' => I('post.act_title'),
-            'start_time' => I('post.start_time'),
-            'end_time' => I('post.end_time'),
-            'astrict' => I('post.astrict'),
-            'act_detail' => I('post.act_detail'),
-            'act_content' => I('post.act_content'),
-            'is_sold' => I('post.is_sold'),
-            'type' => I('post.type'),
-            'act_cate_id' => I('post.act_cate_id'),
-        );
         if(IS_POST){
             $verify = D('Activity');
             if(!$verify->create()){
@@ -41,7 +30,7 @@ class ActivityController extends CommonController{
                 if(!$info['img']){
                     echo "<script>alert('请添加图片');window.history.go(-1);</script>";
                 }else{
-                    $res = D('Activity')->add_act($post,$info);
+                    $res = D('Activity')->add_act($_POST,$info);
                     if($res){
                         $this->success('添加成功！',U('Activity/add_activity'));
                     }else{
@@ -59,25 +48,13 @@ class ActivityController extends CommonController{
     public function update_activity(){
         //关闭表单令牌
         C('TOKEN_ON',false);
-        $post = array(
-            'activity_id' => I('post.activity_id'),
-            'act_title' => I('post.act_title'),
-            'start_time' => I('post.start_time'),
-            'end_time' => I('post.end_time'),
-            'astrict' => I('post.astrict'),
-            'act_detail' => I('post.act_detail'),
-            'act_content' => I('post.act_content'),
-            'is_sold' => I('post.is_sold'),
-            'type' => I('post.type'),
-            'act_cate_id' => I('post.act_cate_id'),
-        );
         if(IS_POST){
             $verify = D('Activity');
             if(!$verify->create()){
                 $this->error($verify->getError());
             }else {
                 $info = $this->upload();
-                $res = D('Activity')->update_act($post,$info);
+                $res = D('Activity')->update_act($_POST,$info);
                 if($res){
                     $this->success('修改成功！',U('Activity/index'));
                 }else{
