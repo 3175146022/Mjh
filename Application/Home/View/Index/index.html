@@ -1,44 +1,52 @@
-<extend name="Common/common" />
-<block name="custom">
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
     <script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
-</block>
-<block name="content">
-    <div id="all">
-        <iframe src="{:U('Story/index')}"></iframe>
-        <div class="mt"></div>
-        <div class="nav">
-            <i class="list_text fl">
-                <ul>
-                    <li><a class="xuzhi" href="{:U('Notice/index')}"></a></li>
-                    <li><a class="gaoshi" href="{:U('Bulletin/index')}"></a></li>
-                    <li><a class="xuanshang" href="{:U('Reward/index')}"></a></li>
-                    <li><a class="rank" href="{:U('Rank/index')}"></a></li>
-                </ul>
-            </i>
-            <em id="activity">
-                <ul>
-                    <li><a class="activity1" href="{:U('Story/index')}"></a></li>
-                    <li><a class="zhibo" href=""></a></li>
-                    <li><a class="tuijie" href=""></a></li>
-                    <li><a class="huodong" href="{:U('Story/index')}"></a></li>
-                </ul>
-            </em>
-            <a href="{:U('User/index')}" class="my_home"><i class="my fr"></i></a>
-        </div>
+</head>
+<body>
+<div id="all">
+    <iframe src="{:U('Story/index')}"></iframe>
+    <div class="mt"></div>
+    <div class="nav">
+        <i class="list_text fl">
+            <ul>
+                <li><a class="xuzhi" href="{:U('Notice/index')}"></a></li>
+                <li><a class="gaoshi" href="{:U('Bulletin/index')}"></a></li>
+                <li><a class="xuanshang" href="{:U('Reward/index')}"></a></li>
+                <li><a class="rank" href="{:U('Rank/index')}"></a></li>
+            </ul>
+        </i>
+        <em id="activity">
+            <ul>
+                <li><a class="activity1" href="{:U('Activity/index')}"></a></li>
+                <li><a class="zhibo" href="zhibo.html"></a></li>
+                <li><a class="tuijie" href="story.html"></a></li>
+                <li><a class="huodong" href="story.html"></a></li>
+            </ul>
+        </em>
+        <a href="{:U('User/index')}" class="my_home"><i class="my fr"></i></a>
     </div>
-</block>
-<block name="script">
-    <script type="text/javascript">
-        $(function(){
-            $("iframe").css("height",$(window).height() - 50)
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    $(function(){
+        $("iframe").css("height",$(window).height() - 50)
 //		设置iframe高度
-            $(".list_text").on("click",function(){
-                $(".list_text ul").toggleClass("active")
-            })
+        $(".list_text").on("click",function(){
+            $("#activity ul").removeClass("active")
+            $(".list_text ul").toggleClass("active")
 
-            $("#activity").on("click",function(){
-                $("#activity ul").toggleClass("active")
-            })
+        })
+
+        $("#activity").on("click",function(){
+            $(".list_text ul").removeClass("active")
+            $("#activity ul").toggleClass("active")
+        })
 //		列表弹出框
 
 //		$(".nav").find('a').on('click', function () {
@@ -54,31 +62,43 @@
 //		  return false;
 //		});
 
-            $(".list_text").find('a').on('click', function () {
-                var $el = $(this)
-                id = $el.attr('href');
-                $('iframe').attr("src",id)
-                $(".active").removeClass("active")
-                $(this).addClass("active")
+        $(".list_text").find('a').on('click', function () {
+            var $el = $(this)
+            id = $el.attr('href');
+            $('iframe').attr("src",id)
+            $(".active").removeClass("active")
+            $(this).addClass("active")
 
-                var cls= $el.attr("class")
-                $(".list_text").removeClass().addClass(cls + " list_text fl")
+            var cls= $el.attr("class")
+            $(".list_text").removeClass().addClass(cls + " list_text fl")
 
-                return false;
-            });
+            return false;
+        });
 
-            $(".my_home").on('click', function () {
-                var $el = $(this)
-                id = $el.attr('href');
-                $('iframe').attr("src",id)
-                $(".active").removeClass("active")
-                $(this).find("i").addClass("active")
+        $("#activity").find('a').on('click', function () {
+            var $el = $(this)
+            id = $el.attr('href');
+            $('iframe').attr("src",id)
+            $(".active").removeClass("active")
+            $(this).addClass("active")
 
-                $(".list_text").removeClass().addClass("list_text fl")
-                return false;
-            })
+            var cls= $el.attr("class")
+            $("#activity").removeClass().addClass(cls)
 
+            return false;
+        });
+
+        $(".my_home").on('click', function () {
+            var $el = $(this)
+            id = $el.attr('href');
+            $('iframe').attr("src",id)
+            $(".active").removeClass("active")
+            $(this).find("i").addClass("active")
+
+            $(".list_text").removeClass().addClass("list_text fl")
+            return false;
         })
 
-    </script>
-</block>
+    })
+
+</script>
