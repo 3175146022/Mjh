@@ -24,7 +24,7 @@
                         <tr>
                             <th>新闻编号</th>
                             <th>新闻题目</th>
-                            <th>新闻内容</th>
+                            <th>新闻简介</th>
                             <th>封面图</th>
                             <th>新闻类别</th>
                             <th>发布时间</th>
@@ -37,7 +37,7 @@
                             <tr class="gradeX">
                                 <td>{$vo.news_id}</td>
                                 <td>{$vo.title}</td>
-                                <td>{$vo.content}</td>
+                                <td>{$vo.introduction}</td>
                                 <td><img width="100px" height="50px" src="__ROOT__/{$vo.picture}"></td>
                                 <td class="center">{$vo.cate_name}</td>
                                 <td class="center"><?php echo date('Y-m-d H:i:s',$vo['add_time'])?></td>
