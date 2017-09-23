@@ -15,7 +15,7 @@
 		<li>
 			<h5>{$vo.title}</h5>
 			<div class="card-img" style="background: url(__ROOT__/{$vo.picture}) no-repeat center center;"></div>
-			<p>{$vo.content|mb_substr=0,6,'utf-8'}<span class="fr">{$vo.add_time|date='m-d',###}</span></p>
+			<p>{$vo.introduction}<span class="fr">{$vo.add_time|date='m-d',###}</span></p>
 			<a href="{:U('Notice/show',array('id'=>$vo['news_id']))}">阅读全文 <i class="right"></i></a>
 		</li>
 		</volist>
