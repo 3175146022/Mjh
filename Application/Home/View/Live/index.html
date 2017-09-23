@@ -12,7 +12,7 @@
 			<ul>
 				<volist name="list" id="vo">
 				<li>	
-					<a href="{:U('Live/show')}">
+					<a href="{:U('Live/show',array('id'=>$vo['solive_id']))}">
 						<div class="video_box" style="background: url(__ROOT__/{$vo.img}) no-repeat center center;">
 							<h5>{$vo.so_title}</h5>
 							<p>内容简介：{$vo.so_detail} <span class="fr">{$vo.add_time|date='Y-m-d',###}</span></p>

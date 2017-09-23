@@ -12,7 +12,9 @@ class LiveController extends Controller{
     }
     //江湖直播详情
     public function show(){
-
+        $id = I('get.id');
+        $data = M('Solive')->where(array('solive_id'=>$id))->find();
+        $this->assign('data',$data);
         $this->display();//页面赋值
     }
 }
