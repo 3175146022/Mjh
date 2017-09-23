@@ -6,7 +6,8 @@ use Think\Controller;
 class LiveController extends Controller{
     //江湖直播列表
     public function index(){
-
+        $list = M('Solive')->select();
+        $this->assign('list',$list);
         $this->display();//页面赋值
     }
     //江湖直播详情
