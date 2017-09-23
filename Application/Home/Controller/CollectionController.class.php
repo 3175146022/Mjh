@@ -3,10 +3,9 @@ namespace Home\Controller;
 
 use Think\Controller;
 
-class UserController extends Controller{
+class CollectionController extends Controller{
     public function index(){
 
         $this->display();//页面赋值
     }
-
 }

@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>story</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="__HOME__css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
+    <script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+<div id="content">
+    <ul class="my-info">
+        <li><a href="">头像<i class="fr head" style="background: url(__HOME__images/a4.jpg) no-repeat center center;"></i></a></li>
+        <li><a href="{:U('Myinfo/name')}">姓名<span  class="fr">张三</span></a></li>
+        <li><a href="{:U('Myinfo/QRcode')}">二维码 <i class="fr head" style="background: url(__HOME__images/a4.jpg) no-repeat center center;"></i></a></li>
+        <li class="choice_sce"><a href="#">性别<span class="fr">男</span></a></li>
+        <li><a href="{:U('Myinfo/position')}">我的地址</a></li>
+        <li><a href="{:U('Myinfo/industry')}">行业</a></li>
+        <li><a href="{:U('Myinfo/interest')}">兴趣、爱好</a></li>
+        <li><a href=""><i></i>邀请盟友</a></li>
+    </ul>
+
+    <div class="sex">
+        <h5>性别</h5>
+        <div style="border-bottom: 1px solid #ececec;">
+            <label for="">男</label>
+            <input type="radio" name="sex" id="" value="" onchange="change('男')"/>
+        </div>
+        <div>
+            <label for="">女</label>
+            <input type="radio" name="sex" id="" value="" onchange="change('女')"/>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    $(".choice_sce").on("click",function(){
+        $(".sex").addClass("active")
+    })
+
+    function change(sex){
+        $(".sex").removeClass("active")
+        $(".choice_sce span").text(sex)
+    }
+
+</script>
