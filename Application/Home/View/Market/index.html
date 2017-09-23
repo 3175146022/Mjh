@@ -10,51 +10,19 @@
 
 	<body>
 		<ul class="list">
-			<li class="cf">
-				<a href="{:U('Market/show')}">
-					<div class="img_box fl">
-						<img src="__HOME__images/a1.jpg" alt="" />
-					</div>
-					<div class="list_t fr">
-						<h2>探望少年“第二季冠名，赞助召集令</h2>
-						<span>2017.9.3</span>
-					</div>
-				</a>
-			</li>
-			<li class="cf">
-				<a href="{:U('Market/show')}">
-					<div class="img_box fl">
-						<img src="__HOME__images/a1.jpg" alt="" />
-					</div>
-					<div class="list_t fr">
-						<h2>探望少年“第二季冠名，赞助召集令</h2>
-						<span>2017.9.3</span>
-					</div>
-				</a>
-			</li>
-			<li class="cf">
-				<a href="{:U('Market/show')}">
-					<div class="img_box fl">
-						<img src="__HOME__images/a1.jpg" alt="" />
-					</div>
-					<div class="list_t fr">
-						<h2>探望少年“第二季冠名，赞助召集令</h2>
-						<span>2017.9.3</span>
-					</div>
-				</a>
-			</li>
-			<li class="cf">
-				<a href="{:U('Market/show')}">
-					<div class="img_box fl">
-						<img src="__HOME__images/a1.jpg" alt="" />
-					</div>
-					<div class="list_t fr">
-						<h2>探望少年“第二季冠名，赞助召集令</h2>
-						<span>2017.9.3</span>
-					</div>
-				</a>
-			</li>
-			
+			<volist name="list" id="vo">
+				<li class="cf">
+					<a href="{:U('Market/show',array('id'=>$vo['news_id']))}">
+						<div class="img_box fl">
+							<img src="__ROOT__/{$vo.picture}" alt="" />
+						</div>
+						<div class="list_t fr">
+							<h2>{$vo.title}</h2>
+							<span>{$vo.add_time|date='Y.m.d',###}</span>
+						</div>
+					</a>
+				</li>
+			</volist>
 		</ul>
 	</body>
 
