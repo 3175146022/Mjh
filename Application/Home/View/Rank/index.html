@@ -2,16 +2,18 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>江湖排行</title>
+    <title>story</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <link rel="stylesheet" type="text/css" href="__HOME__css/style.css"/>
     <link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
+    <link rel="stylesheet" type="text/css" href="__HOME__css/jquery-weui.min.css"/>
 </head>
 <body>
 <div id="content">
     <div class="card-img" style="background: url(__HOME__images/a3.jpg) no-repeat center center;"></div>
     <form action="" method="post" class="position cf">
         <label>选择省市区/县：</label>
+        <input type="text" id="city-picker" placeholder="请选择地址" readonly="" data-code="110101" data-codes="110000,110000,110101">
         <input type="submit" value="搜索"/>
     </form>
 
@@ -29,7 +31,7 @@
             <td><i class="head" style="background: url(__HOME__images/hd.jpg) no-repeat center center;"></i></td>
             <td>345追梦&越</td>
             <td>大谦令</td>
-            <td>120</td>
+            <td>1200000</td>
         </tr>
         </thead>
 
@@ -41,7 +43,7 @@
         <tr>
             <td>1</td>
             <td><i class="head" style="background: url(__HOME__images/hd.jpg) no-repeat center center;"></i></td>
-            <td>345追梦&越</td>
+            <td>345追梦ss&越</td>
             <td>大谦令</td>
             <td>120</td>
         </tr>
@@ -104,3 +106,15 @@
 </div>
 </body>
 </html>
+<script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
+<script src="__HOME__js/city-picker.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__HOME__js/jquery-weui.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    $("#city-picker").cityPicker({
+        title: "选择省市区/县",
+        onChange: function (picker, values, displayValues) {
+            console.log(values, displayValues);
+        }
+    });
+</script>
