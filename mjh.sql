@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2017-09-25 09:15:31
+Date: 2017-09-25 13:39:31
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -40,9 +40,9 @@ CREATE TABLE `activity` (
 -- ----------------------------
 -- Records of activity
 -- ----------------------------
-INSERT INTO `activity` VALUES ('2', '测试', '1505750400', '1505836800', '100', '0', '测试', '<p>测试</p>', '0', '1505816113', '0', '0', 'Uploads/activity/2017-09-22/59c46f012e455.jpg', null);
-INSERT INTO `activity` VALUES ('3', 'ces', '1506096000', '1506528000', '100', '0', '测试1', '<p>111</p>', '0', '1506045766', '0', '0', 'Uploads/activity/2017-09-22/59c471ea1961c.jpg', null);
-INSERT INTO `activity` VALUES ('4', '123', '1506096000', '1506182400', '100', '0', '123', '<p>13敖德萨所所多</p>', '0', '1506132925', '1', '1', 'Uploads/activity/2017-09-23/59c5c3bd33ffe.jpg', null);
+INSERT INTO `activity` VALUES ('2', '测试', '1505750400', '1505836800', '100', '0', '测试', '<p>测试</p>', '0', '1505816113', '0', '0', 'Uploads/activity/2017-09-22/59c46f012e455.jpg', '3');
+INSERT INTO `activity` VALUES ('3', 'ces', '1506096000', '1506528000', '100', '0', '测试1', '<p>111</p>', '0', '1506045766', '0', '0', 'Uploads/activity/2017-09-22/59c471ea1961c.jpg', '13');
+INSERT INTO `activity` VALUES ('4', '123', '1506096000', '1506182400', '100', '0', '123', '<p>13敖德萨所所多</p>', '0', '1506132925', '1', '1', 'Uploads/activity/2017-09-23/59c5c3bd33ffe.jpg', '3');
 
 -- ----------------------------
 -- Table structure for activity_cate
@@ -95,6 +95,22 @@ CREATE TABLE `admin` (
 -- ----------------------------
 INSERT INTO `admin` VALUES ('1', 'mmjh', '7b8ba283fe880ccde9443b307e7b93c5', '1');
 INSERT INTO `admin` VALUES ('9', 'wangjian', '44bc64daf3c37a7ada23e63a137310bd', '0');
+
+-- ----------------------------
+-- Table structure for collect
+-- ----------------------------
+DROP TABLE IF EXISTS `collect`;
+CREATE TABLE `collect` (
+  `collect_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '收藏id',
+  `user_id` int(11) unsigned NOT NULL COMMENT '用户id',
+  `collect` int(11) unsigned NOT NULL COMMENT '收藏数据id',
+  `cate` tinyint(1) unsigned NOT NULL COMMENT '收藏分类 0：活动 1：直播 2：故事 3：签到',
+  PRIMARY KEY (`collect_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of collect
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for comment
