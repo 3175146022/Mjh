@@ -10,8 +10,18 @@
 <body>
 <div id="content">
     <div class="text">
+        <h5>{$data.title}</h5>
+        <div class="cf" style="margin-bottom: 10px;">
+            <span class="fr mark"> <i></i>收藏</span>
+        </div>
         {$data.content}
     </div>
 </div>
 </body>
 </html>
+<script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    $(".mark i").on("click",function(){
+        $(this).toggleClass("active")
+    })
+</script>

@@ -13,7 +13,7 @@ class NoticeController extends Controller{
     //江湖须知详情
     public function show(){
         $id = I('get.id');
-        $data = M('News')->where(array('news_id'=>$id))->field('content')->find();
+        $data = M('News')->where(array('news_id'=>$id))->field('title,content')->find();
         $this->assign('data',$data);
         $this->display();
     }
