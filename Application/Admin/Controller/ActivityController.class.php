@@ -64,6 +64,8 @@ class ActivityController extends CommonController{
         }else{
             $id = I('get.id');
             $data = M('Activity')->where(array('activity_id'=>$id))->find();
+            $act_cate = M('ActivityCate')->field('act_cate_id,act_cate_title')->select();
+            $this->assign('cate',$act_cate);
             $this->assign('data',$data);
             $this->display();
         }
