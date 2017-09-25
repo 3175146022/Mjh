@@ -15,7 +15,11 @@ class IndexController extends CommonController{
         $this->display();
     }
     public function index_v1(){
+        //活动列表
         $list = M('Activity')->order(array('add_time'=>'desc'))->limit(10)->select();
+        //签名推广列表
+        $mark = M('Genera')->order(array('add_time'=>'desc'))->limit(10)->select();
+        $this->assign('mark',$mark);
         $this->assign('list',$list);
         $this->display();
     }

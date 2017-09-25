@@ -45,7 +45,7 @@
                                 {$vo.act_detail}
                                 <div class="agile-detail">
                                     <a href="{:U('Activity/update_activity',array('id'=>$vo['activity_id']))}" class="pull-right btn btn-xs btn-white">查看</a>
-                                    <i class="fa fa-clock-o"></i> {$vo.add_time|date='Y.m.d',###}
+                                    <i class="fa fa-clock-o"></i> {$vo.add_time|date='Y-m-d',###}
                                 </div>
                             </li>
                         </volist>
@@ -56,16 +56,18 @@
         <div class="col-sm-4">
             <div class="ibox">
                 <div class="ibox-content">
-                    <h3>问题</h3>
+                    <h3>签名推广</h3>
                     <p class="small"><i class="fa fa-hand-o-up"></i> 注意：</p>
                     <ul class="sortable-list connectList agile-list">
-                        <li class="info-element">
-                            制定工作日程表
-                            <div class="agile-detail">
-                                <a href="#" class="pull-right btn btn-xs btn-white">标记</a>
-                                <i class="fa fa-clock-o"></i> 2015.09.10
-                            </div>
-                        </li>
+                        <volist name="mark" id="vo">
+                            <li class="info-element">
+                                {$vo.content}
+                                <div class="agile-detail">
+                                    <a href="{:U('Genera/update_genera',array('id'=>$vo['id']))}" class="pull-right btn btn-xs btn-white">查看</a>
+                                    <i class="fa fa-clock-o"></i> {$vo.add_time|date='Y-m-d',###}
+                                </div>
+                            </li>
+                        </volist>
                     </ul>
                 </div>
             </div>
