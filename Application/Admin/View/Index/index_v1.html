@@ -44,6 +44,7 @@
                                 <br />
                                 {$vo.act_detail}
                                 <div class="agile-detail">
+                                    <a href="{:U('Activity/update_activity',array('id'=>$vo['activity_id']))}" class="pull-right btn btn-xs btn-white">查看</a>
                                     <i class="fa fa-clock-o"></i> {$vo.add_time|date='Y.m.d',###}
                                 </div>
                             </li>
