@@ -1,3 +1,7 @@
+body{
+	padding-bottom: 50px!important;
+}
+
 .list li{
 	box-shadow: 0 0 10px rgba(95,95,95,.5);
 	width: 97%;
@@ -52,7 +56,6 @@
 .text h5{
 	font-size: 18px;
 	text-align: center;
-	margin-bottom: 10px;
 }
 
 .text img{
@@ -218,6 +221,7 @@
 .search input[type =submit]{
 	width: 30px;
 	height: 30px;
+	margin: 0;
 	background: url(../images/search.png) no-repeat center center;
 	background-size: 90%;
 }
@@ -364,7 +368,7 @@
 	width: 70px;
 	height: 70px;
 	border: 3px solid rgba(255,255,255,.5);
-	margin-top: 30px;
+	margin-top: 20px;
 }
 
 .u-name{
@@ -488,7 +492,7 @@
 
 .my-info li:nth-child(1) a{
 	height:60px;
-	line-height:50px;
+	line-height:60px;
 }
 
 .my-info li:nth-child(1){
@@ -904,12 +908,27 @@
 	width: 100%;
 }
 
-#token .invit img,.level img{
+#token .invit img{
 	width: 80%;
 }
 
+.level img{
+	width: 100%;
+}
+
 .level{
-	margin: 15px auto 10px;
+	margin: 15px auto 30px;
+	text-align: center;
+	opacity: 0;
+}
+
+.level.active{
+	opacity: 1;
+}
+
+.huoqu{
+	display: block;
+	color: #333;
 	text-align: center;
 }
 
@@ -923,9 +942,11 @@
 }
 
 .pass form{
-	width: 86%;
+	width: 80%;
 	display: block;
 	margin: 0 auto;
+	border: 1px solid #ececec;
+	border-radius: 5px;
 }
 
 .pass input{
@@ -935,9 +956,10 @@
 
 .pass input[type=text]{
 	background: none;
-	border-bottom: 1px solid #d7d7d7;
 	float: left;
 	height: 30px;
+	width: 68%;
+	padding-left: 10px;
 }
 
 .pass input[type=submit]{
@@ -1013,7 +1035,7 @@
 	background-size: 100%;
 }
 
-.video_text i,.video_text i.active{
+.video_text i,.video_text i.active,.mark i{
 	display: block;
 	width: 15px;
 	height: 15px;
@@ -1025,7 +1047,7 @@
 	margin:0 3px;
 }
 
-.video_text i.active{
+.video_text i.active,.mark i.active{
 	background:url(../images/i8.png) no-repeat center center;
 	background-size: 100%;
 }
@@ -1095,8 +1117,8 @@
 	width: 15px;
 	height: 15px;
 	margin-left: 5px;
-	position: relative;
-	top: 3px;
+	/*position: relative;
+	top: 3px;*/
 }
 
 .com_text p{
@@ -1127,4 +1149,135 @@
 	height:auto;
 	padding: 10px;
 	overflow: hidden;
+}
+
+#fabu .form-group{
+	background: none;
+	height: auto;
+	border: none;
+}
+
+#fabu .form-group input{
+	border-bottom:1px solid #ececec;
+	background: none;
+}
+
+#fabu .form-group textarea{
+	border: 1px solid #ececec;
+	outline: none;
+	border-radius: 5px;
+	background: none;
+	height: 150px;
+	width:70%;
+	padding:14px 5px;
+}
+
+#fabu .form-group label{
+	color: #333;
+}
+
+#fabu input[type = submit]{
+	border: none;
+}
+
+.img_load div{
+	width: 60px;
+	height: 60px;
+	margin-right: 10px;
+	border: 1px solid #ececec;
+}
+
+.img_load .load_btn{
+	background: url(../images/can.png) no-repeat center center;
+	background-size: 50%;
+}
+
+.load_btn input{
+	display: block;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
+
+#city-picker{
+	border: 1px solid #ececec;
+	width: 80px;
+	border-radius: 5px;
+}
+
+.picker-item{
+	font-size: 16px!important;
+	text-align: center!important;
+}
+
+.tuiguang{
+	padding: 10px;
+	margin-top: 10px;
+}
+
+.tuiguang h5{
+	font-size: 14px;
+	color: #666;
+	font-weight: initial;
+	margin-bottom: 5px;
+}
+
+.tuiguang p,.collect p{
+	font-size: 14px;
+	color: #333;
+	font-weight: initial;
+}
+
+.tuiguang_bottom,{
+	margin-top: 18px;
+	color: #999;
+	font-size: 12px;
+}
+
+.change li{
+	float: left;
+	width: 25%;
+	border-right: 1px solid #ececec;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	color: #333;
+	transition:.5s;
+	background: #fff;
+}
+
+.change li.active{
+	color: #8b1603;
+	box-shadow: 0 0 6px rgba(95,95,95,.5);
+}
+
+.time,.mark{
+	font-size: 12px!important;
+	color: #999!important;
+}
+
+.collect{
+	width: 100vw;
+}
+
+.collect li{
+	box-shadow: 0 0 6px rgba(95,95,95,.5);
+	margin: 8px 0;
+	padding: 5px 10px;
+	background: #fff;
+	width: 100%!important;
+}
+
+.collect li .head{
+	margin-right:10px ;
+}
+
+.collect li h2{
+	font-weight: initial;
+}
+
+.collect_hd{
+	line-height: 40px;
+	color: #333;
+	margin-bottom: 2px;
 }

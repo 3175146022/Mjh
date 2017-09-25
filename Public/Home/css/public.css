@@ -69,26 +69,26 @@ body{
 .nav i{
 	height: 50px;
 	display: block;
-	width: 35%;
+	width: 40%;
 	position: relative;
 }
 
 .nav .list_text{
-	background: url(../images/19.png) no-repeat right center;
-	background-size: 75% auto!important;
+	background: url(../images/19.png) no-repeat center center;
+	background-size: 60% auto!important;
 }
 
 .list_text ul,#activity ul{
 	position: absolute;
 	bottom:60px;
 	display: block;
-	width:80%;
+	width:100px;
 	left: 50%;
 	transform: translate(-50%);
 	background: #fff;
 	box-shadow: 0 0 20px rgba(95,95,95,.5);
 	display: none;
-	z-index: 1;
+	z-index: 2;
 }
 
 .list_text ul.active,#activity ul.active{
@@ -96,7 +96,6 @@ body{
 }
 
 #activity ul{
-	width: 110px;
 	bottom: 80px;
 }
 
@@ -171,30 +170,30 @@ body{
 	background: url(../images/ac4.png) no-repeat center center;
 }
 
-.activity1{
-	background: url(../images/12.png) no-repeat center center;
+.activity1.active{
+	background: url(../images/ac7.png) no-repeat center center;
 }
 
-.zhibo{
-	background: url(../images/13.png) no-repeat center center;
+.zhibo.active{
+	background: url(../images/ac8.png) no-repeat center center;
 }
 
-.tuijie{
-	background: url(../images/14.png) no-repeat center center;
+.tuijie.active{
+	background: url(../images/ac9.png) no-repeat center center;
 }
 
-.huodong{
-	background: url(../images/15.png) no-repeat center center;
+.huodong.active{
+	background: url(../images/ac10.png) no-repeat center center;
 }
 
 .nav .my{
-	background: url(../images/2.png) no-repeat left center;
-	background-size: 74% auto;
+	background: url(../images/2.png) no-repeat center center;
+	background-size: 60% auto;
 }
 
 .nav .my.active{
-	background: url(../images/18.png) no-repeat left center;
-	background-size: 74% auto;
+	background: url(../images/18.png) no-repeat center center;
+	background-size: 60% auto;
 }
 
 .nav em{
@@ -209,7 +208,7 @@ body{
 	left: 50%;
 	top:-35px;
 	transform: translate(-50%);
-	z-index: 1;
+	z-index: 3;
 }
 
 .nav em.activity1{
@@ -231,11 +230,12 @@ body{
 #all{
 	max-width: 750px;
 	height: 100vh;
+	min-height: 500px;
 	background: url(../images/bg.jpg);
 }
 
 .mt{
-	position: fixed;
+	position: absolute;
 	bottom: 50px;
 	left: 0;
 	width: 100%;
@@ -244,4 +244,16 @@ body{
 	background: url(../images/mt.png) no-repeat center bottom;
 	background-size: 100%;
 	max-width: 750px;
+}
+
+.mengban{
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+.mengban.active{
+	z-index: 1;
 }
