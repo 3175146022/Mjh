@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <link rel="stylesheet" type="text/css" href="__HOME__css/style.css"/>
     <link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
+    <link rel="stylesheet" type="text/css" href="__HOME__css/jquery-weui.min.css"/>
 </head>
 <body>
 <div id="content" class="add">
@@ -20,9 +21,9 @@
             <input type="text" name="" id="" value="" placeholder="11位手机号"/>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" >
             <label for="">地区信息</label>
-            <input type="text" name="" id="" value="" placeholder="地区信息"/>
+            <input type="text" name="" value="" placeholder="地区信息" id="pos"/>
         </div>
 
         <div class="form-group">
@@ -38,4 +39,16 @@
     </form>
 </div>
 </body>
+<script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
+<script src="__HOME__js/city-picker.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__HOME__js/jquery-weui.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    $("#pos").cityPicker({
+        title: "选择省市区/县",
+        onChange: function (picker, values, displayValues) {
+            console.log(values, displayValues);
+        }
+    });
+</script>
 </html>
