@@ -70,7 +70,26 @@ class ActivityController extends CommonController{
             $this->display();
         }
     }
-
+    //删除活动
+    public function delete_act(){
+        $id = I('get.id');
+        $pic = M('Activity')->field('img')->where(array('activity_id'=>$id))->find();
+        unlink($pic['img']);
+        $result = M('Activity')->where(array('activity_id'=>$id))->delete();
+        if ($result){
+            $data = [
+                'status' => 1,
+                'msg'    => '删除成功'
+            ];
+            echo json_encode($data);
+        }else{
+            $data = [
+                'status' => 0,
+                'msg'    => '删除失败，请稍后重试！'
+            ];
+            echo json_encode($data);
+        }
+    }
     //活动分类
     public function cate(){
         $data = M('ActivityCate')->select();
