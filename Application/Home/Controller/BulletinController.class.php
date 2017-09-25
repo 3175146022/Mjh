@@ -13,7 +13,7 @@ class BulletinController extends Controller{
     //江湖告示详情
     public function show(){
         $id = I('get.id');
-        $data = M('news')->where(array('news_id'=>$id))->field('content')->find();
+        $data = M('news')->where(array('news_id'=>$id))->field('title,content')->find();
         $this->assign('data',$data);
         $this->display();
     }
