@@ -1,41 +1,59 @@
-<extend name="Common/common" />
-<block name="custom">
-   		<link rel="stylesheet" type="text/css" href="__HOME__css/style.css"/>
-</block>
-<block name="content">
-		<div id="content">
-			<div class="user-head">
-				<div class="card-img" style="background: url(__HOME__images/a4.jpg) no-repeat center center;">
-					<i class="head-big head" style="background: url(__HOME__images/hd.jpg);"></i>
-					<p class="u-name">卡西</p>
-				</div>
-				<div class="info cf">
-					<a href="{:U('Points/index')}" class="ins">
-						<i></i>
-						<p><i></i>10</p>
-					</a>
-					
-					<a href="{:U('Popularity/index')}" class="sw">
-						<i></i>
-						<p><i></i>10</p>
-					</a>
-					
-				</div>
-			</div>
-			
-			<div class="user-body">
-				<ul>
-					<li><a href="{:U('Myinfo/index')}"></a></li>
-					<li><a href="{:U('Token/index')}"></a></li>
-					<li><a href="{:U('Partner/index')}"></a></li>
-					<li><a href="{:U('Myreward/index')}"></a></li>
-					<li><a href="{:U('Myactivity/index')}"></a></li>
-					<li><a href="{:U('Collection/index')}"></a></li>
-				</ul>
-				
-				<a class="btn">
-					签到
-				</a>
-			</div>
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>我的江湖</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link rel="stylesheet" type="text/css" href="__HOME__css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
+</head>
+<body>
+<div id="content">
+	<div class="user-head">
+		<div class="card-img" style="background: url(__HOME__images/a4.jpg) no-repeat center center;">
+			<i class="head-big head" style="background: url(__HOME__images/hd.jpg);"></i>
+			<p class="u-name">卡西</p>
+			<p class="u-name">大谦令</p>
 		</div>
-</block>
+		<div class="info cf">
+			<a href="{:U('Points/index')}" class="ins">
+				<i></i>
+				<p><i></i>10</p>
+			</a>
+
+			<a href="{:U('Popularity/index')}" class="sw">
+				<i></i>
+				<p><i></i>10</p>
+			</a>
+
+		</div>
+	</div>
+
+	<div class="user-body">
+		<ul>
+			<li><a href="{:U('Myinfo/index')}"></a></li>
+			<li><a href="{:U('Token/index')}"></a></li>
+			<li><a href="{:U('Partner/index')}"></a></li>
+			<li><a href="{:U('Myreward/index')}"></a></li>
+			<li><a href="{:U('Myactivity/index')}"></a></li>
+			<li><a href="{:U('Collection/index')}"></a></li>
+		</ul>
+
+		<a class="btn" href="mark.html">
+			签到
+		</a>
+	</div>
+</div>
+</body>
+</html>
+<script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    $(".invit").on("click",function(){
+        $(".click_invit").addClass("active")
+    })
+
+    $(".click_invit").on("click",function(){
+        $(".click_invit").removeClass("active")
+    })
+</script>
+
