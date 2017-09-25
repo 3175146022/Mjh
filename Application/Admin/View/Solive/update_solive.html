@@ -40,7 +40,7 @@
                     <h5>修改直播</h5>
                 </div>
                 <div class="ibox-content">
-                    <form method="post" action="{:U('Solive/update_solive')}" role="form" class="form-horizontal m-t">
+                    <form method="post" action="{:U('Solive/update_solive')}" role="form" class="form-horizontal m-t" enctype="multipart/form-data">
                         <input type="hidden" value="{$data.solive_id}" name="solive_id">
                         <div class="form-group draggable">
                             <label class="col-sm-3 control-label">直播标题：</label>
