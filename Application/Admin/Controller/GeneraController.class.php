@@ -20,6 +20,7 @@ class GeneraController extends Controller{
             }else {
                 $data = array(
                     'content' => $_POST['content'],
+                    'add_time' => NOW_TIME,
                 );
                 $res = M('Genera')->add($data);
                 if($res){
