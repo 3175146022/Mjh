@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2017-09-25 13:39:31
+Date: 2017-09-25 17:41:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -42,7 +42,6 @@ CREATE TABLE `activity` (
 -- ----------------------------
 INSERT INTO `activity` VALUES ('2', '测试', '1505750400', '1505836800', '100', '0', '测试', '<p>测试</p>', '0', '1505816113', '0', '0', 'Uploads/activity/2017-09-22/59c46f012e455.jpg', '3');
 INSERT INTO `activity` VALUES ('3', 'ces', '1506096000', '1506528000', '100', '0', '测试1', '<p>111</p>', '0', '1506045766', '0', '0', 'Uploads/activity/2017-09-22/59c471ea1961c.jpg', '13');
-INSERT INTO `activity` VALUES ('4', '123', '1506096000', '1506182400', '100', '0', '123', '<p>13敖德萨所所多</p>', '0', '1506132925', '1', '1', 'Uploads/activity/2017-09-23/59c5c3bd33ffe.jpg', '3');
 
 -- ----------------------------
 -- Table structure for activity_cate
@@ -130,6 +129,24 @@ CREATE TABLE `comment` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for genera
+-- ----------------------------
+DROP TABLE IF EXISTS `genera`;
+CREATE TABLE `genera` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '推广id',
+  `content` varchar(255) NOT NULL COMMENT '推广内容',
+  `add_time` int(10) unsigned NOT NULL COMMENT '添加时间',
+  `author` varchar(25) NOT NULL COMMENT '发布人',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of genera
+-- ----------------------------
+INSERT INTO `genera` VALUES ('2', '满堂花醉三千客，一剑寒霜十四粥', '1506328898', 'wangjian');
+INSERT INTO `genera` VALUES ('3', 'hello!boys and girls', '1506329501', 'wangjian');
+
+-- ----------------------------
 -- Table structure for integral
 -- ----------------------------
 DROP TABLE IF EXISTS `integral`;
@@ -162,14 +179,14 @@ CREATE TABLE `news` (
 -- ----------------------------
 -- Records of news
 -- ----------------------------
-INSERT INTO `news` VALUES ('3', 'Uploads/news/2017-09-22/59c4e0c1de26c.jpg', '什么是江湖？', '<h5>江湖故事详情</h5><p>经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p><p>经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p><p>经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p><p>经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p><p>经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p><p>经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p><p>经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p>', '1506074817', '1506132720', '5', '桑德拉时间后大家哈搜的骄傲山莨按时打卡大');
-INSERT INTO `news` VALUES ('5', 'Uploads/news/2017-09-23/59c5b54557f28.jpg', '探望少年', '<h5 style=\"box-sizing: border-box; font-family: &quot;open sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; line-height: 1.1; color: rgb(103, 106, 108); margin-top: 5px; margin-bottom: 10px; font-size: 12px; white-space: normal; background-color: rgb(245, 245, 245);\">江湖告示详情</h5><p style=\"box-sizing: border-box; margin-top: 0px; margin-bottom: 10px; color: rgb(103, 106, 108); font-family: &quot;open sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 13px; white-space: normal; background-color: rgb(245, 245, 245);\">经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p><p style=\"box-sizing: border-box; margin-top: 0px; margin-bottom: 10px; color: rgb(103, 106, 108); font-family: &quot;open sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 13px; white-space: normal; background-color: rgb(245, 245, 245);\">经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p><p style=\"box-sizing: border-box; margin-top: 0px; margin-bottom: 10px; color: rgb(103, 106, 108); font-family: &quot;open sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 13px; white-space: normal; background-color: rgb(245, 245, 245);\">经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p><p style=\"box-sizing: border-box; margin-top: 0px; margin-bottom: 10px; color: rgb(103, 106, 108); font-family: &quot;open sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 13px; white-space: normal; background-color: rgb(245, 245, 245);\">经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p><p style=\"box-sizing: border-box; margin-top: 0px; margin-bottom: 10px; color: rgb(103, 106, 108); font-family: &quot;open sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 13px; white-space: normal; background-color: rgb(245, 245, 245);\">经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p><p style=\"box-sizing: border-box; margin-top: 0px; margin-bottom: 10px; color: rgb(103, 106, 108); font-family: &quot;open sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 13px; white-space: normal; background-color: rgb(245, 245, 245);\">经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p><p style=\"box-sizing: border-box; margin-top: 0px; margin-bottom: 10px; color: rgb(103, 106, 108); font-family: &quot;open sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 13px; white-space: normal; background-color: rgb(245, 245, 245);\">经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p><p><br/></p>', '1506129221', '1506132716', '6', '测试测试');
+INSERT INTO `news` VALUES ('3', 'Uploads/news/2017-09-22/59c4e0c1de26c.jpg', '什么是江湖？', '<p>经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p><p>经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p><p>经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p><p>经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p><p>经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p><p>经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p><p>经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p>', '1506074817', '1506318155', '5', '桑德拉时间后大家哈搜的骄傲山莨按时打卡大');
+INSERT INTO `news` VALUES ('5', 'Uploads/news/2017-09-23/59c5b54557f28.jpg', '探望少年', '<p style=\"box-sizing: border-box; margin-top: 0px; margin-bottom: 10px; color: rgb(103, 106, 108); font-family: &quot;open sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 13px; white-space: normal; background-color: rgb(245, 245, 245);\">经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p><p style=\"box-sizing: border-box; margin-top: 0px; margin-bottom: 10px; color: rgb(103, 106, 108); font-family: &quot;open sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 13px; white-space: normal; background-color: rgb(245, 245, 245);\">经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p><p style=\"box-sizing: border-box; margin-top: 0px; margin-bottom: 10px; color: rgb(103, 106, 108); font-family: &quot;open sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 13px; white-space: normal; background-color: rgb(245, 245, 245);\">经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p><p style=\"box-sizing: border-box; margin-top: 0px; margin-bottom: 10px; color: rgb(103, 106, 108); font-family: &quot;open sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 13px; white-space: normal; background-color: rgb(245, 245, 245);\">经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p><p style=\"box-sizing: border-box; margin-top: 0px; margin-bottom: 10px; color: rgb(103, 106, 108); font-family: &quot;open sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 13px; white-space: normal; background-color: rgb(245, 245, 245);\">经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p><p style=\"box-sizing: border-box; margin-top: 0px; margin-bottom: 10px; color: rgb(103, 106, 108); font-family: &quot;open sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 13px; white-space: normal; background-color: rgb(245, 245, 245);\">经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p><p style=\"box-sizing: border-box; margin-top: 0px; margin-bottom: 10px; color: rgb(103, 106, 108); font-family: &quot;open sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 13px; white-space: normal; background-color: rgb(245, 245, 245);\">经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p><p><br/></p>', '1506129221', '1506318161', '6', '测试测试');
 INSERT INTO `news` VALUES ('6', 'Uploads/news/2017-09-23/59c5bc1c93bd7.jpg', '测试', '<p>测试测试测试&nbsp;</p>', '1506130972', '1506131350', '6', '萨达我萨达萨达撒多调度室自神的箭爱上了大');
 INSERT INTO `news` VALUES ('7', 'Uploads/news/2017-09-23/59c5f5f7a0404.jpg', '测试', '<p>测试测试</p>', '1506145783', '1506145783', '5', '测试测试');
 INSERT INTO `news` VALUES ('8', 'Uploads/news/2017-09-23/59c607b618857.jpg', '江湖推介1', '<p>江湖推介11111111111111</p>', '1506150326', '1506150326', '7', '江湖推介1');
 INSERT INTO `news` VALUES ('9', 'Uploads/news/2017-09-23/59c60e902feb1.jpg', '江湖故事1', '<p>江湖故事1江湖故事1江湖故事1江湖故事1江湖故事1</p>', '1506152080', '1506152080', '8', '江湖故事1');
 INSERT INTO `news` VALUES ('10', 'Uploads/news/2017-09-23/59c60eb5cdeb1.jpg', '江湖故事2', '<p>江湖故事2江湖故事2江湖故事2江湖故事2江湖故事2</p>', '1506152117', '1506152117', '8', '江湖故事2');
-INSERT INTO `news` VALUES ('11', 'Uploads/news/2017-09-23/59c60f0db3630.jpg', '江湖推介2', '<p>江湖推介2江湖推介2江湖推介2江湖推介2江湖推介2</p>', '1506152205', '1506152205', '7', '江湖推介2');
+INSERT INTO `news` VALUES ('11', 'Uploads/news/2017-09-23/59c60f0db3630.jpg', '江湖推介2', '<p>江湖推介2江湖推介2江湖推介2江湖推介2江湖推介2</p>', '1506152205', '1506318131', '7', '江湖推介2');
 
 -- ----------------------------
 -- Table structure for news_cate
@@ -223,12 +240,13 @@ CREATE TABLE `solive` (
   `so_link` text NOT NULL COMMENT '直播链接',
   `img` varchar(255) NOT NULL COMMENT '封面图',
   PRIMARY KEY (`solive_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of solive
 -- ----------------------------
 INSERT INTO `solive` VALUES ('6', '直播', '直播', '王建1', '1506156258', '<p><embed width=\"800\" height=\"500\" allownetworking=\"all\" allowscriptaccess=\"always\" src=\"http://liveshare.huya.com/saonan/huyacoop.swf\" quality=\"high\" bgcolor=\"#000\" wmode=\"window\" allowfullscreen=\"true\" type=\"application/x-shockwave-flash\"/></p>', 'Uploads/solive/2017-09-23/59c6288925a60.jpg');
+INSERT INTO `solive` VALUES ('7', '测试', '测试', '王建', '1506331734', '<p><iframe frameborder=\"0\" width=\"640\" height=\"498\" src=\"https://v.qq.com/iframe/player.html?vid=o0014eg8yxo&tiny=0&auto=0\" allowfullscreen=\"\"></iframe></p>', 'Uploads/solive/2017-09-25/59c8cc570a239.jpg');
 
 -- ----------------------------
 -- Table structure for token
