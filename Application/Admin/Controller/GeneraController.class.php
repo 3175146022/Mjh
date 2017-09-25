@@ -20,6 +20,7 @@ class GeneraController extends Controller{
             }else {
                 $data = array(
                     'content' => $_POST['content'],
+                    'author' => $_POST['author'],
                     'add_time' => NOW_TIME,
                 );
                 $res = M('Genera')->add($data);
@@ -43,7 +44,8 @@ class GeneraController extends Controller{
                 $this->error($verify->getError());
             }else {
                 $data = array(
-                    'content' => $_POST['content']
+                    'content' => $_POST['content'],
+                    'author' => $_POST['author'],
                 );
                 $res = M('Genera')->where(array('id'=>$_POST['id']))->save($data);
                 if($res){

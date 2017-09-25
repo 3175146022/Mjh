@@ -24,6 +24,7 @@
                         <tr>
                             <th>推广编号</th>
                             <th>推广内容</th>
+                            <th>发布人</th>
                             <th>添加时间</th>
                             <th>操作</th>
                         </tr>
@@ -33,6 +34,7 @@
                             <tr class="gradeX">
                                 <td>{$vo.id}</td>
                                 <td>{$vo.content}</td>
+                                <td>{$vo.author}</td>
                                 <td>{$vo.add_time|date='Y-m-d',###}</td>
                                 <td>
                                     <a class="btn btn-primary btn-rounded" href="{:U('Genera/update_genera',array('id'=>$vo['id']))}">修改</a>
