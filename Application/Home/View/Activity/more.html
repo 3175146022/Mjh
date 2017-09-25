@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>story</title>
+		<title>江湖活动</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
    		<link rel="stylesheet" type="text/css" href="__HOME__css/style.css"/>
    		<link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
@@ -10,56 +10,26 @@
 
 	<body>
 		<ul class="list">
-		
-			<li class="cf">
-				<a href="{:U('Activity/show')}">
-					<div class="img_box fl">
-						<img src="__HOME__images/a1.jpg" alt="" />
-					</div>
-					<div class="list_t fr">
-						<h2>探望少年“第二季冠名，赞助召集令</h2>
-						<span>2017.9.3</span>
-						<p class="doing">进行中</p>
-					</div>
-				</a>
-			</li>
-			<li class="cf">
-				<a href="{:U('Activity/show')}">
-					<div class="img_box fl">
-						<img src="__HOME__images/a1.jpg" alt="" />
-					</div>
-					<div class="list_t fr">
-						<h2>探望少年“第二季冠名，赞助召集令</h2>
-						<span>2017.9.3</span>
-						<p class="did">已结束</p>
-					</div>
-				</a>
-			</li>
-			<li class="cf">
-				<a href="{:U('Activity/show')}">
-					<div class="img_box fl">
-						<img src="__HOME__images/a1.jpg" alt="" />
-					</div>
-					<div class="list_t fr">
-						<h2>探望少年“第二季冠名，赞助召集令</h2>
-						<span>2017.9.3</span>
-						<p class="doing">进行中</p>
-					</div>
-				</a>
-			</li>
-			<li class="cf">
-				<a href="{:U('Activity/show')}">
-					<div class="img_box fl">
-						<img src="__HOME__images/a1.jpg" alt="" />
-					</div>
-					<div class="list_t fr">
-						<h2>探望少年“第二季冠名，赞助召集令</h2>
-						<span>2017.9.3</span>
-						<p class="did">已结束</p>
-					</div>
-				</a>
-			</li>
-			
+			<volist name="more" id="list">
+				<li class="cf">
+					<a href="{:U('Activity/show',array('id'=>$list['activity_id']))}">
+						<div class="img_box fl">
+							<img src="__HOME__images/a1.jpg" alt="" />
+						</div>
+						<div class="list_t fr">
+							<h2>{$list.act_title}</h2>
+							<span>{$list.add_time|date='Y.m.d',###}</span>
+							<p class="doing">
+								<?php switch($list['is_sold']){
+										case 0: echo "进行中";break;
+										case 1: echo "已结束";break;
+									}
+								?>
+							</p>
+						</div>
+					</a>
+				</li>
+			</volist>
 		</ul>
 	</body>
 
