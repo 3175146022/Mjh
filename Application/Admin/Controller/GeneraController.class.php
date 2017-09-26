@@ -3,6 +3,10 @@ namespace Admin\Controller;
 use Think\Controller;
 
 class GeneraController extends CommonController{
+    //公共方法
+    public function _initialize(){
+        $this->check_login();//检查登录
+    }
     //推广列表
     public function index(){
         $list = M('Genera')->select();
