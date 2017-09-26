@@ -1,7 +1,6 @@
 <?php
 /*
  * 王建
- *
  * */
 namespace Admin\Controller;
 use Think\Controller;
