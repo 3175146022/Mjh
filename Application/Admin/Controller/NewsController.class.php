@@ -1,9 +1,12 @@
 <?php
 namespace Admin\Controller;
-use function PHPSTORM_META\type;
 use Think\Controller;
 
-class NewsController extends Controller{
+class NewsController extends CommonController{
+    //公共方法
+    public function _initialize(){
+        $this->check_login();//检查登录
+    }
     //新闻列表页
     public function index(){
         $a = M('news')->join('news_cate ON news_cate.cate_id = news.cate_id')->select();

@@ -2,7 +2,11 @@
 namespace Admin\Controller;
 use Think\Controller;
 
-class SoliveController extends Controller{
+class SoliveController extends CommonController{
+    //公共方法
+    public function _initialize(){
+        $this->check_login();//检查登录
+    }
     //直播列表
     public function index(){
         $data = M('Solive')->select();
