@@ -47,19 +47,14 @@
 	$(".load_btn input").change(function(){
 		loadImg()
 	})
-	
 	function loadImg(){  
 	    //获取文件  
-	    var file = $(".load_btn").find("input")[0].files[0];  
-	  
+	    var file = $(".load_btn").find("input")[0].files[0];
 	    //创建读取文件的对象  
-	    var reader = new FileReader();  
-	  
+	    var reader = new FileReader();
 	    //创建文件读取相关的变量  
-	    var imgFile;  
-	  
+	    var imgFile;
 	    //为文件读取成功设置事件
-
 	    reader.onload=function(e) {  
 	        imgFile = e.target.result;
 	        if (i == 0){
@@ -70,11 +65,8 @@
                 $(".img_show").css({"background":" url("+imgFile+") no-repeat center center","background-size":"cover"})
 			}
 
-	    };  
-	  
+	    };
 	    //正式读取文件  
 	    reader.readAsDataURL(file);
-
-	    
 	} 
 </script>
