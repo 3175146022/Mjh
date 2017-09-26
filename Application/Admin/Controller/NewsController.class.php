@@ -1,6 +1,5 @@
 <?php
 namespace Admin\Controller;
-use function PHPSTORM_META\type;
 use Think\Controller;
 
 class NewsController extends CommonController{
