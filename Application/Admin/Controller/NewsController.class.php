@@ -3,7 +3,7 @@ namespace Admin\Controller;
 use function PHPSTORM_META\type;
 use Think\Controller;
 
-class NewsController extends Controller{
+class NewsController extends CommonController{
     //新闻列表页
     public function index(){
         $a = M('news')->join('news_cate ON news_cate.cate_id = news.cate_id')->select();

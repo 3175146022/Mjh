@@ -2,7 +2,7 @@
 namespace Admin\Controller;
 use Think\Controller;
 
-class GeneraController extends Controller{
+class GeneraController extends CommonController{
     //推广列表
     public function index(){
         $list = M('Genera')->select();

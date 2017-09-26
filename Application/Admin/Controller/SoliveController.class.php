@@ -2,7 +2,7 @@
 namespace Admin\Controller;
 use Think\Controller;
 
-class SoliveController extends Controller{
+class SoliveController extends CommonController{
     //直播列表
     public function index(){
         $data = M('Solive')->select();
