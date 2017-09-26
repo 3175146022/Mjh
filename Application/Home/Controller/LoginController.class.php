@@ -2,14 +2,15 @@
 namespace Home\Controller;
 
 use Think\Controller;
-class IndexController extends CommonController{
+
+class LoginController extends Controller{
     public function __construct()
     {
         parent::__construct();
     }
 
+   //微信登录
     public function index(){
-
-        $this->display();//页面赋值
+        echo '11111';die;
     }
 }
