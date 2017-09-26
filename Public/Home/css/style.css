@@ -814,6 +814,7 @@ body{
 	width: 30%;
 	height: 100px;
 	background-size: cover!important;
+	background-position: center center!important;
 }
 
 .xq_con{
