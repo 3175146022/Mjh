@@ -11,5 +11,9 @@ class UserController extends CommonController{
     public function index(){
         $this->display();
     }
+    //用户详情
+    public function user_detail(){
+        $this->display();
+    }
 }
 ?>
