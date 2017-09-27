@@ -17,7 +17,7 @@
     <span class="slider slider0"></span>
 </div>
 
-<form action="" method="post" class="search cf">
+<form action="{:U(Reward/search)}" method="post" class="search cf">
     <input type="text" value="" placeholder="搜索" class="f">
     <input type="submit" value="" class="btn fr">
 </form>
@@ -26,19 +26,6 @@
     <div class="tab cf">
         <ul class="card-list fl">
             <volist name="list" id="vo">
-                <li>
-                    <a href="{:U('Reward/show')}">
-                        <div class="card-img" style="background: url(__HOME__images/a2.jpg) no-repeat center center;"></div>
-                        <h5>{$vo.re_title}</h5>
-                        <p>{$vo.re_content|mb_substr=0,15,'utf-8'}</p>
-                        <div class="author">
-                            <span><i class="user"></i>许愿者：<?php echo base64_decode($vo['author'])?></span>
-                            <span class="fr"><i class="time"></i>倒计时：80天 12:43:47</span>
-                        </div>
-                    </a>
-                </li>
-            </volist>
-            <volist name="list" id="vo">
                 <if condition="($vo.re_status eq 0)">
                     <li>
                         <a href="{:U('Reward/show',array('id'=>$vo['reward_id']))}">
@@ -46,7 +33,7 @@
                             <h5>{$vo.re_title}</h5>
                             <p>{$vo.re_content|mb_substr=0,15,'utf-8'}</p>
                             <div class="author">
-                                <span><i class="user"></i>许愿者：<?php echo base64_decode($vo['author'])?></span>
+                                <span><i class="user"></i>许愿者：<?php echo mb_substr(base64_decode($vo['author']),0,3,'utf-8')?>...</span>
                                 <span class="fr"><i class="time"></i>倒计时：80天 12:43:47</span>
                             </div>
                         </a>
@@ -64,7 +51,7 @@
                             <h5>{$vo.re_title}</h5>
                             <p>{$vo.re_content|mb_substr=0,15,'utf-8'}</p>
                             <div class="author">
-                                <span><i class="user"></i>许愿者：<?php echo base64_decode($vo['author'])?></span>
+                                <span><i class="user"></i>许愿者：<?php echo mb_substr(base64_decode($vo['author']),0,3,'utf-8')?>...</span>
                                 <span class="fr"><i class="time"></i>倒计时：80天 12:43:47</span>
                             </div>
                         </a>
@@ -82,7 +69,7 @@
                             <h5>{$vo.re_title}</h5>
                             <p>{$vo.re_content|mb_substr=0,15,'utf-8'}</p>
                             <div class="author">
-                                <span><i class="user"></i>许愿者：<?php echo base64_decode($vo['author'])?></span>
+                                <span><i class="user"></i>许愿者：<?php echo mb_substr(base64_decode($vo['author']),0,3,'utf-8')?>...</span>
                                 <span class="fr"><i class="time"></i>倒计时：80天 12:43:47</span>
                             </div>
                         </a>
