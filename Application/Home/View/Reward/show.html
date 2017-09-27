@@ -11,22 +11,14 @@
 <div id="content">
     <div class="text">
         <div class="text_head">
-            <img src="__HOME__images/a2.jpg" alt="" />
+            <img src="__ROOT__/{$data.re_image}" alt="" />
             <p class="today"></p>
             <div class="author">
-                <span><i class="user"></i>许愿者：Arthas</span>
+                <span><i class="user"></i>许愿者：<?php echo base64_decode($data['author'])?></span>
                 <span class="fr"><i class="time"></i>倒计时：80天 12:43:47</span>
             </div>
         </div>
-        <p>经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p>
-        <p>经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p>
-        <p>经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p>
-        <p>经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p>
-        <p>经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p>
-        <p>经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p>
-        <p>经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p>
-        <p>经过半年时间的打磨，“慢江湖”公众平台现在已基本搭建完毕，开始面向各路江湖儿女公测。</p>
-
+        {$data.re_content}
         <a href="#" class="btn">接受悬赏</a>
     </div>
 </div>

@@ -10,12 +10,15 @@ class RewardController extends CommonController{
 
     //悬赏列表
     public function index(){
-        $list = M('Reward')->order('add_time desc')->where(array('re_status'=>0))->select();
+        $list = M('Reward')->order('add_time desc')->select();
         $this->assign('list',$list);
         $this->display();//页面赋值
     }
     //悬赏详情
     public function show(){
+        $id = I('get.id');
+        $data = M('Reward')->where(array('reward_id'=>$id))->find();
+        $this->assign('data',$data);
         $this->display();
     }
     //发布悬赏
