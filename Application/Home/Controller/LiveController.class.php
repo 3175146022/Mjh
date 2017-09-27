@@ -3,7 +3,10 @@ namespace Home\Controller;
 
 use Think\Controller;
 
-class LiveController extends Controller{
+class LiveController extends CommonController{
+    public function __construct(){
+        parent::__construct();
+    }
     //江湖直播列表
     public function index(){
         $list = M('Solive')->select();
