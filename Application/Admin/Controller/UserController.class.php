@@ -8,6 +8,7 @@ class UserController extends CommonController{
     public function _initialize(){
         $this->check_login();//检查登录
     }
+
     public function index(){
         $a = M('user')->select();
 
