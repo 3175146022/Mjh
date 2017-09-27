@@ -17,7 +17,7 @@
 				
 				<div class="form-group cf">
 					<label for="">结束时间</label>
-					<input type="text" name="" id="" value="" placeholder="2017-8-20"/>
+					<input type="date" name="" id="" value="" placeholder="2017-8-20"/>
 				</div>
 				
 				<div class="form-group cf">
@@ -43,34 +43,30 @@
 </html>
 <script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-	
+    var i = 0;
 	$(".load_btn input").change(function(){
 		loadImg()
 	})
-	
 	function loadImg(){  
 	    //获取文件  
-	    var file = $(".load_btn").find("input")[0].files[0];  
-	  
+	    var file = $(".load_btn").find("input")[0].files[0];
 	    //创建读取文件的对象  
-	    var reader = new FileReader();  
-	  
+	    var reader = new FileReader();
 	    //创建文件读取相关的变量  
-	    var imgFile;  
-	  
-	    //为文件读取成功设置事件  
+	    var imgFile;
+	    //为文件读取成功设置事件
 	    reader.onload=function(e) {  
-	        imgFile = e.target.result;  
-	        console.log(imgFile);  
-//	        $("#imgContent").attr('src', imgFile);  
-	    };  
-	  
+	        imgFile = e.target.result;
+	        if (i == 0){
+                var html = "<div class='fl img_show' style='background: url("+imgFile+") no-repeat center center;background-size: cover;'></div>"
+                $(".img_load").prepend( html )
+				i++;
+			}else {
+                $(".img_show").css({"background":" url("+imgFile+") no-repeat center center","background-size":"cover"})
+			}
+
+	    };
 	    //正式读取文件  
-	    reader.readAsDataURL(file);  
-	    
-	   var html = "<div class='fl' style='background: url("+imgFile+");'></div>"
-	   
-	   $(".img_load").append( html )
-	    
+	    reader.readAsDataURL(file);
 	} 
 </script>
