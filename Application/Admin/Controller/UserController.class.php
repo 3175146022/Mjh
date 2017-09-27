@@ -28,7 +28,22 @@ class UserController extends CommonController{
 
     public function details()
     {
-        $this->display();
+        if ($_GET['id']){
+
+            $a = M('user')->where('user_id = '.$_GET['id'])->select();
+
+            if (!empty($a[0]['trade_type'])){
+                $b = M('trade')->where('trade_id = '.$a[0]['trade_type'])->select();
+                $a[0]['trade_type'] = $b[0]['trade'];
+            }
+
+            if (!empty($a[0]['info_id'])){
+                $c = M('user_info')->where('info_id = '.$a[0]['info_id'])->select();
+                $a[0]['phone'] = $c[0]['phone'];
+            }
+            $this->assign('data',$a);
+            $this->display();
+        }
     }
 
     public function destroy()
