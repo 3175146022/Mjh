@@ -13,7 +13,7 @@ class TokenController extends CommonController{
     }
     //令牌列表
     public function index(){
-        $data = M('Token')->select();
+        $data = M('Token')->join('user on user.token_id = token.token_id')->select();
         $this->assign('data',$data);
         $this->display();
     }
