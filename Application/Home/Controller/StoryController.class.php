@@ -3,7 +3,11 @@ namespace Home\Controller;
 
 use Think\Controller;
 
-class StoryController extends Controller{
+class StoryController extends CommonController{
+    public function __construct(){
+        parent::__construct();
+    }
+
     //江湖故事列表
     public function index(){
         $list = M('news')->where(array('cate_name'=>'江湖故事'))->join('news_cate on news_cate.cate_id = news.cate_id')->select();

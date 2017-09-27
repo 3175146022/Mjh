@@ -8,16 +8,38 @@ class CommonController extends Controller{
     public function __construct()
     {
         parent::__construct();
-//        if(empty($_SESSION['open_id'])){
-//            $this->success(U('Login/index'));
-//        }
+        if(empty($_SESSION['user_id'])){
+            redirect(U('Login/index'));
+        }
+
     }
 
-    //获取access_token
-    public function access(){
-        $open_id = C('WX_OPENID');
-        $secret = C('WX_SECRET');
-        $token = file_get_contents(sprintf('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s',$open_id,$secret));
-        $access =json_decode($token);
+    //收藏
+    public function keep(){
+        if(IS_POST){
+            $data['user_id'] = $_SESSION['user_id'];
+            $data['collect'] = $_SESSION['collect'];
+            $data['cate'] = $_SESSION['cate'];
+            $upload = M('collect')->add($data);
+            if($upload){
+                $att=[
+                    'state'=>200,
+                    'msg'=>'收藏成功'
+                ];
+            }else{
+                $att=[
+                    'state'=>201,
+                    'msg'=>'收藏失败'
+                ];
+            }
+        }else{
+            $att=[
+                'state'=>201,
+                'msg'=>'收藏失败'
+            ];
+        }
+        return $att;
     }
+
+
 }

@@ -3,7 +3,10 @@ namespace Home\Controller;
 
 use Think\Controller;
 
-class MarketController extends Controller{
+class MarketController extends CommonController{
+    public function __construct(){
+        parent::__construct();
+    }
     //江湖直播列表
     public function index(){
         $list = M('news')->where(array('cate_name'=>'江湖推介'))->join('news_cate on news_cate.cate_id = news.cate_id')->select();

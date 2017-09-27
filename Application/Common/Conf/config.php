@@ -14,5 +14,5 @@ return array(
         '__HOME__' => __ROOT__.'/Public/Home/',
     ),
     'WX_OPENID'         => 'wxbad65c144dae20cf', // 微信公众open_id
-    'WX_SECRET'         => '127.0.0.1' // 微信公众密匙
+    'WX_SECRET'         => '28dd388095de619361c888251a7410ac' // 微信公众密匙
 );
