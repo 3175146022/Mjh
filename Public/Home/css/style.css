@@ -1259,6 +1259,7 @@ body{
 
 .collect{
 	width: 100vw;
+	padding: 10px 0;
 }
 
 .collect li{
