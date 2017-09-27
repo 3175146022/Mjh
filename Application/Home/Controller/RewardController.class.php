@@ -10,7 +10,8 @@ class RewardController extends CommonController{
 
     //悬赏列表
     public function index(){
-
+        $list = M('Reward')->order('add_time desc')->where(array('re_status'=>0))->select();
+        $this->assign('list',$list);
         $this->display();//页面赋值
     }
     //悬赏详情
@@ -40,7 +41,6 @@ class RewardController extends CommonController{
                 echo "<script>alert('请上传图片!');window.location.href = window.location.href;</script>";
             }else{
                 $user = M('User')->where(array('user_id'=>$_SESSION['user_id']))->field('user_name')->find();
-                var_dump($user);exit;
                 $res = D('Reward')->add_reward($_POST,$info,$user);
                 if($res){
                     $this->redirect('Reward/index');
