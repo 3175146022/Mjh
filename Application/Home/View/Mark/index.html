@@ -1,34 +1,47 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>我的签到</title>
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-   		<link rel="stylesheet" type="text/css" href="__HOME__css/style.css"/>
-   		<link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
-	</head>
-	<body>
-		<div id="content">
-			<div class="user-head">
-				<div class="card-img" style="background: url(__HOME__images/a4.jpg) no-repeat center center;">
-						<i class="head-big head" style="background: url(__HOME__images/mark.png);border: none;"></i>
-				</div>
-			</div>
-			
-			<div class="tuiguang">
-				<h5>{$data.author}</h5>
-				{$data.content}
-				<div class="tuiguang_bottom">
-					<span class="time">{$data.add_time|date='Y-m-d',###}</span>
-					<span class="fr mark"> <i></i>收藏</span>
-				</div>
-			</div>
+<head>
+	<meta charset="UTF-8">
+	<title>我的签到</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link rel="stylesheet" type="text/css" href="__HOME__css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
+</head>
+<body>
+<div id="content">
+	<div class="user-head">
+		<div class="card-img" style="background: url(__HOME__images/a4.jpg) no-repeat center center;">
+			<i class="head-big head" style="background: url(__HOME__images/mark.png);border: none;"></i>
 		</div>
-	</body>
+	</div>
+
+	<div class="tuiguang">
+		<h5>{$data.author}</h5>
+		{$data.content}
+		<div class="tuiguang_bottom">
+			<span class="time">{$data.add_time|date='Y-m-d',###}</span>
+					<span class="fr mark" id='{$data.id}' type ='4'>
+						<if condition="$keep eq null ">
+							<i></i>
+							<else />
+							<i class="active"></i>
+						</if>收藏</span>
+		</div>
+	</div>
+</div>
+</body>
 </html>
 <script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-		$(".mark i").on("click",function(){
-			$(this).toggleClass("active")
-		})
+	$(".mark i").on("click",function(){
+		var collect = $('.mark').attr('id');
+		var cate =$('.mark').attr('type');
+		$.post("{:U('Common/keep')}",{collect:collect,cate:cate},function(data){
+			if(data.state == 200 || data.state == 202){
+				$(".mark i").toggleClass("active")
+			}else{
+				alert('操作失败！');
+			}
+		});
+	})
 </script>
