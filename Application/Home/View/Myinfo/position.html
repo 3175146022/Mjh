@@ -10,33 +10,65 @@
 </head>
 <body>
 <div id="content" class="add">
-    <form action="" method="post">
+    <?php if($data):?>
+    <form action="{:U('Myinfo/position_save')}" method="post">
+        <input type="hidden" name="info_id" value="{$data.info_id}">
         <div class="form-group">
             <label for="">收货人</label>
-            <input type="text" name="" id="" value="" placeholder="姓名"/>
+            <input type="text" name="name" id="" value="{$data.name}" placeholder="姓名"/>
         </div>
 
         <div class="form-group">
             <label for="">手机号码</label>
-            <input type="text" name="" id="" value="" placeholder="11位手机号"/>
+            <input type="text" name="phone" id="" value="{$data.phone}" placeholder="11位手机号"/>
         </div>
 
         <div class="form-group" >
             <label for="">地区信息</label>
-            <input type="text" name="" value="" placeholder="地区信息" id="pos"/>
+            <input type="text" name="area"  placeholder="{$data.area}" id="pos"/>
         </div>
 
         <div class="form-group">
             <label for="">详细地址</label>
-            <input type="text" name="" id="" value="" placeholder="街道门牌信息"/>
+            <input type="text" name="ad_detail" id="" value="{$data.ad_detail}" placeholder="街道门牌信息"/>
         </div>
 
         <div class="form-group">
             <label for="">邮政编码</label>
-            <input type="text" name="" id="" value="" placeholder="邮政编码"/>
+            <input type="text" name="postcode" id="" value="{$data.postcode}" placeholder="邮政编码"/>
         </div>
         <input type="submit" value="保存" class="btn"/>
     </form>
+    <?php else:?>
+    <form action="{:U('Myinfo/position_save')}" method="post">
+        <div class="form-group">
+            <label for="">收货人</label>
+            <input type="text" name="name" id="" value="" placeholder="姓名"/>
+        </div>
+
+        <div class="form-group">
+            <label for="">手机号码</label>
+            <input type="text" name="phone" id="" value="" placeholder="11位手机号"/>
+        </div>
+
+        <div class="form-group" >
+            <label for="">地区信息</label>
+            <input type="text" name="area" value="" placeholder="地区信息" id="pos"/>
+        </div>
+
+        <div class="form-group">
+            <label for="">详细地址</label>
+            <input type="text" name="ad_detail" id="" value="" placeholder="街道门牌信息"/>
+        </div>
+
+        <div class="form-group">
+            <label for="">邮政编码</label>
+            <input type="text" name="postcode" id="" value="" placeholder="邮政编码"/>
+        </div>
+        <input type="submit" value="保存" class="btn"/>
+    </form>
+    <?php endif;?>
+
 </div>
 </body>
 <script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
@@ -47,7 +79,8 @@
     $("#pos").cityPicker({
         title: "选择省市区/县",
         onChange: function (picker, values, displayValues) {
-            console.log(values, displayValues);
+            //console.log(values, displayValues);
+            $('#pos').attr('value',displayValues);
         }
     });
 </script>
