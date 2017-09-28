@@ -23,113 +23,83 @@
     <div class="hide">
         <div class="tab cf">
             <ul class="collect fl list">
-                <li>
-                    <div class="collect_hd cf">
-                        <i class="head fl" style="background: url(__HOME__images/hd.jpg) no-repeat center center;"></i>
-                        张三
-                        <span class="time fr">今天</span>
-                    </div>
-                    <div class="collect_bd cf">
-                        <a href="{:U('Story/show')}">
-                            <div class="img_box fl">
-                                <img src="__HOME__images/a1.jpg" alt="" />
-                            </div>
-                            <div class="list_t fr">
-                                <h2>探望少年“第二季冠名，赞助召集令</h2>
-                            </div>
-                        </a>
-                    </div>
-                </li>
-
-                <li>
-                    <div class="collect_hd cf">
-                        <i class="head fl" style="background: url(__HOME__images/hd.jpg) no-repeat center center;"></i>
-                        张三
-                        <span class="time fr">今天</span>
-                    </div>
-                    <div class="collect_bd cf">
-                        <a href="{:U('Story/show')}">
-                            <div class="img_box fl">
-                                <img src="__HOME__images/a1.jpg" alt="" />
-                            </div>
-                            <div class="list_t fr">
-                                <h2>探望少年“第二季冠名，赞助召集令</h2>
-                            </div>
-                        </a>
-                    </div>
-                </li>
-
-                <li>
-                    <div class="collect_hd cf">
-                        <i class="head fl" style="background: url(__HOME__images/hd.jpg) no-repeat center center;"></i>
-                        张三
-                        <span class="time fr">今天</span>
-                    </div>
-                    <div class="collect_bd cf">
-                        <a href="{:U('Story/show')}">
-                            <div class="img_box fl">
-                                <img src="__HOME__images/a1.jpg" alt="" />
-                            </div>
-                            <div class="list_t fr">
-                                <h2>探望少年“第二季冠名，赞助召集令</h2>
-                            </div>
-                        </a>
-                    </div>
-                </li>
+                <volist name="activity" id="act">
+                    <li>
+                        <div class="collect_hd cf">
+                            <i class="head fl" style="background: url(__HOME__images/hd.jpg) no-repeat center center;"></i>
+                            张三
+                            <span class="time fr">今天</span>
+                        </div>
+                        <div class="collect_bd cf">
+                            <a href="{:U('Activity/show',array('id'=>$act['activity_id']))}">
+                                <div class="img_box fl">
+                                    <img src="__ROOT__/{$act.img}" alt="" />
+                                </div>
+                                <div class="list_t fr">
+                                    <h2>{$act.act_title}</h2>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                </volist>
             </ul>
 
             <ul class="collect fl">
-                <li>
-                    <div class="collect_hd cf">
-                        <i class="head fl" style="background: url(__HOME__images/hd.jpg) no-repeat center center;"></i>
-                        张三
-                        <span class="time fr">今天</span>
-                    </div>
-                    <div class="collect_bd cf">
-                        <a href="{:U('Live/show')}">
-                            <div class="video_box" style="background: url(__HOME__images/a1.png) no-repeat center center;">
-                                <h5>《7-17江湖记录片》</h5>
-                                <p style="color: #fff;">内容简介：江湖纪录片7-17 <span class="fr">2017-09-13</span></p>
-                                <i></i>
-                            </div>
-                        </a>
-                    </div>
-                </li>
+                <volist name="live" id="li">
+                    <li>
+                        <div class="collect_hd cf">
+                            <i class="head fl" style="background: url(__HOME__images/hd.jpg) no-repeat center center;"></i>
+                            张三
+                            <span class="time fr">今天</span>
+                        </div>
+                        <div class="collect_bd cf">
+                            <a href="{:U('Live/show',array('id'=>$li['solive_id']))}">
+                                <div class="video_box" style="background: url(__ROOT__/{$li.img}) no-repeat center center;">
+                                    <h5>{$li.so_title}</h5>
+                                    <p style="color: #fff;">内容简介：{$li.so_detail}<span class="fr">{$li.add_time|date='Y-m-d',###}</span></p>
+                                    <i></i>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                </volist>
             </ul>
 
             <ul class="collect fl">
-                <li>
-                    <div class="collect_hd cf">
-                        <i class="head fl" style="background: url(__HOME__images/hd.jpg) no-repeat center center;"></i>
-                        张三
-                        <span class="time fr">今天</span>
-                    </div>
-                    <div class="collect_bd cf">
-                        <a href="{:U('Story/show')}">
-                            <div class="img_box fl">
-                                <img src="images/a1.jpg" alt="" />
-                            </div>
-                            <div class="list_t fr">
-                                <h2>探望少年“第二季冠名，赞助召集令</h2>
-                            </div>
-                        </a>
-                    </div>
-                </li>
+                <volist name="story" id="st">
+                    <li>
+                        <div class="collect_hd cf">
+                            <i class="head fl" style="background: url(__HOME__images/hd.jpg) no-repeat center center;"></i>
+                            张三
+                            <span class="time fr">今天</span>
+                        </div>
+                        <div class="collect_bd cf">
+                            <a href="{:U('Story/show',array('id'=>$st['news_id']))}">
+                                <div class="img_box fl">
+                                    <img src="__ROOT__/{$st.picture}" alt="" />
+                                </div>
+                                <div class="list_t fr">
+                                    <h2>{$st.title}</h2>
+                                </div>
+                            </a>
+                        </div>
+                    </li>
+                </volist>
             </ul>
 
             <ul class="collect fl">
-                <li>
-                    <div class="collect_hd">
-                        <i class="head fl" style="background: url(__HOME__images/hd.jpg) no-repeat center center;"></i>
-                        张三
-                        <span class="time fr">今天</span>
-                    </div>
-                    <div class="collect_bd">
-                        <p>满堂花醉三千客</p>
-                        <p>一剑寒霜十四粥</p>
-                    </div>
-                </li>
-
+                <volist name="genera" id="list">
+                    <li>
+                        <div class="collect_hd">
+                            <i class="head fl" style="background: url(__HOME__images/hd.jpg) no-repeat center center;"></i>
+                            张三
+                            <span class="time fr">今天</span>
+                        </div>
+                        <div class="collect_bd">
+                            {$list.content}
+                        </div>
+                    </li>
+                </volist>
             </ul>
         </div>
     </div>

@@ -24,69 +24,37 @@
                             <thead>
                                 <tr>
                                     <th>编号</th>
-                                    <th>兴趣</th>
                                     <th>行业</th>
                                     <th>手机号</th>
                                     <th>性别</th>
-                                    <th>姓名</th>
+                                    <th>昵称</th>
+                                    <th>头像</th>
                                     <th>积分</th>
                                     <th>声望</th>
-                                    <th>头像</th>
                                     <th>二维码</th>
                                     <th>操作</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="gradeX">
-                                    <td>1</td>
-                                    <td>Internet Explorer 4.0</td>
-                                    <td>Win 95+</td>
-                                    <td>4</td>
-                                    <td>4</td>
-                                    <td>4</td>
-                                    <td>4</td>
+                            <volist name="user" id="vo">
+                                <tr class="grade{$vo.user_id}">
+                                    <td>{$vo.user_id}</td>
+                                    <td>{$vo.trade_type}</td>
+                                    <td>{$vo.phone}</td>
+                                    <td><?php if($vo['sex']):?> 男 <?php else:?> 女 <?php endif;?></td>
+                                    <td><?php echo base64_decode($vo[user_name]);?></td>
+                                    <td><img width="90" height="90" style="border-radius: 50%;" src="{$vo.avatar}"></td>
                                     <td>X</td>
                                     <td>4</td>
                                     <td>X</td>
                                     <td>
-                                        <a class="btn btn-primary btn-rounded" href="#">查看详情</a>
-                                        <a class="btn btn-primary btn-rounded" href="#">删除</a>
+                                        <a class="btn btn-primary btn-rounded" href="{:U('User/details',array('id' => $vo['user_id']))}">查看详情</a>
+                                        <a class="btn btn-primary btn-rounded" onclick="delete_act('{$vo.user_id}')" href="javascript:;">删除</a>
                                     </td>
                                 </tr>
-                                <tr class="gradeC">
-                                    <td>2</td>
-                                    <td>Internet Explorer 5.0
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td class="center">5</td>
-                                    <td>4</td>
-                                    <td>4</td>
-                                    <td>4</td>
-                                    <td class="center">C</td>
-                                    <td class="center">4</td>
-                                    <td class="center">X</td>
-                                    <td>
-                                        <a class="btn btn-primary btn-rounded" href="#">查看详情</a>
-                                        <a class="btn btn-primary btn-rounded" href="#">删除</a>
-                                    </td>
-                                </tr>
-                                <tr class="gradeA">
-                                    <td>3</td>
-                                    <td>Internet Explorer 5.5
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td class="center">5.5</td>
-                                    <td class="center">A</td>
-                                    <td>4</td>
-                                    <td>4</td>
-                                    <td>4</td>
-                                    <td class="center">4</td>
-                                    <td class="center">X</td>
-                                    <td>
-                                        <a class="btn btn-primary btn-rounded" href="#">查看详情</a>
-                                        <a class="btn btn-primary btn-rounded" href="#">删除</a>
-                                    </td>
-                                </tr>
+                            </volist>
+
+
                             </tbody>
                         </table>
                     </div>
@@ -94,6 +62,29 @@
             </div>
         </div>
     </div>
+    <script>
+        function delete_act(id) {
+            layer.confirm('是否删除该条数据', {
+                btn: ['确定','取消'] //按钮
+            }, function(){
+                $.post("__ROOT__/admin/user/destroy/id/"+id,{},function (data) {
+                    var json = eval('('+data+')');
+                    if (json.status==1){
+                        layer.msg(json.msg, {icon:6},function(){
+                            window.location.href = window.location.href;
+                        });
+                    }else {
+                        layer.msg(json.msg,{icon:5})
+                    }
+                });
+            }, function(){
+//            layer.msg('也可以这样', {
+//                time: 20000, //20s后自动关闭
+//                btn: ['明白了', '知道了']
+//            });
+            });
+        }
+    </script>
     <!-- 全局js -->
     <script src="__STYLE__js/jquery-2.1.1.min.js"></script>
     <script src="__STYLE__js/bootstrap.min.js?v=3.4.0"></script>
