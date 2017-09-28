@@ -36,7 +36,7 @@
                             <tr class="gradeX">
                                 <td>{$list.token_id}</td>
                                 <td>{$list.tok_num}</td>
-                                <td>{$list.user_id}</td>
+                                <td><?php echo base64_decode($list['user_name'])?></td>
                                 <td><?php
                                         switch($list['tok_level']){
                                             case 0: echo "欢喜令";break;

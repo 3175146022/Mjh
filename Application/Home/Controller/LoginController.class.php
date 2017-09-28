@@ -5,9 +5,10 @@ use Think\Controller;
 
 class LoginController extends Controller{
 
-   //微信登录
+    //微信登录
     public function index(){
-        if(empty($_SESSION['user_id'])){
+        $member = M('user')->where(array('user_id'=>$_SESSION['user_id']))->find();
+        if(empty($_SESSION['user_id']) || empty($member)){
             $redirect_uri ='http://wap.manjianghu.com/index.php/Home/Login/nofity';
             $url ='https://open.weixin.qq.com/connect/oauth2/authorize?appid='.C('WX_OPENID').'&redirect_uri='.$redirect_uri.'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect1';
             redirect($url);

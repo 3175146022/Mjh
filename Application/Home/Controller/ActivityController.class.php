@@ -24,7 +24,7 @@ class ActivityController extends CommonController{
     public function show(){
         $id = I('get.id');
         $data = M('Activity')->where(array('activity_id'=>$id))->find();
-        $keep = M('collect')->where(array('collect'=>$data['activity_id'],'cate'=>1))->find();
+        $keep = M('collect')->where(array('collect'=>$data['activity_id'],'cate'=>1,'user_id'=>$_SESSION['user_id']))->find();
         $this->assign('keep',$keep);
         $this->assign('data',$data);
         $this->display();//页面赋值

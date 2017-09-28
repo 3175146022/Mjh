@@ -17,6 +17,8 @@ class LiveController extends CommonController{
     public function show(){
         $id = I('get.id');
         $data = M('Solive')->where(array('solive_id'=>$id))->find();
+        $keep = M('collect')->where(array('collect'=>$data['solive_id'],'cate'=>2,'user_id'=>$_SESSION['user_id']))->find();
+        $this->assign('keep',$keep);
         $this->assign('data',$data);
         $this->display();//页面赋值
     }

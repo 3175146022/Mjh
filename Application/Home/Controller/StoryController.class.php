@@ -17,7 +17,9 @@ class StoryController extends CommonController{
     //江湖故事详情
     public function show(){
         $id = I('get.id');
-        $data = M('News')->where(array('news_id'=>$id))->field('title,content')->find();
+        $data = M('News')->where(array('news_id'=>$id))->field('title,content,news_id')->find();
+        $keep = M('collect')->where(array('collect'=>$data['news_id'],'cate'=>3,'user_id'=>$_SESSION['user_id']))->find();
+        $this->assign('keep',$keep);
         $this->assign('data',$data);
         $this->display();
     }
