@@ -9,8 +9,8 @@
 </head>
 <body>
 <div id="content" class="name">
-    <form action="" method="post">
-        <input type="text" name="" id="" value="" placeholder="天空"/>
+    <form action="{:U('Myinfo/name')}" method="post">
+        <input type="text" name="user_name" id="" placeholder="<?php echo base64_decode($user_name);?>"/>
         <p>好的开始从一个好名字出发</p>
         <input type="submit" value="保存" class="btn"/>
     </form>

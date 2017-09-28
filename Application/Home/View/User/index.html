@@ -11,8 +11,8 @@
 <div id="content">
 	<div class="user-head">
 		<div class="card-img" style="background: url(__HOME__images/a4.jpg) no-repeat center center;">
-			<i class="head-big head" style="background: url(__HOME__images/hd.jpg);"></i>
-			<p class="u-name">卡西</p>
+			<i class="head-big head" style="background: url({$data.0.avatar});"></i>
+			<p class="u-name"><?php echo base64_decode($data[0][user_name]);?></p>
 			<p class="u-name">大谦令</p>
 		</div>
 		<div class="info cf">

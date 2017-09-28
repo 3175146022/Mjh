@@ -9,22 +9,28 @@
 </head>
 <body>
 <div id="content" class="add">
-    <form action="" method="post">
+    <form action="{:U('Myinfo/industry_save')}" method="post">
         <div class="form-group">
-            <select name="">
-                <option value="">林业</option>
-                <option value="">林业</option>
-                <option value="">林业</option>
-                <option value="">林业</option>
-                <option value="">林业</option>
-                <option value="">林业</option>
+            <select name="trade_type">
+                <volist name="trade" id="vo">
+                    <option value="{$vo.trade_id}" <?php if($company['trade_type'] == $vo['trade_id'] ):?> selected <?php endif;?>>{$vo.trade}</option>
+                </volist>
+
+                <!--<option value="">林业</option>-->
+                <!--<option value="">林业</option>-->
+                <!--<option value="">林业</option>-->
+                <!--<option value="">林业</option>-->
             </select>
 
         </div>
         <div class="form-group">
-            <input type="text" name="" id="" value="" placeholder="机构组织"/>
+            <input type="text" name="company" id="" value="{$company.company}" placeholder="机构组织"/>
         </div>
+        <input type="hidden" name="user_id" value="{$company.user_id}">
+        <input type="submit" value="保存" class="btn"/>
     </form>
+
+
 </div>
 </body>
 </html>
