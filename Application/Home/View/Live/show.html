@@ -9,21 +9,27 @@
 	<link rel="stylesheet" type="text/css" href="__HOME__css/video-js.css"/>
 	<script src="__HOME__js/video.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
-<body>
 <style>
 	.m iframe{
 		width: 100%;
 		height: 240px;
 	}
 </style>
+<body>
 <div id="video_xq">
 	<div class="m">
 		{$data.so_link}
 	</div>
 
-	<div class="video_text">
+	<div class="video_text" solive_id ='{$data.solive_id}' type ='2'>
 		<h2>{$data.so_title}</h2>
-		<p>发布人：{$data.so_author} <span> <i></i>收藏</span> <em></em> </p>
+		<p>发布人：{$data.so_author} <span>
+			<if condition="$keep eq null ">
+				<i></i>
+				<else />
+				<i class="active"></i>
+			</if>
+			收藏</span><em></em> </p>
 		<p>2017-08-20</p>
 		<p class="desc_text"> {$data.so_detail}</p>
 	</div>
@@ -103,21 +109,29 @@
 </html>
 <script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-    $(".video_text em").on("click",function(){
-        $(".desc_text").toggleClass("active")
-    })
+	$(".video_text em").on("click",function(){
+		$(".desc_text").toggleClass("active")
+	})
 
-    $(".video_text i").on("click",function(){
-        $(this).toggleClass("active")
-    })
+	$(".video_text i").on("click",function(){
+		var collect = $('.video_text').attr('solive_id');
+		var cate =$('.video_text').attr('type');
+		$.post("{:U('Common/keep')}",{collect:collect,cate:cate},function(data){
+			if(data.state == 200 || data.state == 202){
+				$(".video_text i").toggleClass("active")
+			}else{
+				alert('操作失败！');
+			}
+		});
+	});
 
-    $(".com_text span,.huifu p").on("click",function(){
-        $(".pingl").toggleClass("active")
-    })
+	$(".com_text span,.huifu p").on("click",function(){
+		$(".pingl").toggleClass("active")
+	})
 
-    $(".zhankai").on("click",function(){
-        $(".huifu").toggleClass("active")
-        return false;
-    })
+	$(".zhankai").on("click",function(){
+		$(".huifu").toggleClass("active")
+		return false;
+	})
 
 </script>
