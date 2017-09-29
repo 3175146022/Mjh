@@ -22,6 +22,7 @@ class MyinfoController extends CommonController{
             $this->assign('user_name',$_GET['user_name']);
             $this->display();
         }
+
         if ($_POST){
             C('TOKEN_ON',false);
             $verify = D('User');
@@ -54,8 +55,6 @@ class MyinfoController extends CommonController{
         }else{
             $this->display();
         }
-
-        
     }
 
     public function position_save()
@@ -151,6 +150,60 @@ class MyinfoController extends CommonController{
                 echo 'ok';
             }else{
                 echo 'no';
+            }
+        }
+    }
+
+    public function photo()
+    {
+        $this->display();
+    }
+
+    public function photo_save()
+    {
+        if ($_POST){
+            $a = M('user')->where('user_id = '.$_SESSION['user_id'])->find();
+            $path = $a['avatar'];
+            if ($path != null){
+                $b = substr($path,26);
+                //echo $a;exit;
+                unlink($b);
+            }
+            $photo = $_POST['photo'];
+            //exit;
+            //匹配出图片的格式
+            if (preg_match('/^(data:\s*image\/(\w+);base64,)/', $photo, $result)){
+                $type = $result[2];
+                $new_file = "Uploads/user/".date('Y-m-d',time())."/";
+                if(!file_exists($new_file))
+                {
+                    //检查是否有该文件夹，如果没有就创建，并给予最高权限
+                    mkdir($new_file, 0777);
+                }
+                //var_dump($_SERVER);exit;
+                $photo_path = $new_file.time().".{$type}";
+                //echo $photo_path;exit;
+                if (file_put_contents($photo_path, base64_decode(str_replace($result[1], '', $photo)))){
+                    //echo '新文件保存成功：', $photo_path;
+                    
+                    $photo_path = "http://wap.manjianghu.com/".$photo_path;
+                    $a = M('user')->where('user_id = '.$_SESSION['user_id'])->save(['avatar' => $photo_path]);
+                    if (is_numeric($a)){
+                        $data = [
+                            'status' => 1,
+                            'msg' => '头像修改成功'
+                        ];
+                        echo json_encode($data);
+                    }else{
+                        $data = [
+                            'status' => 0,
+                            'msg' => '头像修改失败'
+                        ];
+                        echo json_encode($data);
+                    }
+                }else{
+                    echo '新文件保存失败';
+                }
             }
         }
     }

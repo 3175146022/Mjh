@@ -14,22 +14,17 @@
 </head>
 <body style="background:#000">
 <!--头部-->
-
 <a href="javascript:void(0);" class="logoBox" id="logoBox">
     <img id="bgl" src="__HOME__images/userico.jpg" width="100%">
 </a>
-
 
 <div class="htmleaf-container" style="display: block;">
 <div id="clipArea"></div>
 <div id="view"></div>
 </div>
-
-
 <div class="btn-1">
-<button>确认更换</button>
+<button id="btn11" onclick="requestPhoto()">确认更换</button>
 </div>
-
 <div id="dpage" class="show">
  <a href="javascript:void(0);">
      <input type="button" name="file" class="button" value="拍照"  capture="camera">
@@ -61,7 +56,8 @@ $("#clipArea").photoClip({
 		console.log("照片读取完成");
 	},
 	clipFinish: function(dataURL) {
-		console.log(dataURL);
+		//console.log(dataURL);
+		//$("#file2").attr("value",dataURL)
 	}
 });
 </script>
@@ -73,7 +69,8 @@ $("#dpage").addClass("show");
 })
 	$("#clipBtn").click(function(){
 		$("#logoBox").empty();
-		$('#logoBox').append('<img src="' + imgsource + '" align="absmiddle" style=" width:100%;">');
+		$('#logoBox').append('<img src="' + imgsource + '" align="absmiddle" style=" width:100%;">' +
+            '<input type="hidden" name="photo" id="photo" value="'+imgsource+'" />');
 		$(".htmleaf-container").hide();
 		$("#dpage").removeClass("show");
 	})
@@ -158,6 +155,7 @@ $(function(){
 	})
 });
 </script>
+
 <script>
 $("#file0").change(function(){
 	var objUrl = getObjectURL(this.files[0]) ;
@@ -181,6 +179,7 @@ function qd(){
 	   $("#img0").hide();
    }
 }
+
 function getObjectURL(file) {
 	var url = null ;
 	if (window.createObjectURL!=undefined) { // basic
@@ -192,7 +191,9 @@ function getObjectURL(file) {
 	}
 	return url ;
 }
+
 </script>
+
 <script type="text/javascript">
 var subUrl = "";
 $(function (){
@@ -249,7 +250,28 @@ function setImagePreview() {
 			!0
 }
 </script>
+<script>
+    var i = 0;
+    function requestPhoto() {
+        i++;
+        if (i > 1){
+            alert('图片上传中，请稍后！');
+            $('#btn11').attr("disabled","disabled")
+        }else{
+            var photo = $('#photo').attr('value');
+            //console.log(photo)
+            $.post("{:U('Myinfo/photo_save')}",{"photo":photo},function (data) {
+                var json = eval('('+data+')');
+                //console.log(json.status)
+                alert(json.msg);
+                window.location.href="{:U('Myinfo/index')}";
+            })
 
+
+        }
+
+    }
+</script>
 </body>
 </html>
 
