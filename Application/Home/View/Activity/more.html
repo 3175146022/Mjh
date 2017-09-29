@@ -2,37 +2,75 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>江湖活动</title>
+	<title>story</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 	<link rel="stylesheet" type="text/css" href="__HOME__css/style.css"/>
 	<link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
+	<script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
 </head>
-
 <body>
-<ul class="list">
-	<volist name="more" id="list">
-		<li class="cf">
-			<a href="{:U('Activity/show',array('id'=>$list['activity_id']))}">
-				<div class="img_box fl">
-					<img src="__ROOT__/{$list.img}" alt="" />
-				</div>
-				<div class="list_t fr">
-					<h2>{$list.act_title}</h2>
-					<span>{$list.add_time|date='Y.m.d',###}</span>
-					<p class="doing">
-						<?php
-									if($list['end_time'] > time() && $list['is_sold'] == 0){
-						echo "进行中";
-						}else{
-						echo "已结束";
-						}
-						?>
-					</p>
-				</div>
-			</a>
-		</li>
-	</volist>
-</ul>
-</body>
+<div class="iphone">
 
+
+	<div id="ac_more">
+		<div class="user-head">
+			<div class="card-img" style="background: url(__HOME__images/a4.jpg) no-repeat center center;"></div>
+			<div class="sec-tab cf">
+				<i class="active"></i>
+				<i></i>
+			</div>
+		</div>
+		<div class="hide mg-20">
+			<div class="tab cf">
+				<ul class="list">
+					<volist name="more" id="jxz">
+						<?php if($jxz['end_time'] > time() && $jxz['is_sold'] == 0):?>
+						<li class="cf">
+							<a href="{:U('Activity/show',array('id'=>$jxz['activity_id']))}">
+								<div class="img_box fl">
+									<img src="__ROOT__/{$jxz.img}" alt="" />
+								</div>
+								<div class="list_t fr">
+									<h2>{$jxz.act_title}</h2>
+									<span>{$jxz.add_time|date='Y.m.d',###}</span>
+								</div>
+							</a>
+						</li>
+						<?php endif;?>
+					</volist>
+				</ul>
+
+				<ul class="list">
+					<volist name="more" id="yjs">
+						<?php if($yjs['end_time'] <= time() || $list['is_sold'] == 1):?>
+						<li class="cf">
+							<a href="{:U('Activity/show',array('id'=>$yjs['activity_id']))}">
+								<div class="img_box fl">
+									<img src="__ROOT__/{$yjs.img}" alt="" />
+								</div>
+								<div class="list_t fr">
+									<h2>{$yjs.act_title}</h2>
+									<span>{$yjs.add_time|date='Y.m.d',###}</span>
+								</div>
+							</a>
+						</li>
+						<?php endif;?>
+					</volist>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
 </html>
+<script type="text/javascript">
+    window.onload = function(){
+        $(".sec-tab i").on("click",function(){
+            $(this).addClass("active").siblings().removeClass("active");
+            var i = $(this).index();
+            var w = $(window).width();
+
+            $(".tab").css("transform","translate("+ -i * w+"px)")
+        })
+    }
+</script>
