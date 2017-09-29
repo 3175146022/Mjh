@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>story</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+   		<link rel="stylesheet" type="text/css" href="css/style.css"/>	
+   		<link rel="stylesheet" type="text/css" href="css/public.css"/>
+	</head>
+	<body>
+		<div id="content">
+			<div class="user-head">
+				<div class="card-img" style="background: url(images/a4.jpg) no-repeat center center;">
+					<i class="head-big head" style="background: url(images/hd.jpg);"></i>
+					<p class="u-name">卡西</p>
+				</div>
+			</div>
+			<ul class="my-info">
+				<li style="box-shadow: none;margin-bottom: 100px;"><a href="#" style="line-height: 50px;height: 50px;box-shadow: none;">爱好：<span style="margin-left: 8px;color: #666;">打篮球，羽毛球</span></a></li>				
+			</ul>
+				
+				<a class="btn" href="mark.html">
+					加为好友
+				</a>
+		</div>
+	</body>
+</html>
+<script src="js/zepto.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	$(".invit").on("click",function(){
+		$(".click_invit").addClass("active")
+	})
+	
+	$(".click_invit").on("click",function(){
+		$(".click_invit").removeClass("active")
+	})
+</script>
+
