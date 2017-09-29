@@ -18,18 +18,20 @@ class MyinfoController extends CommonController{
 
     public function name()
     {
-        if ($_GET['user_name']){
-            $this->assign('user_name',$_GET['user_name']);
+        if ($_GET['user_id']){
+            $a = M('user')->where('user_id = '.$_GET['user_id'])->field('user_name')->find();
+            $this->assign('user_name',$a['user_name']);
             $this->display();
         }
 
         if ($_POST){
             C('TOKEN_ON',false);
             $verify = D('User');
-            if(!$verify->create()){
+            $user_name = base64_encode($_POST['user_name']);
+            if(!$verify->create(['user_name'=>$user_name])){
                 $this->error($verify->getError());
             }else{
-                $user_name = base64_encode($_POST['user_name']);
+                //$user_name = base64_encode($_POST['user_name']);
                 $a = M('user')->where('user_id = '.$_SESSION['user_id'])->save(['user_name' =>$user_name]);
                 //var_dump($_SESSION['user_id']);
                 if ($a){
@@ -43,19 +45,52 @@ class MyinfoController extends CommonController{
 
     public function QRcode()
     {
+        $host=$_SERVER["HTTP_HOST"];
+        vendor("phpqrcode.phpqrcode");
+        $data ='http://www.manjianghu.com/';
+        // 纠错级别：L、M、Q、H
+        $level = 'L';
+        // 点的大小：1到10,用于手机端4就可以了
+        $size = 4;
+        // 下面注释了把二维码图片保存到本地的代码,如果要保存图片,用$fileName替换第二个参数false
+
+        // 生成的文件名
+        ob_end_clean();//清空缓冲区
+        QRcode::png($data, $false, $level, $size);
+
         $this->display();
     }
 
-    public function position()
-    {
-        if ($_GET['info_id'] != null){
-            $a = M('user_info')->where('info_id = '.$_GET['info_id'])->find();
-            $this->assign('data',$a);
-            $this->display();
-        }else{
-            $this->display();
-        }
-    }
+//    public function twodemcode(){
+//        $host=$_SERVER["HTTP_HOST"];
+//        vendor("phpqrcode.phpqrcode");
+//        $data ='http://www.zhihu.com/';
+//        // 纠错级别：L、M、Q、H
+//        $level = 'L';
+//        // 点的大小：1到10,用于手机端4就可以了
+//        $size = 4;
+//        // 下面注释了把二维码图片保存到本地的代码,如果要保存图片,用$fileName替换第二个参数false
+//        $path = "Public/Index/twodecode/";
+//        if(!file_exists($path))
+//        {
+//            mkdir($path, 0777);
+//        }
+//        // 生成的文件名
+//        $fileName = $path.$username.'.png';
+//        ob_end_clean();//清空缓冲区
+//        QRcode::png($data, $fileName, $level, $size);
+//    }
+//
+//    public function position()
+//    {
+//        if ($_GET['info_id'] != null){
+//            $a = M('user_info')->where('info_id = '.$_GET['info_id'])->find();
+//            $this->assign('data',$a);
+//            $this->display();
+//        }else{
+//            $this->display();
+//        }
+//    }
 
     public function position_save()
     {
