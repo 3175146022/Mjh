@@ -3,7 +3,7 @@ namespace Home\Controller;
 
 use Think\Controller;
 use Org\Ceshi\aaa;
-use Vendor\Phpqrcode\phpqrcode\QRcode;
+//use Vendor\Phpqrcode\phpqrcode\QRcode;
 
 class MyinfoController extends CommonController{
     public function __construct(){
@@ -45,16 +45,11 @@ class MyinfoController extends CommonController{
         }
     }
 
-    public function QRcode()
+    public function code()
     {
-//        Vendor('phpqrcode.phpqrcode');
-        $url = "http://wap.manjianghu.com";
-        $errorCorrectionLevel =intval('L') ;//容错级别
-        $matrixPointSize = intval(4);//生成图片大小
-        //生成二维码图片
-        $object = new \QRcode();
-        $object->png($url, false, $errorCorrectionLevel, $matrixPointSize, 2);
-        //$object->ceshi();
+        $a = M('user')->where('user_id = '.$_SESSION['user_id'])->find();
+        $this->assign('data',$a);
+        $this->display();
     }
 
 //    public function twodemcode(){
