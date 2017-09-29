@@ -1,6 +1,4 @@
-body{
-	padding-bottom: 50px!important;
-}
+
 
 .list li{
 	box-shadow: 0 0 10px rgba(95,95,95,.5);
@@ -137,7 +135,7 @@ body{
 	position: absolute;
 	width: 50px;
 	height: 5px;
-	border-radius:2.5px;	
+	border-radius:2.5px;
 	background: #8b1603;
 	bottom:3px;
 	transition: .5s;
@@ -145,34 +143,49 @@ body{
 }
 
 .slider0{
-	left: 15%;
+	left: 30%;
 }
 
 .slider1{
-	left: 50%;
-}
-
-.slider2{
-	left: 85%;
-}
-
-.xs_did .slider1{
-	left: 85%;
+	left: 70%;
 }
 
 .xs-list .doing{
 	background:url(../images/x1.png) no-repeat center center;
-	left: 15%;
+	left:30%;
 }
 
 .xs-list .did{
 	background:url(../images/x2.png) no-repeat center center;
 	left: 50%;
-	transform: translate(-50%);
 }
 
 .xs-list .done{
 	background:url(../images/x3.png) no-repeat center center;
+	left: 70%;
+}
+
+.my .doing{
+	left:15%;
+}
+
+.my .did{
+	left:50%;
+}
+
+.my .done{
+	left:85%;
+}
+
+.my .slider0{
+	left: 15%;
+}
+
+.my .slider1{
+	left: 50%;
+}
+
+.my .slider2{
 	left: 85%;
 }
 
@@ -288,10 +301,6 @@ body{
 	border-radius: 7px;
 	text-align: center;
 }
-.btn.did{
-	background: #999!important;
-	color: #000;
-}
 
 .position{
 	width: 100%;
@@ -335,7 +344,7 @@ body{
 
 .rank tr{
 	background: #fff;
-/*	height: 40px;*/
+	/*	height: 40px;*/
 	border-bottom: 1px solid #ececec;
 	border-spacing:10px;
 }
@@ -376,7 +385,7 @@ body{
 }
 
 .u-name{
-	color: #fff;	
+	color: #fff;
 }
 
 .info{
@@ -501,14 +510,14 @@ body{
 
 .my-info li:nth-child(1){
 	margin-bottom: 15px;
-	box-shadow: 0 5px 10px rgba(95,95,95,.5);	
+	box-shadow: 0 5px 10px rgba(95,95,95,.5);
 }
 
 .my-info li:nth-child(1) i{
 	width: 40px;
 	height: 40px;
 	margin-top: 10px;
-	box-shadow: 0 5px 10px rgba(95,95,95,.5);	
+	box-shadow: 0 5px 10px rgba(95,95,95,.5);
 }
 
 .my-info li:nth-child(3) i{
@@ -681,7 +690,7 @@ body{
 
 /*我的活动页面*/
 .sec-tab{
-	box-shadow: 0 0 20px rgba(95,95,95,.5);		
+	box-shadow: 0 0 20px rgba(95,95,95,.5);
 }
 
 .sec-tab i{
@@ -730,7 +739,7 @@ body{
 	width: 95%;
 	margin: 10px auto 0;
 	line-height: 60px;
-	border-radius:5px;	
+	border-radius:5px;
 	padding: 0 10px;
 	font-size: 14px;
 }
@@ -801,7 +810,7 @@ body{
 
 .xq_con p{
 	color: #999;
-/*	padding: 0 10px 0 20px;*/
+	/*	padding: 0 10px 0 20px;*/
 }
 
 /*.con_text p.time{
@@ -818,7 +827,6 @@ body{
 	width: 30%;
 	height: 100px;
 	background-size: cover!important;
-	background-position: center center!important;
 }
 
 .xq_con{
@@ -1088,17 +1096,38 @@ body{
 	background-size: cover!important;
 }
 
-.comment form input{
+.zb-form-group{
+	width: 85%;
+}
+
+.comment form input[type=text]{
 	background: #f0f2f1;
 	border: 1px solid #ECECEC;
 	height: 30px;
-	float: right;
+	float: left;
 	line-height: 30px;
 	margin-left: 5px;
-	width: 85%;
+	width: 80%;
 	outline: none;
 	padding: 0 5px;
 	border-radius: 15px;
+}
+
+.comment form input[type=submit]{
+	width: 17%;
+	float: right;
+	margin: 0;
+	border: none;
+	height: 30px;
+	line-height: 30px;
+}
+.comment form input[type=button]{
+	width: 17%;
+	float: right;
+	margin: 0;
+	border: none;
+	height: 30px;
+	line-height: 30px;
 }
 
 .com_head{
@@ -1263,7 +1292,7 @@ body{
 
 .collect{
 	width: 100vw;
-	padding: 10px 0;
+	padding: 5px;
 }
 
 .collect li{
@@ -1287,6 +1316,7 @@ body{
 	color: #333;
 	margin-bottom: 2px;
 }
+
 .huifu{
 	background: #f5f5f5;
 	padding: 8px;
@@ -1309,4 +1339,20 @@ body{
 
 .huifu.active p{
 	display: block;
+}
+
+#ac_more .sec-tab i:nth-child(1){
+	background:#fff url(../images/x20.png) no-repeat center center;
+}
+
+#ac_more .sec-tab i.active:nth-child(1){
+	background:#fff url(../images/x22.png) no-repeat center center;
+}
+
+#ac_more .sec-tab i:nth-child(2){
+	background:#fff url(../images/x21.png) no-repeat center center;
+}
+
+#ac_more .sec-tab i.active:nth-child(2){
+	background:#fff url(../images/x23.png) no-repeat center center;
 }
