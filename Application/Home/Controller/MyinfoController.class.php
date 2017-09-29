@@ -48,7 +48,7 @@ class MyinfoController extends CommonController{
     public function code()
     {
         $a = M('user')->where('user_id = '.$_SESSION['user_id'])->find();
-        $this->assgin();
+        $this->assign('data',$a);
         $this->display();
     }
 
