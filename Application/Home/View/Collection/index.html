@@ -26,9 +26,9 @@
                 <volist name="activity" id="act">
                     <li>
                         <div class="collect_hd cf">
-                            <i class="head fl" style="background: url(__HOME__images/hd.jpg) no-repeat center center;"></i>
-                            张三
-                            <span class="time fr">今天</span>
+                            <i class="head fl" style="background: url({$user.avatar}) no-repeat center center;"></i>
+                            <?php echo base64_decode($user['user_name'])?>
+                            <span class="time fr">{$act.time|date='Y-m-d',###}</span>
                         </div>
                         <div class="collect_bd cf">
                             <a href="{:U('Activity/show',array('id'=>$act['activity_id']))}">
@@ -48,9 +48,9 @@
                 <volist name="live" id="li">
                     <li>
                         <div class="collect_hd cf">
-                            <i class="head fl" style="background: url(__HOME__images/hd.jpg) no-repeat center center;"></i>
-                            张三
-                            <span class="time fr">今天</span>
+                            <i class="head fl" style="background: url({$user.avatar}) no-repeat center center;"></i>
+                            <?php echo base64_decode($user['user_name'])?>
+                            <span class="time fr">{$li.time|date='Y-m-d',###}</span>
                         </div>
                         <div class="collect_bd cf">
                             <a href="{:U('Live/show',array('id'=>$li['solive_id']))}">
@@ -66,12 +66,12 @@
             </ul>
 
             <ul class="collect fl">
-                <volist name="story" id="st">
+                <volist name="news" id="st">
                     <li>
                         <div class="collect_hd cf">
-                            <i class="head fl" style="background: url(__HOME__images/hd.jpg) no-repeat center center;"></i>
-                            张三
-                            <span class="time fr">今天</span>
+                            <i class="head fl" style="background: url({$user.avatar}) no-repeat center center;"></i>
+                            <?php echo base64_decode($user['user_name'])?>
+                            <span class="time fr">{$st.time|date='Y-m-d',###}</span>
                         </div>
                         <div class="collect_bd cf">
                             <a href="{:U('Story/show',array('id'=>$st['news_id']))}">
@@ -88,15 +88,15 @@
             </ul>
 
             <ul class="collect fl">
-                <volist name="genera" id="list">
+                <volist name="genera" id="vo">
                     <li>
                         <div class="collect_hd">
-                            <i class="head fl" style="background: url(__HOME__images/hd.jpg) no-repeat center center;"></i>
-                            张三
-                            <span class="time fr">今天</span>
+                            <i class="head fl" style="background: url({$user.avatar}) no-repeat center center;"></i>
+                            <?php echo base64_decode($user['user_name'])?>
+                            <span class="time fr">{$vo.time|date='Y-m-d',###}</span>
                         </div>
                         <div class="collect_bd">
-                            {$list.content}
+                            {$vo.content}
                         </div>
                     </li>
                 </volist>
