@@ -9,31 +9,33 @@
     <script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
-<div id="content">
-    <ul class="my-info">
-        <li><a href="{:U('Myinfo/photo')}">头像<i class="fr head" style="background: url({$data.0.avatar}) no-repeat center center;"></i></a></li>
-        <li><a href="{:U('Myinfo/name',array('user_id'=>$data[0]['user_id']))}">姓名<span  class="fr"><?php echo base64_decode($data[0][user_name]);?></span></a></li>
-        <li><a href="{:U('Myinfo/code')}">二维码 <i class="fr head" style="background: url({$data.0.code}) no-repeat center center;"></i></a></li>
-        <li class="choice_sce"><a href="javascript:;">性别<span class="fr"><?php if($data[0]['sex']):?> 男 <?php else:?> 女 <?php endif;?></span></a></li>
-        <li><a href="{:U('Myinfo/position',array('info_id' => $data[0][info_id]))}">我的地址</a></li>
-        <li><a href="{:U('Myinfo/industry')}">行业</a></li>
-        <li><a href="{:U('Myinfo/interest')}">兴趣、爱好</a></li>
-        <li><a href=""><i></i>邀请盟友</a></li>
-    </ul>
+<div class="iphone">
+    <div id="content">
+        <ul class="my-info">
+            <li><a href="{:U('Myinfo/photo')}">头像<i class="fr head" style="background: url({$data.0.avatar}) no-repeat center center;"></i></a></li>
+            <li><a href="{:U('Myinfo/name',array('user_id'=>$data[0]['user_id']))}">姓名<span  class="fr"><?php echo base64_decode($data[0][user_name]);?></span></a></li>
+            <li><a href="{:U('Myinfo/code')}">二维码 <i class="fr head" style="background: url({$data.0.code}) no-repeat center center;"></i></a></li>
+            <li class="choice_sce"><a href="javascript:;">性别<span class="fr"><?php if($data[0]['sex']):?> 男 <?php else:?> 女 <?php endif;?></span></a></li>
+            <li><a href="{:U('Myinfo/position',array('info_id' => $data[0][info_id]))}">我的地址</a></li>
+            <li><a href="{:U('Myinfo/industry')}">行业</a></li>
+            <li><a href="{:U('Myinfo/interest')}">兴趣、爱好</a></li>
+            <li><a href=""><i></i>邀请盟友</a></li>
+        </ul>
 
-    <div class="sex">
-        <h5>性别</h5>
-        <form>
-            <div style="border-bottom: 1px solid #ececec;">
-                <label for="">男</label>
-                <input type="radio" name="sex" id="" value="1" onchange="change('男')" class="sex_man"/>
-            </div>
-            <div>
-                <label for="">女</label>
-                <input type="radio" name="sex" id="" value="0" onchange="change('女')" class="sex_woman"/>
-            </div>
-        </form>
+        <div class="sex">
+            <h5>性别</h5>
+            <form>
+                <div style="border-bottom: 1px solid #ececec;">
+                    <label for="">男</label>
+                    <input type="radio" name="sex" id="" value="1" onchange="change('男')" class="sex_man"/>
+                </div>
+                <div>
+                    <label for="">女</label>
+                    <input type="radio" name="sex" id="" value="0" onchange="change('女')" class="sex_woman"/>
+                </div>
+            </form>
 
+        </div>
     </div>
 </div>
 </body>

@@ -14,5 +14,44 @@ class MarkController extends CommonController{
         $this->assign('data',$data);
         $this->display();
     }
+
+    public function set_mark()
+    {
+        $status = M('mark')->where('user_id = '.$_SESSION['user_id'])->order('mark_time desc')->limit(1)->find();
+        if ((NOW_TIME - $status['mark_time']) > 24*60*60){
+
+            $a = M('user')->where('user_id = '.$_SESSION['user_id'])->find();
+            $integral = $a['integral'];
+            $reputation = $a['reputation'];
+
+            $mark = [
+                'integral' => $integral+1,
+                'reputation' => $reputation+1
+            ];
+
+            $b = M('user')->where('user_id = '.$_SESSION['user_id'])->save($mark);
+
+            if (is_numeric($b)){
+                $markd = [
+                    'user_id' => $_SESSION['user_id'],
+                    'mark_time' => NOW_TIME
+                ];
+                $id = M('mark')->data($markd)->add();
+                if (is_numeric($id)){
+                    $data = [
+                        'status' => 1,
+                        'msg' => '签到成功。'
+                    ];
+                    echo json_encode($data);
+                }
+            }
+        }else{
+            $data = [
+                'status' => 0,
+                'msg' => '你已签到!'
+            ];
+            echo json_encode($data);
+        }
+    }
 }
 ?>

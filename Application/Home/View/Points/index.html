@@ -11,16 +11,14 @@
 <div id="points">
     <div class="card-img" style="background: url(__HOME__images/a4.jpg) no-repeat center center;">
         <i class="head-big head" style="background:#fff url(__HOME__images/x16.png) no-repeat center 16px;background-size: 85%!important;">
-            <p>3</p>
+            <p>{$integral.integral}</p>
         </i>
     </div>
 
     <ul class="sw_list">
-        <li class="cf"><span>2017-8-6</span><p>签到获得积分+1</p></li>
-        <li class="cf"><span>2017-8-6</span><p>签到获得积分+1</p></li>
-        <li class="cf"><span>2017-8-6</span><p>签到获得积分+1</p></li>
-        <li class="cf"><span>2017-8-6</span><p>签到获得积分+1</p></li>
-        <li class="cf"><span>2017-8-6</span><p>签到获得积分+1</p></li>
+        <volist name="mark" id="vo">
+            <li class="cf"><span>{$vo.mark_time|date='Y-m-d',###}</span><p>签到获得积分+1</p></li>
+        </volist>
     </ul>
 </div>
 </body>

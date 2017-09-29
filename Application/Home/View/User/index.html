@@ -18,12 +18,12 @@
 		<div class="info cf">
 			<a href="{:U('Points/index')}" class="ins">
 				<i></i>
-				<p><i></i>10</p>
+				<p><i></i>{$data.0.integral}</p>
 			</a>
 
 			<a href="{:U('Popularity/index')}" class="sw">
 				<i></i>
-				<p><i></i>10</p>
+				<p><i></i>{$data.0.reputation}</p>
 			</a>
 
 		</div>
@@ -39,7 +39,7 @@
 			<li><a href="{:U('Collection/index')}"></a></li>
 		</ul>
 
-		<a class="btn" href="{:U('Mark/index')}">
+		<a id="markbtn" onclick="mark()" class="btn" href="javascript:;">
 			签到
 		</a>
 	</div>
@@ -56,4 +56,15 @@
         $(".click_invit").removeClass("active")
     })
 </script>
-
+<script>
+	function mark() {
+		$.post("{:U('Mark/set_mark')}",{},function (data) {
+            var json = eval('('+data+')');
+            if (json.status){
+                window.location.href = "{:U('Mark/index')}"
+			}else {
+            	alert(json.msg);
+			}
+        })
+    }
+</script>

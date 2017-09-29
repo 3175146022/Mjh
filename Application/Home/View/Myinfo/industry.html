@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
 </head>
 <body>
+<div class="iphone">
 <div id="content" class="add">
     <form action="{:U('Myinfo/industry_save')}" method="post">
         <div class="form-group">
@@ -29,8 +30,12 @@
         <input type="hidden" name="user_id" value="{$company.user_id}">
         <input type="submit" value="保存" class="btn"/>
     </form>
-
+</div>
 
 </div>
 </body>
+<script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    $(".iphone").css("height",$(window).height() )
+</script>
 </html>
