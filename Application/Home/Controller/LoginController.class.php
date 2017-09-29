@@ -38,6 +38,26 @@ class LoginController extends Controller{
                     $arr['user_name'] = base64_encode($data->nickname);
                     $arr['sex'] = $data->sex;
                     $id =M('user')->add($arr);
+
+                    Vendor('phpqrcode.class#phpqrcode');
+                    $url = "http://wap.manjianghu.com/index.php/home/codeinfo/index/user_id/".$id.".html";
+                    $errorCorrectionLevel =intval('L') ;//容错级别
+                    $matrixPointSize = intval(6);//生成图片大小
+                    //生成二维码图片
+                    $path = "Uploads/QRcode/";
+                    if(!file_exists($path))
+                    {
+                        mkdir($path, 0777);
+                    }
+                    // 生成的文件名
+                    $fileName = $path.$arr['open_id'].'.png';
+
+                    ob_end_clean();//清空缓冲区
+
+                    \QRcode::png($url, $fileName, $errorCorrectionLevel, $matrixPointSize, 2);
+                    $code_path['code'] = "http://wap.manjianghu.com/".$fileName;
+
+                    M('user')->where('user_id = '.$id)->save($code_path);
                     $_SESSION['user_id'] = $id;
                     redirect(U('Index/index'));
                 }
