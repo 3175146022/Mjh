@@ -2,6 +2,8 @@
 namespace Home\Controller;
 
 use Think\Controller;
+use Org\Ceshi\aaa;
+use Vendor\Phpqrcode\phpqrcode\QRcode;
 
 class MyinfoController extends CommonController{
     public function __construct(){
@@ -45,20 +47,14 @@ class MyinfoController extends CommonController{
 
     public function QRcode()
     {
-        $host=$_SERVER["HTTP_HOST"];
-        vendor("phpqrcode.phpqrcode");
-        $data ='http://www.manjianghu.com/';
-        // 纠错级别：L、M、Q、H
-        $level = 'L';
-        // 点的大小：1到10,用于手机端4就可以了
-        $size = 4;
-        // 下面注释了把二维码图片保存到本地的代码,如果要保存图片,用$fileName替换第二个参数false
-
-        // 生成的文件名
-        ob_end_clean();//清空缓冲区
-        QRcode::png($data, $false, $level, $size);
-
-        $this->display();
+//        Vendor('phpqrcode.phpqrcode');
+        $url = "http://wap.manjianghu.com";
+        $errorCorrectionLevel =intval('L') ;//容错级别
+        $matrixPointSize = intval(4);//生成图片大小
+        //生成二维码图片
+        $object = new \QRcode();
+        $object->png($url, false, $errorCorrectionLevel, $matrixPointSize, 2);
+        //$object->ceshi();
     }
 
 //    public function twodemcode(){
