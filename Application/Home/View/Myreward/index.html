@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
 </head>
 <body>
+<div class="iphone">
 <div id="xs">
     <div class="card-img" style="background: url(__HOME__images/a4.jpg) no-repeat center center;">
         <a href=""><i class="head-big head" style="background:#fff url(__HOME__images/x7.png) no-repeat center center; background-size: 80%!important;"></i></a>
@@ -150,10 +151,12 @@
         </div>
     </div>
 </div>
+</div>
 </body>
 </html>
 <script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
+    $(".iphone").css("height",$(window).height() )
     $(".info a").on("click",function(){
         $(this).addClass("active").siblings().removeClass("active");
         var i = $(this).index();

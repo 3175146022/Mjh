@@ -72,16 +72,16 @@ class MyinfoController extends CommonController{
 //        QRcode::png($data, $fileName, $level, $size);
 //    }
 //
-//    public function position()
-//    {
-//        if ($_GET['info_id'] != null){
-//            $a = M('user_info')->where('info_id = '.$_GET['info_id'])->find();
-//            $this->assign('data',$a);
-//            $this->display();
-//        }else{
-//            $this->display();
-//        }
-//    }
+    public function position()
+    {
+        if ($_GET['info_id'] != null){
+            $a = M('user_info')->where('info_id = '.$_GET['info_id'])->find();
+            $this->assign('data',$a);
+            $this->display();
+        }else{
+            $this->display();
+        }
+    }
 
     public function position_save()
     {

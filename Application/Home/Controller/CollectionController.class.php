@@ -14,24 +14,24 @@ class CollectionController extends CommonController{
         foreach ($list as $k=>$v){
             if($v['cate'] == 1){
                 $activity[] = M('Activity as a')
-                    ->join('collect as c ON c.collect = a.activity_id')
-                    ->where(array('activity_id'=>$v['collect']))
-                    ->find();
+                            ->join('collect as c ON c.collect = a.activity_id')
+                            ->where(array('activity_id'=>$v['collect']))
+                            ->find();
             }elseif ($v['cate'] == 2){
                 $solive[] = M('Solive as s')
-                    ->join('collect as c ON c.collect = s.solive_id')
-                    ->where(array('solive_id'=>$v['collect']))
-                    ->find();
+                            ->join('collect as c ON c.collect = s.solive_id')
+                            ->where(array('solive_id'=>$v['collect']))
+                            ->find();
             }elseif ($v['cate'] == 3){
                 $news[] = M('News as n')
-                    ->join('collect as c ON c.collect = n.news_id')
-                    ->where(array('news_id'=>$v['collect']))
-                    ->find();
+                            ->join('collect as c ON c.collect = n.news_id')
+                            ->where(array('news_id'=>$v['collect']))
+                            ->find();
             }elseif ($v['cate'] == 4){
                 $genera[] = M('Genera as g')
-                    ->join('collect as c ON c.collect = g.id')
-                    ->where(array('id'=>$v['collect']))
-                    ->find();
+                            ->join('collect as c ON c.collect = g.id')
+                            ->where(array('id'=>$v['collect']))
+                            ->find();
             }
         }
         $this->assign('activity',$activity);

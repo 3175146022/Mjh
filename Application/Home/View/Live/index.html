@@ -8,6 +8,7 @@
    		<link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
 	</head>
 	<body>
+	<div class="iphone">
 		<div id="zhibo">
 			<ul>
 				<volist name="list" id="vo">
@@ -24,5 +25,10 @@
 			</ul>
 		
 		</div>
+	</div>
 	</body>
+	<script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+        $(".iphone").css("height",$(window).height() )
+	</script>
 </html>

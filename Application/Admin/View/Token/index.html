@@ -26,8 +26,6 @@
                             <th>令牌编号</th>
                             <th>令牌归属者</th>
                             <th>令牌等级</th>
-                            <th>令牌积分</th>
-                            <th>令牌状态</th>
                             <th>操作</th>
                         </tr>
                         </thead>
@@ -39,15 +37,13 @@
                                 <td><?php echo base64_decode($list['user_name'])?></td>
                                 <td><?php
                                         switch($list['tok_level']){
-                                            case 0: echo "欢喜令";break;
-                                            case 1: echo "义士令";break;
-                                            case 2: echo "英雄令";break;
-                                            case 3: echo "大侠令";break;
-                                            case 4: echo "大谦令";break;
+                                            case 1: echo "欢喜令";break;
+                                            case 2: echo "义士令";break;
+                                            case 3: echo "英雄令";break;
+                                            case 4: echo "大侠令";break;
+                                            case 5: echo "大谦令";break;
                                         }
                                     ?></td>
-                                <td></td>
-                                <td>{$list.tok_status}</td>
                                 <td>
                                     <a class="btn btn-primary btn-rounded" href="{:U('Token/update_token',array('id'=>$list['token_id']))}">修改</a>
                                     <a class="btn btn-primary btn-rounded" href="javascript:;" onclick="delete_token('{$list.token_id}')">删除</a>

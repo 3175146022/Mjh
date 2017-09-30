@@ -8,16 +8,22 @@
     <link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
     <link rel="stylesheet" type="text/css" href="__HOME__css/jquery-weui.min.css"/>
 </head>
+<style  rel="stylesheet">
+    .rank.ramdon{
+        background: none;
+    }
+</style>
 <body>
+<div class="iphone">
 <div id="content">
     <div class="card-img" style="background: url(__HOME__images/a3.jpg) no-repeat center center;"></div>
-    <form action="" method="post" class="position cf">
+    <form action="{:U('Rank/search')}" method="post" class="position cf">
         <label>选择省市区/县：</label>
-        <input type="text" id="city-picker" placeholder="请选择地址" readonly="" data-code="110101" data-codes="110000,110000,110101">
+        <input type="text" name="area"  placeholder="{$data.area}" id="city-picker"/>
         <input type="submit" value="搜索"/>
     </form>
 
-    <table class="rank">
+    <table class="rank ramdon">
         <thead>
         <tr>
             <th>排行</th>
@@ -26,83 +32,82 @@
             <th>令牌等级</th>
             <th>声望</th>
         </tr>
-        <tr>
-            <td>33</td>
-            <td><i class="head" style="background: url(__HOME__images/hd.jpg) no-repeat center center;"></i></td>
-            <td>345追梦&越</td>
-            <td>大谦令</td>
-            <td>1200000</td>
-        </tr>
+        <volist name="user" id="vo">
+            <?php if($vo['user_id'] == $my['user_id']):?>
+                <tr>
+                    <td>{$vo.place}</td>
+                    <td><i class="head" style="background: url({$vo.avatar}) no-repeat center center;"></i></td>
+                    <td><?php echo base64_decode($vo[user_name]);?></td>
+                    <td>
+                        <?php
+                            switch($vo['tok_level']){
+                                case 1: echo "欢喜令";break;
+                                case 2: echo "义士令";break;
+                                case 3: echo "英雄令";break;
+                                case 4: echo "大侠令";break;
+                                case 5: echo "大谦令";break;
+                            }
+                        ?>
+                    </td>
+                    <td>{$vo.reputation}</td>
+                </tr>
+            <?php endif;?>
+        </volist>
         </thead>
 
         <tbody>
         <tr class="space">
             <td colspan="5"></td>
         </tr>
-
-        <tr>
-            <td>1</td>
-            <td><i class="head" style="background: url(__HOME__images/hd.jpg) no-repeat center center;"></i></td>
-            <td>345追梦ss&越</td>
-            <td>大谦令</td>
-            <td>120</td>
-        </tr>
-
-        <tr>
-            <td>2</td>
-            <td><i class="head" style="background: url(__HOME__images/hd.jpg) no-repeat center center;"></i></td>
-            <td>345追梦&越</td>
-            <td>大谦令</td>
-            <td>120</td>
-        </tr>
-
-        <tr>
-            <td>3</td>
-            <td><i class="head" style="background: url(__HOME__images/hd.jpg) no-repeat center center;"></i></td>
-            <td>345追梦&越</td>
-            <td>大谦令</td>
-            <td>120</td>
-        </tr>
-
-        <tr>
-            <td>4</td>
-            <td><i class="head" style="background: url(__HOME__images/hd.jpg) no-repeat center center;"></i></td>
-            <td>345追梦&越</td>
-            <td>大谦令</td>
-            <td>120</td>
-        </tr>
-
-        <tr>
-            <td>5</td>
-            <td><i class="head" style="background: url(__HOME__images/hd.jpg) no-repeat center center;"></i></td>
-            <td>345追梦&越</td>
-            <td>大谦令</td>
-            <td>120</td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td><i class="head" style="background: url(__HOME__images/hd.jpg) no-repeat center center;"></i></td>
-            <td>345追梦&越</td>
-            <td>大谦令</td>
-            <td>120</td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td><i class="head" style="background: url(__HOME__images/hd.jpg) no-repeat center center;"></i></td>
-            <td>345追梦&越</td>
-            <td>大谦令</td>
-            <td>120</td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td><i class="head" style="background: url(__HOME__images/hd.jpg) no-repeat center center;"></i></td>
-            <td>345追梦&越</td>
-            <td>大谦令</td>
-            <td>120</td>
-        </tr>
+        <?php if(!isset($search)):?>
+        <volist name="user" id="vo">
+            <?php if($vo['token_id'] != null):?>
+                <tr>
+                    <td>{$vo.place}</td>
+                    <td><i class="head" style="background: url({$vo.avatar}) no-repeat center center;"></i></td>
+                    <td><?php echo base64_decode($vo[user_name]);?></td>
+                    <td>
+                        <?php
+                            switch($vo['tok_level']){
+                                case 1: echo "欢喜令";break;
+                                case 2: echo "义士令";break;
+                                case 3: echo "英雄令";break;
+                                case 4: echo "大侠令";break;
+                                case 5: echo "大谦令";break;
+                            }
+                        ?>
+                    </td>
+                    <td>{$vo.reputation}</td>
+                </tr>
+            <?php endif;?>
+        </volist>
+        <?php else:?>
+            <volist name="search" id="vo">
+                <?php if($vo['token_id'] != null):?>
+                <tr>
+                    <td>{$vo.place}</td>
+                    <td><i class="head" style="background: url({$vo.avatar}) no-repeat center center;"></i></td>
+                    <td><?php echo base64_decode($vo[user_name]);?></td>
+                    <td>
+                        <?php
+                                switch($vo['tok_level']){
+                                    case 1: echo "欢喜令";break;
+                                    case 2: echo "义士令";break;
+                                    case 3: echo "英雄令";break;
+                                    case 4: echo "大侠令";break;
+                                    case 5: echo "大谦令";break;
+                                }
+                            ?>
+                    </td>
+                    <td>{$vo.reputation}</td>
+                </tr>
+                <?php endif;?>
+            </volist>
+        <?php endif;?>
         </tbody>
 
     </table>
+</div>
 </div>
 </body>
 </html>
@@ -111,10 +116,12 @@
 <script src="__HOME__js/jquery-weui.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
+    $(".iphone").css("height",$(window).height() )
     $("#city-picker").cityPicker({
         title: "选择省市区/县",
         onChange: function (picker, values, displayValues) {
-            console.log(values, displayValues);
+//            console.log(values, displayValues);
+            $('#city-picker').attr('value',displayValues);
         }
     });
 </script>

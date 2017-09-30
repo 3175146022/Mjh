@@ -43,10 +43,10 @@
                                     <td>{$vo.phone}</td>
                                     <td><?php if($vo['sex']):?> 男 <?php else:?> 女 <?php endif;?></td>
                                     <td><?php echo base64_decode($vo[user_name]);?></td>
-                                    <td><img width="90" height="90" style="border-radius: 50%;" src="{$vo.avatar}"></td>
+                                    <td><img width="50" height="50" style="border-radius: 50%;" src="{$vo.avatar}"></td>
                                     <td>X</td>
                                     <td>4</td>
-                                    <td><img width="100" height="100" src="{$vo.code}"></td>
+                                    <td><img width="50" height="50" src="{$vo.code}"></td>
                                     <td>
                                         <a class="btn btn-primary btn-rounded" href="{:U('User/details',array('id' => $vo['user_id']))}">查看详情</a>
                                         <a class="btn btn-primary btn-rounded" onclick="delete_act('{$vo.user_id}')" href="javascript:;">删除</a>

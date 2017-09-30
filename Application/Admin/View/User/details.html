@@ -30,6 +30,7 @@
 </head>
 <body class="gray-bg">
 <div class="wrapper wrapper-content">
+
     <div class="row">
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
@@ -41,13 +42,13 @@
                         <div class="form-group draggable">
                             <label class="col-sm-3 control-label">用户头像：</label>
                             <div class="col-sm-3">
-                                <img width="90" height="90" style="border-radius: 50%;" src="{$data.0.avatar}" alt="">
+                                <img width="100" height="100" style="border-radius: 50%;" src="{$data.0.avatar}" alt="">
                             </div>
                         </div>
                         <div class="form-group draggable">
                             <label class="col-sm-3 control-label">二维码：</label>
                             <div class="col-sm-3">
-                                <img src="" alt="">
+                                <img width="100" height="100" src="{$data.0.code}" alt="">
                             </div>
                         </div>
                         <div class="form-group draggable">
@@ -77,13 +78,13 @@
                         <div class="form-group draggable">
                             <label class="col-sm-3 control-label">积分：</label>
                             <div class="col-sm-3">
-                                <input type="text" name="" class="form-control" placeholder="">
+                                <input type="text" name="" class="form-control" value="{$data.0.integral}">
                             </div>
                         </div>
                         <div class="form-group draggable">
                             <label class="col-sm-3 control-label">声望：</label>
                             <div class="col-sm-3">
-                                <input type="text" name="" class="form-control" placeholder="">
+                                <input type="text" name="" class="form-control" value="{$data.0.reputation}">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>

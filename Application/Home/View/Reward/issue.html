@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
 </head>
 <body>
+<div class="iphone">
 <div id="fabu">
 	<form action="{:U('Reward/issue')}" method="post" enctype="multipart/form-data">
 		<div class="form-group cf">
@@ -37,11 +38,14 @@
 		<input type="submit" value="提交" class="btn"/>
 	</form>
 </div>
+</div>
 
 </body>
 </html>
 <script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
+
+    $(".iphone").css("height",$(window).height() )
     var i = 0;
     $(".load_btn input").change(function(){
         loadImg()

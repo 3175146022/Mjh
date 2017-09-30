@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <link rel="stylesheet" type="text/css" href="__HOME__css/style.css"/>
     <link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
+    <script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
+<div class="iphone">
 <div id="content">
     <div class="text">
         <div class="text_head">
@@ -19,13 +21,30 @@
             </div>
         </div>
         {$data.re_content}
-        <a href="#" class="btn">
-            <?php switch($data['re_status']){
-                case 0: echo "接受悬赏";break;
-                case 1: echo "已揭榜";break;
-            }?>
-        </a>
+        <form action="{:U('Reward/undertake')}" method="post" id="subform">
+            <a href="javascript:void(0);" class="btn">
+                <?php switch($data['re_status']){
+                    case 0: echo "接受悬赏";break;
+                    case 1: echo "已揭榜";break;
+                }?>
+            </a>
+        </form>
     </div>
 </div>
+</div>
 </body>
+<script>
+    $(".iphone").css("height",$(window).height() )
+    $('.btn').click(function () {
+        $str = $('.btn').html();
+        $.ajax({
+            type: "POST",
+            url: "{:U('Reward/show')}",
+            data: "json",
+            success: function(msg){
+                alert($str);
+            }
+        });
+    })
+</script>
 </html>

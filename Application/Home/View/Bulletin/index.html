@@ -9,6 +9,7 @@
 </head>
 
 <body>
+<div class="iphone">
 <ul class="list">
     <volist name="list" id="vo">
         <li class="cf">
@@ -24,6 +25,11 @@
         </li>
     </volist>
 </ul>
+</div>
 </body>
+<script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    $(".iphone").css("height",$(window).height() )
+</script>
 
 </html>

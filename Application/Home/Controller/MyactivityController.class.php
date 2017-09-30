@@ -11,17 +11,28 @@ class MyactivityController extends CommonController
     }
 
     //我的活动
-    public function index()
-    {
+    public function index(){
+        $data = M('MyActivity')->where(array('user_id'=>$_SESSION['user_id']))->field('activity_id')->select();
+        foreach ($data as $k=>$v){
+            $list[] = M('Activity')->where(array('activity_id'=>$v['activity_id']))->find();
+            if($list['end_time'] <= time()){
+                $join[] = M('Activity')->where(array('activity_id'=>$v['activity_id']))->find();
+            }
+        }
+        $this->assign('list',$join);
         $this->display();//页面赋值
     }
 
     //报名
     public function sign_up(){
         $id = I('get.id');
-        $temp = M('Activity')->where(array('activity_id'=>$id))->field('sign_up,astrict')->find();
-        if ($temp['sign_up'] < $temp['astrict']) {
-            $data = M('MyActivity')->where(array('activity_id' => $id))->find();
+        $temp = M('Activity')->where(array('activity_id'=>$id))->field('sign_up,astrict,end_time,is_sold')->find();
+        if (($temp['sign_up'] < $temp['astrict']) && ($temp['end_time'] > time()) && ($temp['is_sold'] == 0)) {
+            $where = array(
+                'activity_id' => $id,
+                'user_id' => $_SESSION['user_id'],
+            );
+            $data = M('MyActivity')->where($where)->find();
             if($data == null){
                 $map = array(
                     'sign_up' => $temp['sign_up'] + 1,

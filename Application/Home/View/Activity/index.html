@@ -1,90 +1,95 @@
 <!doctype html>
 <html>
-<head>
-	<meta charset="UTF-8">
-	<title>江湖活动</title>
-	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-	<link rel="stylesheet" type="text/css" href="__HOME__css/style.css"/>
-	<link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
-	<link rel="stylesheet" type="text/css" href="__HOME__css/swiper.min.css"/>
-</head>
-<body>
-<div id="content">
-	<div class="card-img" style="background: url(__HOME__images/a3.jpg) no-repeat center center;"></div>
+	<head>
+		<meta charset="UTF-8">
+		<title>江湖活动</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+   		<link rel="stylesheet" type="text/css" href="__HOME__css/style.css"/>
+   		<link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
+   		<link rel="stylesheet" type="text/css" href="__HOME__css/swiper.min.css"/>
+	</head>
+	<body>
+	<div class="iphone">
+		<div id="content">
+			<div class="card-img" style="background: url(__HOME__images/a3.jpg) no-repeat center center;"></div>
 
-	<div class="activity">
-		<a href="{:U('Activity/more',array('id'=>$list[0]['act_cate_id']))}" class="theme"></a>
-		<div class="slide">
-			<div class="swiper-container" id="sw1">
-				<div class="swiper-wrapper">
-					<volist name="list" id="vo">
-						<if condition="$vo['act_cate_title'] eq '主题活动' ">
-							<?php if($vo['end_time'] > time() && $vo['is_sold'] == 0):?>
-							<div class="swiper-slide">
-								<a href="{:U('Activity/show',array('id'=>$vo['activity_id']))}">
-									<div class="ac_p" style="background: url(__ROOT__/{$vo.img}) no-repeat center center;">
-										<h5>{$vo.act_title}</h5>
-										<p>{$vo.act_detail}</p>
+			<div class="activity">
+				<a href="{:U('Activity/more',array('id'=>$list[0]['act_cate_id']))}" class="theme"></a>
+				<div class="slide">
+					<div class="swiper-container" id="sw1">
+					<div class="swiper-wrapper">
+						<volist name="list" id="vo">
+							<if condition="$vo['act_cate_title'] eq '主题活动' ">
+								<?php if($vo['end_time'] > time() && $vo['is_sold'] == 0):?>
+									<div class="swiper-slide">
+										<a href="{:U('Activity/show',array('id'=>$vo['activity_id']))}">
+											<div class="ac_p" style="background: url(__ROOT__/{$vo.img}) no-repeat center center;">
+												<h5>{$vo.act_title}</h5>
+												<p>{$vo.act_detail}</p>
+											</div>
+										</a>
 									</div>
-								</a>
-							</div>
-							<?php endif;?>
-						</if>
-					</volist>
+								<?php endif;?>
+							</if>
+						</volist>
+					</div>
+					<!-- 如果需要分页器 -->
+					<div class="swiper-pagination"></div>
 				</div>
-				<!-- 如果需要分页器 -->
-				<div class="swiper-pagination"></div>
+				</div>
+			</div>
+			<div class="activity">
+				<a href="{:U('Activity/more',array('id'=>$list[1]['act_cate_id']))}" class="other"></a>
+				<div class="slide">
+					<div class="swiper-container" id="sw2">
+						<div class="swiper-wrapper">
+							<volist name="list" id="list">
+								<if condition="$list['act_cate_title'] eq '其他活动' ">
+									<?php if($list['end_time'] > time() && $list['is_sold'] == 0):?>
+										<div class="swiper-slide">
+											<a href="{:U('Activity/show',array('id'=>$list['activity_id']))}">
+												<div class="ac_p" style="background: url(__ROOT__/{$list.img}) no-repeat center center;">
+													<h5>{$list.act_title}</h5>
+													<p>{$list.act_detail}</p>
+												</div>
+											</a>
+										</div>
+									<?php endif;?>
+								</if>
+							</volist>
+						</div>
+						<!-- 如果需要分页器 -->
+						<div class="swiper-pagination swiper-pagination2"></div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-	<div class="activity">
-		<a href="{:U('Activity/more',array('id'=>$list[1]['act_cate_id']))}" class="other"></a>
-		<div class="slide">
-			<div class="swiper-container" id="sw2">
-				<div class="swiper-wrapper">
-					<volist name="list" id="list">
-						<if condition="$list['act_cate_title'] eq '其他活动' ">
-							<?php if($list['end_time'] > time() && $list['is_sold'] == 0):?>
-							<div class="swiper-slide">
-								<a href="{:U('Activity/show',array('id'=>$list['activity_id']))}">
-									<div class="ac_p" style="background: url(__ROOT__/{$list.img}) no-repeat center center;">
-										<h5>{$list.act_title}</h5>
-										<p>{$list.act_detail}</p>
-									</div>
-								</a>
-							</div>
-							<?php endif;?>
-						</if>
-					</volist>
-				</div>
-				<!-- 如果需要分页器 -->
-				<div class="swiper-pagination swiper-pagination2"></div>
-			</div>
-		</div>
-	</div>
-</div>
-
-<script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
-<script src="__HOME__js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript">
-    var mySwiper = new Swiper ('#sw1', {
-        direction: 'horizontal',
-        autoplay:5000,
-        loop: true,
-
-        // 如果需要分页器
-        pagination: '.swiper-pagination'
-        // 如果需要滚动条
-    })
-
-    var mySwiper = new Swiper ('#sw2', {
-        direction: 'horizontal',
-        loop: true,
-        autoplay:4000,
-        // 如果需要分页器
-        pagination: '.swiper-pagination2'
-        // 如果需要滚动条
-    })
-</script>
-</body>
+		
+		<script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__HOME__js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var mySwiper = new Swiper ('#sw1', {
+		    direction: 'horizontal',
+		    autoplay:5000,
+		    loop: true,
+		    
+		    // 如果需要分页器
+		    pagination: '.swiper-pagination'	    
+		    // 如果需要滚动条
+		  })        
+		  
+		  var mySwiper = new Swiper ('#sw2', {
+		    direction: 'horizontal',
+		    loop: true,
+		    autoplay:4000,
+		    // 如果需要分页器
+		    pagination: '.swiper-pagination2'	    
+		    // 如果需要滚动条
+		  })     
+		</script>
+		<script type="text/javascript">
+			$(".iphone").css("height",$(window).height() )
+		</script>
+	</body>
 </html>

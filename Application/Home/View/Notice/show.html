@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
 </head>
 <body>
+<div class="iphone">
 <div id="content">
     <div class="text">
         <h5>{$data.title}</h5>
@@ -17,10 +18,13 @@
         {$data.content}
     </div>
 </div>
+</div>
 </body>
 </html>
 <script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
+    $(".iphone").css("height",$(window).height() )
+
     $(".mark i").on("click",function(){
         $(this).toggleClass("active")
     })

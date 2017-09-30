@@ -20,6 +20,7 @@
 		}
 	</style>
 	<body>
+	<div class="iphone">
 		<div id="token">
 			<div class="token">
 				<img src="__HOME__images/x18.png" alt="" />
@@ -32,10 +33,23 @@
 			
 			
 			<a href="#" class="btn">
-				<p>1324635</p>
-				<p>大谦令</p>
+				<p>{$data.tok_num}</p>
+				<p><?php
+					switch($data['tok_level']){
+						case 1: echo "欢喜令";break;
+						case 2: echo "义士令";break;
+						case 3: echo "英雄令";break;
+						case 4: echo "大侠令";break;
+						case 5: echo "大谦令";break;
+					}
+				?></p>
 			</a>
 		</div>
-		
+	</div>
 	</body>
+	<script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+        $(".iphone").css("height",$(window).height() )
+	</script>
 </html>
+

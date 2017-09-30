@@ -9,14 +9,16 @@
 </head>
 <body>
 <div id="all">
-    <iframe src="{:U('Story/index')}"></iframe>
+    <div class="if_box">
+        <iframe src="{:U('User/index')}"></iframe>
+    </div>
     <div class="mt"></div>
     <div class="nav">
         <i class="list_text fl">
             <ul>
                 <li><a class="xuzhi" href="{:U('Notice/index')}"></a></li>
                 <li><a class="gaoshi" href="{:U('Bulletin/index')}"></a></li>
-                <li><a class="xuanshang" href="{:U('Reward/index')}"></a></li>
+                <li><a class="xuanshang" href="javascript:;" id="jsz" onclick="jsz()"></a></li>
                 <li><a class="rank" href="{:U('Rank/index')}"></a></li>
             </ul>
         </i>
@@ -34,8 +36,15 @@
 </body>
 </html>
 <script type="text/javascript">
+    function jsz() {
+        $('#jsz').click(function () {
+            alert("建设中！");
+            window.location = window.location;
+        });
+    }
+
     $(function(){
-        $("iframe").css("height",$(window).height() - 50)
+        $("iframe,.if_box").css("height",$(window).height() )
 //		设置iframe高度
         $(".list_text").on("click",function(){
             $("#activity ul").removeClass("active")

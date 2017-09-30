@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
 </head>
 <body>
+<div class="iphone">
 <div id="activity_con">
 	<div class="card-img" style="background: url(__HOME__images/a3.jpg) no-repeat center center;"></div>
 
@@ -37,7 +38,7 @@
 		<p>{$data.act_content}</p>
 	</div>
 	<a href="javascript:;" class="btn <?php if($data['activity_id'] == $res['activity_id']):?>did<?php endif;?>" <?php if($data['activity_id'] == $res['activity_id']):?>disabled="disabled"<?php endif;?> title="0" onclick="subform('{$data.activity_id}')">
-	<?php
+		<?php
 			if($data['activity_id'] == $res['activity_id']){
 				echo "已报名";
 			}else{
@@ -46,36 +47,37 @@
 		?>
 	</a>
 </div>
+</div>
 </body>
 </html>
 <script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
 <script>
-    function subform(id) {
-        $.ajax({
-            type: "GET",
-            data:'',
-            url: "__ROOT__/home/Myactivity/sign_up/id/"+id,
-            dataType: "json",
-            success: function(msg){
-                if(msg['str'] == 1){
+	function subform(id) {
+		$.ajax({
+			type: "GET",
+			data:'',
+			url: "__ROOT__/home/Myactivity/sign_up/id/"+id,
+			dataType: "json",
+			success: function(msg){
+			    if(msg['str'] == 1){
                     $('.btn').text("已报名");
                     $(".btn").addClass("did").attr("disabled","disabled");
                     $('#i').text(msg['li']);
-                }
-                if(msg['str'] == 2){
+				}
+				if(msg['str'] == 2){
                     $('.btn').text("已报名");
                     $(".btn").addClass("did").attr("disabled","disabled");
                     $('#i').text("{$data.sign_up}");
-                }
-                if(msg['str'] == 3){
+				}
+				if(msg['str'] == 3){
                     alert("报名人数已满！");
                     $('.btn').text("报名");
                     $('.btn').removeClass("did");
                     $('.btn').removeAttrs("disabled","disabled");
                     $('#i').text("{$data.sign_up}");
-                }
-            }
-        });
+				}
+			}
+		});
     }
 
 
@@ -83,13 +85,16 @@
 <script type="text/javascript">
     $(".mark").on("click",function(){
         var collect = $('.mark').attr('activity_id');
-        var cate =$('.mark').attr('type');
-        $.post("{:U('Common/keep')}",{collect:collect,cate:cate},function(data){
-            if(data.state == 200 || data.state == 202){
-                $(".mark i").toggleClass("active")
-            }else{
-                alert('操作失败！');
-            }
-        });
-    })
+		var cate =$('.mark').attr('type');
+		$.post("{:U('Common/keep')}",{collect:collect,cate:cate},function(data){
+			if(data.state == 200 || data.state == 202){
+				$(".mark i").toggleClass("active")
+			}else{
+				alert('操作失败！');
+			}
+		});
+	})
+</script>
+<script type="text/javascript">
+    $(".iphone").css("height",$(window).height() )
 </script>

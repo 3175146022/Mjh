@@ -19,7 +19,7 @@
             <li><a href="{:U('Myinfo/position',array('info_id' => $data[0][info_id]))}">我的地址</a></li>
             <li><a href="{:U('Myinfo/industry')}">行业</a></li>
             <li><a href="{:U('Myinfo/interest')}">兴趣、爱好</a></li>
-            <li><a href=""><i></i>邀请盟友</a></li>
+            <li class="int"><a href="javascript:;"><i></i>邀请盟友</a></li>
         </ul>
 
         <div class="sex">
@@ -34,7 +34,9 @@
                     <input type="radio" name="sex" id="" value="0" onchange="change('女')" class="sex_woman"/>
                 </div>
             </form>
-
+            <div class="click_invit">
+                <img src="__HOME__images/x19.png" class="fr"/>
+            </div>
         </div>
     </div>
 </div>
@@ -54,12 +56,16 @@
         }else {
             sex_v = 1;
         }
-
         $.post("__ROOT__/home/myinfo/sex_save/sex/"+sex_v,{},function () {
             $(".choice_sce span").text(sex)
         });
     }
-    
+    $(".int").on("click",function(){
+        $(".click_invit").addClass("active")
+    });
+    $(".click_invit").on("click",function(){
+        $(".click_invit").removeClass("active")
+    });
     window.onload = function () {
         if( {$data.0.sex} == 1 ){
             $(".sex_man").attr("checked","checked")

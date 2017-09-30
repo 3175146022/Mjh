@@ -30,17 +30,17 @@
 				<ul class="list">
 					<volist name="more" id="jxz">
 						<?php if($jxz['end_time'] > time() && $jxz['is_sold'] == 0):?>
-						<li class="cf">
-							<a href="{:U('Activity/show',array('id'=>$jxz['activity_id']))}">
-								<div class="img_box fl">
-									<img src="__ROOT__/{$jxz.img}" alt="" />
-								</div>
-								<div class="list_t fr">
-									<h2>{$jxz.act_title}</h2>
-									<span>{$jxz.add_time|date='Y.m.d',###}</span>
-								</div>
-							</a>
-						</li>
+							<li class="cf">
+								<a href="{:U('Activity/show',array('id'=>$jxz['activity_id']))}">
+									<div class="img_box fl">
+										<img src="__ROOT__/{$jxz.img}" alt="" />
+									</div>
+									<div class="list_t fr">
+										<h2>{$jxz.act_title}</h2>
+										<span>{$jxz.add_time|date='Y.m.d',###}</span>
+									</div>
+								</a>
+							</li>
 						<?php endif;?>
 					</volist>
 				</ul>
@@ -48,17 +48,17 @@
 				<ul class="list">
 					<volist name="more" id="yjs">
 						<?php if($yjs['end_time'] <= time() || $list['is_sold'] == 1):?>
-						<li class="cf">
-							<a href="{:U('Activity/show',array('id'=>$yjs['activity_id']))}">
-								<div class="img_box fl">
-									<img src="__ROOT__/{$yjs.img}" alt="" />
-								</div>
-								<div class="list_t fr">
-									<h2>{$yjs.act_title}</h2>
-									<span>{$yjs.add_time|date='Y.m.d',###}</span>
-								</div>
-							</a>
-						</li>
+							<li class="cf">
+								<a href="{:U('Activity/show',array('id'=>$yjs['activity_id']))}">
+									<div class="img_box fl">
+										<img src="__ROOT__/{$yjs.img}" alt="" />
+									</div>
+									<div class="list_t fr">
+										<h2>{$yjs.act_title}</h2>
+										<span>{$yjs.add_time|date='Y.m.d',###}</span>
+									</div>
+								</a>
+							</li>
 						<?php endif;?>
 					</volist>
 				</ul>

@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
 </head>
 <body>
+<div class="iphone">
 <div id="content">
     <div class="text">
         <h5>{$data.title}</h5>
@@ -15,7 +16,7 @@
             <span class="fr mark" news_id ='{$data.news_id}' type ='3'>
                 <if condition="$keep eq null ">
                     <i></i>
-                    <else />
+                <else />
                     <i class="active"></i>
                 </if>
                 收藏</span>
@@ -23,10 +24,12 @@
         {$data.content}
     </div>
 </div>
+</div>
 </body>
 </html>
 <script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
+    $(".iphone").css("height",$(window).height() )
     $(".mark i").on("click",function(){
         var collect = $('.mark').attr('news_id');
         var cate =$('.mark').attr('type');

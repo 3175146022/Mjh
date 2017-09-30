@@ -1,6 +1,7 @@
 <?php
 /*
  * 王建
+ *
  * */
 namespace Admin\Controller;
 use Think\Controller;
@@ -62,7 +63,7 @@ class ActivityController extends CommonController{
             }
         }else{
             $id = I('get.id');
-            $data = M('Activity')->where(array('activity_id'=>$id))->find();
+            $data = M('Activity')->join('activity_cate on activity_cate.act_cate_id = activity.act_cate_id')->where(array('activity_id'=>$id))->find();
             $act_cate = M('ActivityCate')->field('act_cate_id,act_cate_title')->select();
             $this->assign('cate',$act_cate);
             $this->assign('data',$data);

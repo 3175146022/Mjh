@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
 </head>
 <body>
+<div class="iphone">
 <div id="token">
     <div class="token">
         <img src="__HOME__images/x18.png" alt="" />
@@ -18,8 +19,8 @@
     </div>
 
     <div class="pass">
-        <form action="" method="post" class="cf">
-            <input type="text" name="" id="" value="" placeholder="请输入江湖令通关码"/>
+        <form action="{:U('Token/index')}" method="post" class="cf">
+            <input type="text" name="tok_num" id="" placeholder="请输入江湖令通关码"/>
             <input type="submit" value="确定" class="btn"/>
         </form>
     </div>
@@ -32,6 +33,10 @@
         <img src="__HOME__images/21.png"/>
     </div>
 </div>
-
+</div>
 </body>
+<script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    $(".iphone").css("height",$(window).height() )
+</script>
 </html>

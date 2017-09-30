@@ -10,6 +10,7 @@
 </head>
 
 <body>
+<div class="iphone">
 <div class="xs-list cf">
     <i class="doing active"></i>
     <i class="did"></i>
@@ -83,10 +84,12 @@
 <a href="{:U('Reward/issue')}" class="publish">
 
 </a>
+</div>
 </body>
 </html>
 <script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
+    $(".iphone").css("height",$(window).height() )
     window.onload = function(){
 
         $(".xs-list i").on("click",function(){

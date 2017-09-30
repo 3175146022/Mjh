@@ -23,8 +23,14 @@ class ActivityController extends CommonController{
     //江湖活动详情
     public function show(){
         $id = I('get.id');
+        $where = array(
+            'user_id' => $_SESSION['user_id'],
+            'activity_id' => $id,
+        );
         $data = M('Activity')->where(array('activity_id'=>$id))->find();
         $keep = M('collect')->where(array('collect'=>$data['activity_id'],'cate'=>1,'user_id'=>$_SESSION['user_id']))->find();
+        $res = M('MyActivity')->where($where)->find();
+        $this->assign('res',$res);
         $this->assign('keep',$keep);
         $this->assign('data',$data);
         $this->display();//页面赋值

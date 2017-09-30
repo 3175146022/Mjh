@@ -15,38 +15,42 @@
     <div class="invited">
         <em></em>
         <div class="head_box">
-            <i class="head-big head" style="background: url(__HOME__images/hd.jpg);"></i>
-            <p>张三</p>
+            <i class="head-big head" style="background: url({$user.avatar});"></i>
+            <p><?php echo base64_decode($user[user_name]);?></p>
         </div>
     </div>
 
     <div class="my_par">
         <em></em>
         <ul>
-            <li><a href="">
-                <div class="head_box">
-                    <i class="head-big head" style="background: url(__HOME__images/hd.jpg);"></i>
-                    <p>张三</p>
-                </div>
-            </a></li>
-            <li><a href="">
-                <div class="head_box">
-                    <i class="head-big head" style="background: url(__HOME__images/hd.jpg);"></i>
-                    <p>张三</p>
-                </div>
-            </a></li>
-            <li><a href="">
-                <div class="head_box">
-                    <i class="head-big head" style="background: url(__HOME__images/hd.jpg);"></i>
-                    <p>张三</p>
-                </div>
-            </a></li>
-            <li><a href="">
-                <div class="head_box">
-                    <i class="head-big head" style="background: url(__HOME__images/hd.jpg);"></i>
-                    <p>张三</p>
-                </div>
-            </a></li>
+            <Volist name="data" id="vo">
+                <li><a href="javascript:;">
+                    <div class="head_box">
+                        <i class="head-big head" style="background: url({$vo.friend_avatar});"></i>
+                        <p><?php echo base64_decode($vo[friend_user_name]);?></p>
+                    </div>
+                </a></li>
+            </Volist>
+
+
+            <!--<li><a href="">-->
+                <!--<div class="head_box">-->
+                    <!--<i class="head-big head" style="background: url(__HOME__images/hd.jpg);"></i>-->
+                    <!--<p>张三</p>-->
+                <!--</div>-->
+            <!--</a></li>-->
+            <!--<li><a href="">-->
+                <!--<div class="head_box">-->
+                    <!--<i class="head-big head" style="background: url(__HOME__images/hd.jpg);"></i>-->
+                    <!--<p>张三</p>-->
+                <!--</div>-->
+            <!--</a></li>-->
+            <!--<li><a href="">-->
+                <!--<div class="head_box">-->
+                    <!--<i class="head-big head" style="background: url(__HOME__images/hd.jpg);"></i>-->
+                    <!--<p>张三</p>-->
+                <!--</div>-->
+            <!--</a></li>-->
         </ul>
     </div>
 </div>

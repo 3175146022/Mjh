@@ -97,6 +97,7 @@
                             <label class="col-sm-3 control-label">活动分类：</label>
                             <div class="col-sm-3">
                                 <select class="form-control" name="act_cate_id">
+                                    <option value="{$data.act_cate_id}">{$data.act_cate_title}</option>
                                     <volist name="cate" id="vo">
                                         <option value="{$vo.act_cate_id}">{$vo.act_cate_title}</option>
                                     </volist>
