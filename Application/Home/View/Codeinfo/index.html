@@ -1,51 +1,113 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title><?php echo base64_decode($user[user_name]);?>的主页</title>
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-   		<link rel="stylesheet" type="text/css" href="__HOME__css/style.css"/>	
-   		<link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
-	</head>
-	<body>
-		<div id="content">
-			<div class="user-head">
-				<div class="card-img" style="background: url(__HOME__images/a4.jpg) no-repeat center center;">
-					<i class="head-big head" style="background: url({$user.avatar});"></i>
-					<p class="u-name"><?php echo base64_decode($user[user_name]);?></p>
-				</div>
-			</div>
-			<ul class="my-info">
-				<li style="box-shadow: none;margin-bottom: 100px;"><a href="javascript:;" style="line-height: 50px;height: 50px;box-shadow: none;">爱好：<span style="margin-left: 8px;color: #666;"><?php if($user[hobby]):?>{$user.hobby}<?php else:?> 此人未填写任何东西。 <?php endif;?></span></a></li>
-			</ul>
-				
-				<a onclick="add_friend({$user.user_id})" class="btn" href="javascript:;">
-					加为好友
-				</a>
-		</div>
-	</body>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>慢慢江湖</title>
+    <link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
+    <script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+<div id="all">
+    <div class="if_box">
+        <iframe src="{:U('Codeinfo/friend')}"></iframe>
+    </div>
+    <div class="mt"></div>
+    <div class="nav">
+        <i class="list_text fl">
+            <ul>
+                <li><a class="xuzhi" href="{:U('Notice/index')}"></a></li>
+                <li><a class="gaoshi" href="{:U('Bulletin/index')}"></a></li>
+                <li><a class="xuanshang" href="javascript:;" id="jsz" onclick="jsz()"></a></li>
+                <li><a class="rank" href="{:U('Rank/index')}"></a></li>
+            </ul>
+        </i>
+        <em id="activity">
+            <ul>
+                <li><a class="activity1" href="{:U('Activity/index')}"></a></li>
+                <li><a class="zhibo" href="{:U('Live/index')}"></a></li>
+                <li><a class="tuijie" href="{:U('Market/index')}"></a></li>
+                <li><a class="huodong" href="{:U('Story/index')}"></a></li>
+            </ul>
+        </em>
+        <a href="{:U('User/index')}" class="my_home"><i class="my fr"></i></a>
+    </div>
+</div>
+</body>
 </html>
-<script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-	$(".invit").on("click",function(){
-		$(".click_invit").addClass("active")
-	})
-	
-	$(".click_invit").on("click",function(){
-		$(".click_invit").removeClass("active")
-	})
-</script>
-<script>
-	function add_friend(friend_id) {
-		$.post("{:U('Codeinfo/add_friend')}",{"friend_id" : friend_id},function (data) {
-            var json = eval('('+data+')');
-			if (json.status == 1){
-				alert(json.msg);
-				window.location.href = "{:U('Partner/index')}"
-			}else {
-			   alert(json.msg);
-			}
-        })
+    function jsz() {
+        $('#jsz').click(function () {
+            alert("建设中！");
+            window.location = window.location;
+        });
     }
-</script>
 
+    $(function(){
+        $("iframe,.if_box").css("height",$(window).height() )
+//		设置iframe高度
+        $(".list_text").on("click",function(){
+            $("#activity ul").removeClass("active")
+            $(".list_text ul").toggleClass("active")
+
+        })
+
+        $("#activity").on("click",function(){
+            $(".list_text ul").removeClass("active")
+            $("#activity ul").toggleClass("active")
+        })
+//		列表弹出框
+
+//		$(".nav").find('a').on('click', function () {
+//		  	var $el = $(this)
+//		    	id = $el.attr('href');
+//			$('iframe').attr("src",id)
+//			$(".active").removeClass("active")
+//			$(this).addClass("active")
+//
+//			var background = $el.css("background")
+//			$(".list_text").css("background",background)
+//
+//		  return false;
+//		});
+
+        $(".list_text").find('a').on('click', function () {
+            var $el = $(this)
+            id = $el.attr('href');
+            $('iframe').attr("src",id)
+            $(".active").removeClass("active")
+            $(this).addClass("active")
+
+            var cls= $el.attr("class")
+            $(".list_text").removeClass().addClass(cls + " list_text fl")
+
+            return false;
+        });
+
+        $("#activity").find('a').on('click', function () {
+            var $el = $(this)
+            id = $el.attr('href');
+            $('iframe').attr("src",id)
+            $(".active").removeClass("active")
+            $(this).addClass("active")
+
+            var cls= $el.attr("class")
+            $("#activity").removeClass().addClass(cls)
+
+            return false;
+        });
+
+        $(".my_home").on('click', function () {
+            var $el = $(this)
+            id = $el.attr('href');
+            $('iframe').attr("src",id)
+            $(".active").removeClass("active")
+            $(this).find("i").addClass("active")
+
+            $(".list_text").removeClass().addClass("list_text fl")
+            return false;
+        })
+
+    })
+
+</script>

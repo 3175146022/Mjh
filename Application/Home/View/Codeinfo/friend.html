@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title><?php echo base64_decode($user[user_name]);?>的主页</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+   		<link rel="stylesheet" type="text/css" href="__HOME__css/style.css"/>	
+   		<link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
+	</head>
+	<body>
+		<div id="content">
+			<div class="user-head">
+				<div class="card-img" style="background: url(__HOME__images/a4.jpg) no-repeat center center;">
+					<i class="head-big head" style="background: url({$user.avatar});"></i>
+					<p class="u-name"><?php echo base64_decode($user[user_name]);?></p>
+				</div>
+			</div>
+			<ul class="my-info">
+				<li style="box-shadow: none;margin-bottom: 100px;"><a href="javascript:;" style="line-height: 50px;height: 50px;box-shadow: none;">爱好：<span style="margin-left: 8px;color: #666;"><?php if($user[hobby]):?>{$user.hobby}<?php else:?> 此人未填写任何东西。 <?php endif;?></span></a></li>
+			</ul>
+				
+				<a onclick="add_friend({$user.user_id})" class="btn" href="javascript:;">
+					加为好友
+				</a>
+		</div>
+	</body>
+</html>
+<script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	$(".invit").on("click",function(){
+		$(".click_invit").addClass("active")
+	})
+	
+	$(".click_invit").on("click",function(){
+		$(".click_invit").removeClass("active")
+	})
+</script>
+<script>
+	function add_friend(friend_id) {
+		$.post("{:U('Codeinfo/add_friend')}",{"friend_id" : friend_id},function (data) {
+            var json = eval('('+data+')');
+			if (json.status == 1){
+				alert(json.msg);
+				window.location.href = "{:U('Partner/index')}"
+			}else {
+			   alert(json.msg);
+			}
+        })
+    }
+</script>
+
