@@ -42,7 +42,7 @@ class MarkController extends CommonController{
                 if (is_numeric($id)){
                     $data = [
                         'status' => 1,
-                        'msg' => '签到成功1。'
+                        'msg' => '签到成功。'
                     ];
                     echo json_encode($data);
                 }
@@ -70,7 +70,7 @@ class MarkController extends CommonController{
                 if (is_numeric($id)){
                     $data = [
                         'status' => 1,
-                        'msg' => '签到成功2。'
+                        'msg' => '签到成功。'
                     ];
                     echo json_encode($data);
                 }
