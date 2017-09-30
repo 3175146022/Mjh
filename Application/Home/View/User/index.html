@@ -80,6 +80,7 @@
 		$.post("{:U('Mark/set_mark')}",{},function (data) {
             var json = eval('('+data+')');
             if (json.status){
+                alert(json.msg);
                 window.location.href = "{:U('Mark/index')}"
 			}else {
             	alert(json.msg);
