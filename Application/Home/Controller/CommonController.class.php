@@ -38,6 +38,7 @@ class CommonController extends Controller{
                 $data['user_id'] = $_SESSION['user_id'];
                 $data['collect'] = $_POST['collect'];
                 $data['cate'] = $_POST['cate'];
+                $data['time'] = NOW_TIME;
                 $upload = M('collect')->add($data);
                 if($upload){
                     $att=[

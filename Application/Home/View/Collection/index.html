@@ -28,7 +28,7 @@
                         <div class="collect_hd cf">
                             <i class="head fl" style="background: url({$user.avatar}) no-repeat center center;"></i>
                             <?php echo base64_decode($user['user_name'])?>
-                            <span class="time fr">{$act.add_time|date='Y-m-d',###}</span>
+                            <span class="time fr">{$act.time|date='Y-m-d',###}</span>
                         </div>
                         <div class="collect_bd cf">
                             <a href="{:U('Activity/show',array('id'=>$act['activity_id']))}">
@@ -50,7 +50,7 @@
                         <div class="collect_hd cf">
                             <i class="head fl" style="background: url({$user.avatar}) no-repeat center center;"></i>
                             <?php echo base64_decode($user['user_name'])?>
-                            <span class="time fr">{$li.add_time|date='Y-m-d',###}</span>
+                            <span class="time fr">{$li.time|date='Y-m-d',###}</span>
                         </div>
                         <div class="collect_bd cf">
                             <a href="{:U('Live/show',array('id'=>$li['solive_id']))}">
@@ -71,7 +71,7 @@
                         <div class="collect_hd cf">
                             <i class="head fl" style="background: url({$user.avatar}) no-repeat center center;"></i>
                             <?php echo base64_decode($user['user_name'])?>
-                            <span class="time fr">{$st.add_time|date='Y-m-d',###}</span>
+                            <span class="time fr">{$st.time|date='Y-m-d',###}</span>
                         </div>
                         <div class="collect_bd cf">
                             <a href="{:U('Story/show',array('id'=>$st['news_id']))}">
@@ -93,7 +93,7 @@
                         <div class="collect_hd">
                             <i class="head fl" style="background: url({$user.avatar}) no-repeat center center;"></i>
                             <?php echo base64_decode($user['user_name'])?>
-                            <span class="time fr">{$vo.add_time|date='Y-m-d',###}</span>
+                            <span class="time fr">{$vo.time|date='Y-m-d',###}</span>
                         </div>
                         <div class="collect_bd">
                             {$vo.content}
