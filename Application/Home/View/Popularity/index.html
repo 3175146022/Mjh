@@ -16,7 +16,7 @@
     </div>
 
     <ul class="sw_list">
-        <?php if($token_integral['tr'] != null):?>
+        <?php if($token_reputation['tr'] != null):?>
         <li class="cf"><span>{$token_reputation.bind_time|date='Y-m-d',###}</span><p>绑定<a style="color: red;">{$token_reputation.tn}</a>获得声望+{$token_reputation.tr}</p></li>
         <?php endif;?>
 
