@@ -17,7 +17,11 @@ input[type=button],
 input[type=submit]{
    outline:none;
 }
+input[type="button"], input[type="submit"], input[type="reset"] {
 
+	-webkit-appearance: none;
+
+}
 body{
 	max-width: 750px;
     -webkit-tap-highlight-color: rgba(0,0,0,0);

@@ -9,13 +9,13 @@
 </head>
 <body>
 <div class="iphone">
-<div id="content">
-	<div class="user-head">
-		<div class="card-img" style="background: url(__HOME__images/a4.jpg) no-repeat center center;">
-			<i class="head-big head" style="background: url({$data.0.avatar});"></i>
-			<p class="u-name"><?php echo base64_decode($data[0][user_name]);?></p>
-			<p class="u-name">
-				<?php
+	<div id="content">
+		<div class="user-head">
+			<div class="card-img" style="background: url(__HOME__images/a4.jpg) no-repeat center center;">
+				<i class="head-big head" style="background: url({$data.0.avatar});"></i>
+				<p class="u-name"><?php echo base64_decode($data[0][user_name]);?></p>
+				<p class="u-name">
+					<?php
 					switch($token['tok_level']){
 						case 1: echo "欢喜令";break;
 						case 2: echo "义士令";break;
@@ -24,42 +24,43 @@
 						case 5: echo "大谦令";break;
 					}
 				?>
-			</p>
+				</p>
+			</div>
+			<div class="info cf">
+				<a href="{:U('Points/index')}" class="ins">
+					<i></i>
+					<p><i></i>{$data.0.integral}</p>
+				</a>
+
+				<a href="{:U('Popularity/index')}" class="sw">
+					<i></i>
+					<p><i></i>{$data.0.reputation}</p>
+				</a>
+
+			</div>
 		</div>
-		<div class="info cf">
-			<a href="{:U('Points/index')}" class="ins">
-				<i></i>
-				<p><i></i>{$data.0.integral}</p>
-			</a>
 
-			<a href="{:U('Popularity/index')}" class="sw">
-				<i></i>
-				<p><i></i>{$data.0.reputation}</p>
-			</a>
+		<div class="user-body">
+			<ul>
+				<li><a href="{:U('Myinfo/index')}"></a></li>
+				<li><a href="{:U('Token/index')}"></a></li>
+				<li><a href="{:U('Partner/index')}"></a></li>
+				<li><a href="javascript:;" id="jsz" onclick="jsz()"></a></li>
+				<li><a href="{:U('Myactivity/index')}"></a></li>
+				<li><a href="{:U('Collection/index')}"></a></li>
+			</ul>
 
+			<a id="markbtn" onclick="mark()" class="btn" href="javascript:;">
+				签到
+			</a>
 		</div>
 	</div>
-
-	<div class="user-body">
-		<ul>
-			<li><a href="{:U('Myinfo/index')}"></a></li>
-			<li><a href="{:U('Token/index')}"></a></li>
-			<li><a href="{:U('Partner/index')}"></a></li>
-			<li><a href="javascript:;" id="jsz" onclick="jsz()"></a></li>
-			<li><a href="{:U('Myactivity/index')}"></a></li>
-			<li><a href="{:U('Collection/index')}"></a></li>
-		</ul>
-
-		<a id="markbtn" onclick="mark()" class="btn" href="javascript:;">
-			签到
-		</a>
-	</div>
-</div>
 </div>
 </body>
 </html>
 <script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
+    $(".iphone").css("height",$(window).height() )
     function jsz() {
         $('#jsz').click(function () {
             alert("建设中！");
@@ -76,15 +77,15 @@
     })
 </script>
 <script>
-	function mark() {
-		$.post("{:U('Mark/set_mark')}",{},function (data) {
+    function mark() {
+        $.post("{:U('Mark/set_mark')}",{},function (data) {
             var json = eval('('+data+')');
             if (json.status){
                 alert(json.msg);
                 window.location.href = "{:U('Mark/index')}"
-			}else {
-            	alert(json.msg);
-			}
+            }else {
+                alert(json.msg);
+            }
         })
     }
 </script>
