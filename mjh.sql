@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2017 年 09 月 30 日 08:41
+-- 生成日期: 2017 年 09 月 30 日 08:57
 -- 服务器版本: 5.5.36
 -- PHP 版本: 5.2.17p1
 
@@ -18,6 +18,8 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- 数据库: `mjh`
 --
+CREATE DATABASE `mjh` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `mjh`;
 
 -- --------------------------------------------------------
 
