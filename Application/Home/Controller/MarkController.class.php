@@ -18,7 +18,7 @@ class MarkController extends CommonController{
     public function set_mark()
     {
         $status = M('mark')->where('user_id = '.$_SESSION['user_id'])->order('mark_time desc')->limit(1)->find();
-        if ((NOW_TIME - $status['mark_time']) > 24*60*60){
+        if ($status != null && NOW_TIME > $status['zero_time']){
 
             $a = M('user')->where('user_id = '.$_SESSION['user_id'])->find();
             $integral = $a['integral'];
@@ -32,20 +32,50 @@ class MarkController extends CommonController{
             $b = M('user')->where('user_id = '.$_SESSION['user_id'])->save($mark);
 
             if (is_numeric($b)){
+                $zero = strtotime('today') + 24*60*60;
                 $markd = [
                     'user_id' => $_SESSION['user_id'],
-                    'mark_time' => NOW_TIME
+                    'mark_time' => NOW_TIME,
+                    'zero_time' => $zero
                 ];
                 $id = M('mark')->data($markd)->add();
                 if (is_numeric($id)){
                     $data = [
                         'status' => 1,
-                        'msg' => '签到成功。'
+                        'msg' => '签到成功1。'
                     ];
                     echo json_encode($data);
                 }
             }
-        }else{
+        }elseif ($status == null ){
+            $a = M('user')->where('user_id = '.$_SESSION['user_id'])->find();
+            $integral = $a['integral'];
+            $reputation = $a['reputation'];
+
+            $mark = [
+                'integral' => $integral+1,
+                'reputation' => $reputation+1
+            ];
+
+            $b = M('user')->where('user_id = '.$_SESSION['user_id'])->save($mark);
+
+            if (is_numeric($b)){
+                $zero = strtotime('today') + 24*60*60;
+                $markd = [
+                    'user_id' => $_SESSION['user_id'],
+                    'mark_time' => NOW_TIME,
+                    'zero_time' => $zero
+                ];
+                $id = M('mark')->data($markd)->add();
+                if (is_numeric($id)){
+                    $data = [
+                        'status' => 1,
+                        'msg' => '签到成功2。'
+                    ];
+                    echo json_encode($data);
+                }
+            }
+        } else{
             $data = [
                 'status' => 0,
                 'msg' => '你已签到!'
