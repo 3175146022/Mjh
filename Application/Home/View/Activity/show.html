@@ -9,35 +9,35 @@
 </head>
 <body>
 <div class="iphone">
-	<div id="activity_con">
-		<div class="card-img" style="background: url(__HOME__images/a3.jpg) no-repeat center center;"></div>
+<div id="activity_con">
+	<div class="card-img" style="background: url(__HOME__images/a3.jpg) no-repeat center center;"></div>
 
-		<div class="xq_con cf">
-			<div class="img_box1 fl" style="background: url(__ROOT__/{$data.img})"></div>
-			<div class="con_text fr">
-				<h2>{$data.act_title}</h2>
-				<p class="time">倒计时：0天 0:0:0</p>
-				<p>活动时间 <span class="fr mark" activity_id ='{$data.activity_id}' type ='1'>
+	<div class="xq_con cf">
+		<div class="img_box1 fl" style="background: url(__ROOT__/{$data.img})"></div>
+		<div class="con_text fr">
+			<h2>{$data.act_title}</h2>
+			<p class="time">倒计时：0天 0:0:0</p>
+			<p>活动时间 <span class="fr mark" activity_id ='{$data.activity_id}' type ='1'>
 				<if condition="$keep eq null ">
 					<i></i>
 				<else />
 					<i class="active"></i>
 				</if>
 					收藏</span>
-				</p>
-				<p><span>{$data.start_time|date='Y.m.d',###}</span>-<span>{$data.end_time|date='Y.m.d',###}</span></p>
-				<p>
-					<span class="fl">人数限制: <i>{$data.astrict}</i>  </span>
-					<span class="fr">报名人数：<i id="i">{$data.sign_up}</i></span>
-				</p>
+			</p>
+			<p><span>{$data.start_time|date='Y.m.d',###}</span>-<span>{$data.end_time|date='Y.m.d',###}</span></p>
+			<p>
+				<span class="fl">人数限制: <i>{$data.astrict}</i>  </span>
+				<span class="fr">报名人数：<i id="i">{$data.sign_up}</i></span>
+			</p>
 
-			</div>
 		</div>
-		<div class="xq_con cf">
-			<h2>详情描述</h2>
-			<p>{$data.act_content}</p>
-		</div>
-		<a href="javascript:;" class="btn <?php if($data['activity_id'] == $res['activity_id']):?>did<?php endif;?>" <?php if($data['activity_id'] == $res['activity_id']):?>disabled="disabled"<?php endif;?> title="0" onclick="subform('{$data.activity_id}')">
+	</div>
+	<div class="xq_con cf">
+		<h2>详情描述</h2>
+		<p>{$data.act_content}</p>
+	</div>
+	<a href="javascript:;" class="btn <?php if($data['activity_id'] == $res['activity_id']):?>did<?php endif;?>" <?php if($data['activity_id'] == $res['activity_id']):?>disabled="disabled"<?php endif;?> title="0" onclick="subform('{$data.activity_id}')">
 		<?php
 			if($data['activity_id'] == $res['activity_id']){
 				echo "已报名";
@@ -45,39 +45,39 @@
 				echo "报名";
 			}
 		?>
-		</a>
-	</div>
+	</a>
+</div>
 </div>
 </body>
 </html>
 <script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
 <script>
-    function subform(id) {
-        $.ajax({
-            type: "GET",
-            data:'',
-            url: "__ROOT__/home/Myactivity/sign_up/id/"+id,
-            dataType: "json",
-            success: function(msg){
-                if(msg['str'] == 1){
+	function subform(id) {
+		$.ajax({
+			type: "GET",
+			data:'',
+			url: "__ROOT__/home/Myactivity/sign_up/id/"+id,
+			dataType: "json",
+			success: function(msg){
+			    if(msg['str'] == 1){
                     $('.btn').text("已报名");
                     $(".btn").addClass("did").attr("disabled","disabled");
                     $('#i').text(msg['li']);
-                }
-                if(msg['str'] == 2){
+				}
+				if(msg['str'] == 2){
                     $('.btn').text("已报名");
                     $(".btn").addClass("did").attr("disabled","disabled");
                     $('#i').text("{$data.sign_up}");
-                }
-                if(msg['str'] == 3){
+				}
+				if(msg['str'] == 3){
                     alert("报名人数已满！");
                     $('.btn').text("报名");
                     $('.btn').removeClass("did");
                     $('.btn').removeAttrs("disabled","disabled");
                     $('#i').text("{$data.sign_up}");
-                }
-            }
-        });
+				}
+			}
+		});
     }
 
 
@@ -85,15 +85,15 @@
 <script type="text/javascript">
     $(".mark").on("click",function(){
         var collect = $('.mark').attr('activity_id');
-        var cate =$('.mark').attr('type');
-        $.post("{:U('Common/keep')}",{collect:collect,cate:cate},function(data){
-            if(data.state == 200 || data.state == 202){
-                $(".mark i").toggleClass("active")
-            }else{
-                alert('操作失败！');
-            }
-        });
-    })
+		var cate =$('.mark').attr('type');
+		$.post("{:U('Common/keep')}",{collect:collect,cate:cate},function(data){
+			if(data.state == 200 || data.state == 202){
+				$(".mark i").toggleClass("active")
+			}else{
+				alert('操作失败！');
+			}
+		});
+	})
 </script>
 <script type="text/javascript">
     $(".iphone").css("height",$(window).height() )
@@ -114,13 +114,13 @@
 
         var hs=gg-day1*(1000*60*60*24)-hour*(1000*60*60)-minute*(1000*60)-second*1000;
 
-        var html ="倒数计时："+ day1 + "天" + hour +":"+ minute +":"+second
+		var html ="倒数计时："+ day1 + "天" + hour +":"+ minute +":"+second
 
-        if(gg >= 0){
+		if(gg >= 0){
             $(".time").text( html )
-        }else {
+		}else {
             $(".time").text("活动已结束")
-        }
+		}
 
 
 //
@@ -131,9 +131,9 @@
     }
 
     window.onload = function () {
-        setInterval(mov,1000)
+		setInterval(mov,1000)
     }
-    //        $(window).on("load",mov);
+//        $(window).on("load",mov);
 
 
 </script>

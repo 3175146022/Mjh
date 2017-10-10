@@ -8,11 +8,21 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="format-detection" content="telephone=no, email=no" />
 <link href="__HOME__css/style2.css" rel="stylesheet" type="text/css">
+<style rel="stylesheet">
+    .iphone{
+        width: 100vw;
+        padding-bottom: 100px;
+        overflow: auto;
+        position: relative;
+        margin-bottom:100px;
+    }
+</style>
 <!--[if IE]>
 <script src="__HOME__js/html5shiv.min.js"></script>
 <![endif]-->
 </head>
 <body style="background:#000">
+<div class="iphone">
 <!--头部-->
 <a href="javascript:void(0);" class="logoBox" id="logoBox">
     <img id="bgl" src="__HOME__images/userico.jpg" width="100%">
@@ -28,11 +38,12 @@
 <div id="dpage" class="show">
  <a href="javascript:void(0);">
      <input type="button" capture="camera" name="file" class="button" value="拍照">
-	  <input id="file" type="file" onchange="javascript:setImagePreview();" accept="image/*" multiple  />
+	  <input id="file" type="file" onchange="javascript:setImagePreview();" accept="image/*" multiple  capture="camera"/>
       </a>
  <a href="javascript:void(0);"><input type="button" name="file" class="button" value="选取照片">
 	  <input id="file1" type="file" onchange="javascript:setImagePreview();" accept="image/*" multiple  /></a>
  <a href="javascript:void(0);" class="qx"><button id="clipBtn">截取图片</button></a>
+</div>
 </div>
 
 <script src="__HOME__js/jquery.min.js" type="text/javascript"></script>
@@ -41,6 +52,9 @@
 <script src="__HOME__js/hammer.js"></script>
 <script src="__HOME__js/jquery.photoClip.js"></script>
 <script>
+
+
+
 var obUrl = ''
 //document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
 $("#clipArea").photoClip({
@@ -78,6 +92,7 @@ $("#dpage").addClass("show");
 </script>
 <script type="text/javascript">
 $(function(){
+    $(".iphone").css("height",$(window).height() )
 	jQuery.divselect = function(divselectid,inputselectid) {
 		var inputselect = $(inputselectid);
 		$(divselectid+" small").click(function(){
@@ -264,11 +279,13 @@ function setImagePreview() {
                 var json = eval('('+data+')');
                 //console.log(json.status)
                 alert(json.msg);
-                window.location.href="{:U('Myinfo/index')}";
+                window.location.href="{:U('Index/index')}";
             })
 
 
         }
+        
+
 
     }
 </script>

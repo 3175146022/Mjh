@@ -105,9 +105,34 @@
 <!-- 自定义js -->
 <script src="__STYLE__js/content.min.js?v=1.0.0"></script>
 <!-- Page-Level Scripts -->
-
 <script>
     $(document).ready(function(){$(".dataTables-example").dataTable();var a=$("#editable").dataTable();a.$("td").editable("../example_ajax.php",{"callback":function(d,c){var b=a.fnGetPosition(this);a.fnUpdate(d,b[0],b[1])},"submitdata":function(c,b){return{"row_id":this.parentNode.getAttribute("id"),"column":a.fnGetPosition(this)[2]}},"width":"90%","height":"100%"})});function fnClickAddRow(){$("#editable").dataTable().fnAddData(["Custom row","New row","New row","New row","New row"])};
+</script>
+<script src="__ROOT__/Public/Admin/plugins/layer/layer.js"></script>
+<script>
+    function delete_act(id) {
+        layer.confirm('是否删除该条数据', {
+            btn: ['确定','取消'] //按钮
+        }, function(){
+            $.post("__ROOT__/admin/activity/delete_act/id/"+id,{},function (data) {
+                var json = eval('('+data+')');
+                if (json.status==1){
+                    layer.msg(json.msg, {icon:6},function(){
+                        window.location.href = window.location.href;
+                    });
+                }else if (json.status == 2){
+                    layer.msg(json.msg,{icon:5})
+                }else {
+                    layer.msg(json.msg,{icon:5})
+                }
+            });
+        }, function(){
+//            layer.msg('也可以这样', {
+//                time: 20000, //20s后自动关闭
+//                btn: ['明白了', '知道了']
+//            });
+        });
+    }
 </script>
 <!--<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>-->
 <!--统计代码，可删除-->

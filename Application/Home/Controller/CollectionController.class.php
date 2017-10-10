@@ -34,6 +34,10 @@ class CollectionController extends CommonController{
                             ->find();
             }
         }
+        $data = M('Genera')->order('add_time desc')->limit(1)->find();
+        $keep = M('collect')->where(array('collect'=>$data['id'],'cate'=>4,'user_id'=>$_SESSION['user_id']))->find();
+
+        $this->assign('keep',$keep);
         $this->assign('activity',$activity);
         $this->assign('live',$solive);
         $this->assign('news',$news);

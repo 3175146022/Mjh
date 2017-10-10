@@ -41,6 +41,7 @@ class LiveController extends CommonController{
             $val['avatar'] = $one['avatar'];
             $where['pid']=$val['comment_id'];
             $reply_list=array();
+            $arr['count_1']=array();
             $reply= M('comment')->where($where)->order('add_time asc')->select();
             if($reply){
                 foreach($reply  as $key){
@@ -57,14 +58,18 @@ class LiveController extends CommonController{
                             $three_list[]=$num;
                         }
                     }
+                    $arr['count_1'][]=count($three);
                     $key['three']=$three_list;
                     $two = M('user')->where(array('user_id'=>$key['user_id']))->find();
                     $key['user_name'] = base64_decode($two['user_name']);
                     $reply_list[]=$key;
                 }
             }
+
+            $val['counts']=array_sum($arr['count_1'])+count($reply);
             $val['reply']=$reply_list;
             $comment_list[]=$val;
+
         }
         //回复1级
         $this->assign('comment',$comment_list);
@@ -73,6 +78,29 @@ class LiveController extends CommonController{
         $this->assign('data',$data);
         $this->display();//页面赋值
     }
+
+
+    function arr_foreach ($arr)
+    {
+        if (!is_array ($arr))
+        {
+            return false;
+        }
+        foreach ($arr as $key => $val )
+        {
+            if (is_array ($val))
+            {
+                $this->arr_foreach($val);
+            }
+            else
+            {
+             $a[]=$val;
+            }
+        }
+        return $a;
+    }
+
+
     //评论列表
     public function comment(){
 

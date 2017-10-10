@@ -61,6 +61,57 @@ class CommonController extends Controller{
         $this->ajaxReturn($att);
     }
 
+
+    //随机字符串
+    public function random(){
+        $random='';
+        $arr =['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b',
+            'c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5','6','7','8','9'];
+        for($a=1;$a<=16;$a++){
+            $num=rand(1,count($arr)-1);
+            $random.=$arr[$num];
+        }
+        return $random;
+    }
+
+
+    //获得access_token
+    public function access(){
+        $config = M('config')->where(array('id'=>1))->find();
+        if($config['token_time']<time() || empty($config['access_token'])){
+            $token = file_get_contents(sprintf('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s',C('WX_OPENID'),C('WX_SECRET')));
+            $access =json_decode($token);
+            $arr['access_token']=$access->access_token;
+            $arr['token_time']=time()+7000;
+            M('config')->where(array('id'=>1))->save($arr);
+            $number=$arr['access_token'];
+        }else{
+            $number=$config['access_token'];
+        }
+        return $number;
+
+    }
+
+
+
+    //获取jsapi_ticket
+    public function jsapis(){
+        $config = M('config')->where(array('id'=>1))->find();
+        if($config['jsapi_time']<time() || empty($config['jsapi_ticket'])){
+            $access_token = $this->access();
+            $jsapi =file_get_contents(sprintf('https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token='.$access_token.'&type=jsapi'));
+            $access =json_decode($jsapi);
+            $arr['jsapi_ticket'] = $access->ticket;
+            $arr['jsapi_time']=time()+7000;
+            M('config')->where(array('id'=>1))->save($arr);
+            $number=$arr['jsapi_ticket'];
+        }else{
+            $number=$config['jsapi_ticket'];
+        }
+        return $number;
+
+    }
+
 //    /**
 //     * 打印数据，用于调试
 //     * @param var 打印对象

@@ -13,6 +13,8 @@ return array(
         '__STYLE__' => __ROOT__. '/Public/Admin/',
         '__HOME__' => __ROOT__.'/Public/Home/',
     ),
-    'WX_OPENID'         => 'wxbad65c144dae20cf', // 微信公众open_id
-    'WX_SECRET'         => '28dd388095de619361c888251a7410ac' // 微信公众密匙
+//    'WX_OPENID'         => 'wxbad65c144dae20cf', // 微信公众open_id
+    'WX_OPENID'         => 'wx2110e3a3af718e1d', // 微信公众open_id
+//    'WX_SECRET'         => '28dd388095de619361c888251a7410ac' // 微信公众密匙
+    'WX_SECRET'         => '3774cf017c4cb42863c19b2f96eb6fbf' // 微信公众密匙
 );

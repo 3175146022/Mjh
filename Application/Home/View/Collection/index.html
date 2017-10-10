@@ -9,6 +9,7 @@
 </head>
 
 <body>
+<div class="iphone">
 <div id="collection">
     <div class="user-head">
         <div class="card-img" style="background: url(__HOME__images/a4.jpg) no-repeat center center;"></div>
@@ -89,11 +90,18 @@
 
             <ul class="collect fl">
                 <volist name="genera" id="vo">
-                    <li>
+                    <li id="li">
                         <div class="collect_hd">
                             <i class="head fl" style="background: url({$user.avatar}) no-repeat center center;"></i>
                             <?php echo base64_decode($user['user_name'])?>
-                            <span class="time fr">{$vo.time|date='Y-m-d',###}</span>
+                            <span class="time fr"> {$vo.time|date='Y-m-d',###}</span>
+                            <span class="mark fr" id="{$vo.id}" type ='4'>
+                                <if condition="$keep eq null ">
+							    <i></i>
+							    <else />
+							    <i class="active"></i>
+						        </if>
+                            </span>
                         </div>
                         <div class="collect_bd">
                             {$vo.content}
@@ -103,13 +111,14 @@
             </ul>
         </div>
     </div>
-
+</div>
+</div>
 </body>
 </html>
 <script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
     window.onload = function(){
-
+        $(".iphone").css("height",$(window).height() )
         $(".change li").on("click",function(){
             $(this).addClass("active").siblings().removeClass("active");
             var i = $(this).index();
@@ -120,9 +129,19 @@
             $(".tab").css("transform","translate("+ -i * w+"px)")
 
         })
-    }
-
-
+    };
+    $(".mark i").on("click",function(){
+        var collect = $('.mark').attr('id');
+        var cate =$('.mark').attr('type');
+        $.post("{:U('Common/keep')}",{collect:collect,cate:cate},function(data){
+            if(data.state == 200 || data.state == 202){
+                $(".mark i").toggleClass("active");
+                window.location = window.location;
+            }else{
+                alert('操作失败！');
+            }
+        });
+    })
 
 
 

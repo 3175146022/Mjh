@@ -44,7 +44,7 @@
 			<ul>
 				<li><a href="{:U('Myinfo/index')}"></a></li>
 				<li><a href="{:U('Token/index')}"></a></li>
-				<li><a href="{:U('Partner/index')}"></a></li>
+				<li><a href="{:U('Partner/index')}" class="partner_chioce"></a></li>
 				<li><a href="javascript:;" id="jsz" onclick="jsz()"></a></li>
 				<li><a href="{:U('Myactivity/index')}"></a></li>
 				<li><a href="{:U('Collection/index')}"></a></li>
@@ -60,32 +60,39 @@
 </html>
 <script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-    $(".iphone").css("height",$(window).height() )
-    function jsz() {
-        $('#jsz').click(function () {
-            alert("建设中！");
-            window.location = window.location;
-        });
-    }
+	function jsz() {
+		$('#jsz').click(function () {
+			alert("建设中！");
+			window.location = window.location;
+		});
+	}
+    $(".iphone").css("height",$(window).height() );
+	$(".invit").on("click",function(){
+		$(".click_invit").addClass("active")
+	})
 
-    $(".invit").on("click",function(){
-        $(".click_invit").addClass("active")
-    })
+	$(".click_invit").on("click",function(){
+		$(".click_invit").removeClass("active")
+	})
 
-    $(".click_invit").on("click",function(){
-        $(".click_invit").removeClass("active")
-    })
+	$(".partner_chioce").on("click",function(){
+		var href = $(this).attr("href")
+		console.log(href,window.parent.location)
+		window.parent.location.href = href
+//		$(window,window.parent.document).Location = href;
+		return false;
+	})
+
 </script>
 <script>
-    function mark() {
-        $.post("{:U('Mark/set_mark')}",{},function (data) {
-            var json = eval('('+data+')');
-            if (json.status){
-                alert(json.msg);
-                window.location.href = "{:U('Mark/index')}"
-            }else {
-                alert(json.msg);
-            }
-        })
-    }
+	function mark() {
+		$.post("{:U('Mark/set_mark')}",{},function (data) {
+			var json = eval('('+data+')');
+			if (json.status){
+				window.location.href = "{:U('Mark/index')}"
+			}else {
+				alert(json.msg);
+			}
+		})
+	}
 </script>

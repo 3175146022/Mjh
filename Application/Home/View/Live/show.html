@@ -62,7 +62,7 @@
 								<p id="{$aa.comment_id}"><a href='javascript;:'>{$bb.user_name}</a>回复{$bb.reply_name}：{$bb.content}</p>
 								</foreach>
 							</foreach>
-							<a href="#" class="zhankai">共<php>echo count($vo["reply"])</php>条回复  ></a>
+							<a href="#" class="zhankai">共{$vo.counts}条回复</a>
 						</div>
 					</div>
 				</div>

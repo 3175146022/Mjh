@@ -11,8 +11,8 @@ class CodeinfoController extends CommonController{
 
     public function index()
     {
-        $user = M('user')->where('user_id = '.$_GET['user_id'])->find();
-        $this->assign('user',$user);
+//        $user = M('user')->where('user_id = '.$_GET['user_id'])->find();
+//        $this->assign('user',$user);
         $this->display();
     }
 
@@ -52,5 +52,10 @@ class CodeinfoController extends CommonController{
                 echo json_encode($data);
             }
         }
+    }
+    public function friend(){
+        $user = M('user')->where('user_id = '.$_GET['user_id'])->find();
+        $this->assign('user',$user);
+        $this->display();
     }
 }
