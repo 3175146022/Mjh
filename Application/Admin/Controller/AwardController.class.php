@@ -8,10 +8,66 @@ class AwardController extends CommonController{
         $this->check_login();//检查登录
     }
     public function index(){
+        $a = M('reward')->select();
+        $this->assign('data',$a);
         $this->display();
     }
     public function award_detail(){
-        $this->display();
+        if ($_GET['reward_id']){
+            $a = M('reward')->where('reward_id ='.$_GET['reward_id'])->find();
+            $this->assign('data',$a);
+            $this->display();
+        }
+    }
+
+    public function destroy()
+    {
+        if ($_GET['id']){
+            $a = M('reward')->where('reward_id = '.$_GET['id'])->find();
+            $b = unlink($a['re_image']);
+            if ($b){
+                $c = M('reward')->where('reward_id = '.$_GET['id'])->delete();
+                if ($c){
+                    $data = [
+                        "status" => 1,
+                        "msg" => "删除成功"
+                    ];
+                    echo json_encode($data);
+                }else{
+                    $data = [
+                        "status" => 0,
+                        "msg" => "删除成功"
+                    ];
+                    echo json_encode($data);
+                }
+            }else{
+                $data = [
+                    "status" => 2,
+                    "msg" => "图片删除失败"
+                ];
+                echo json_encode($data);
+            }
+        }
+    }
+
+    public function check_reward()
+    {
+        if ($_GET['id']){
+            $a = M('reward')->where('reward_id = '.$_GET['id'])->save(['re_status' => 1]);
+            if (is_numeric($a)){
+                $data = [
+                    'status' => 1,
+                    'msg' => '审核成功'
+                ];
+                echo json_encode($data);
+            }else{
+                $data = [
+                    'status' => 0,
+                    'msg' => '审核失败'
+                ];
+                echo json_encode($data);
+            }
+        }
     }
 }
 

@@ -9,7 +9,9 @@ class CommonController extends Controller{
     {
         parent::__construct();
         if(empty($_SESSION['user_id'])){
-            redirect(U('Login/index'));
+            $rurl = $_SERVER['REQUEST_URI'];
+            $rul = base64_encode($rurl);
+            redirect(U('Login/index',array('id'=>$rul)));
         }
         $member = M('user')->where(array('user_id'=>$_SESSION['user_id']))->find();
         if(empty($member)){

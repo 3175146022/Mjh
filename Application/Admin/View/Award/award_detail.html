@@ -42,55 +42,54 @@
                         <div class="form-group draggable">
                             <label class="col-sm-3 control-label">悬赏名称：</label>
                             <div class="col-sm-3">
-                                <input type="text" name="" disabled="disabled" class="form-control" value="">
+                                <input type="text" name="" disabled="disabled" class="form-control" value="{$data.re_title}">
                             </div>
                         </div>
                         <div class="form-group draggable">
                             <label class="col-sm-3 control-label">悬赏发布时间：</label>
                             <div class="col-sm-3">
-                                <input type="text" name="" disabled="disabled" class="form-control" value="">
+                                <input type="text" name="" disabled="disabled" class="form-control" value="<?php echo date('Y-m-d H:i:s',$data['add_time']);?>">
+                            </div>
+                        </div>
+                        <div class="form-group draggable">
+                            <label class="col-sm-3 control-label">悬赏结束时间：</label>
+                            <div class="col-sm-3">
+                                <input type="text" name="" disabled="disabled" class="form-control" value="<?php echo date('Y-m-d H:i:s',$data['end_time']);?>">
                             </div>
                         </div>
                         <div class="form-group draggable">
                             <label class="col-sm-3 control-label">悬赏发布者：</label>
                             <div class="col-sm-3">
-                                <input type="text" name="" class="form-control" value="">
+                                <input type="text" name="" disabled="disabled" class="form-control" value="<?php echo base64_decode($data['author'])?>">
                             </div>
                         </div>
                         <div class="form-group draggable">
                             <label class="col-sm-3 control-label">悬赏接收者：</label>
                             <div class="col-sm-3">
-                                <input type="text" name="" class="form-control" value="">
+                                <input type="text" name="" disabled="disabled" class="form-control" value="<?php if($data['undertake']):?> <?php echo base64_decode($data['undertake'])?> <?php else:?> 暂未揭榜 <?php endif?>">
                             </div>
                         </div>
                         <div class="form-group draggable">
                             <label class="col-sm-3 control-label">悬赏接收时间：</label>
                             <div class="col-sm-3">
-                                <input type="text" name="" class="form-control" value="">
-                            </div>
-                        </div>
-                        <div class="form-group draggable">
-                            <label class="col-sm-3 control-label">悬赏描述：</label>
-                            <div class="col-sm-3">
-                                <input type="text" name="" class="form-control" value="">
+                                <input type="text" name="" disabled="disabled" class="form-control" value="<?php if($data['take_time'] != null):?> <?php echo date('Y-m-d H:i:s',$data['take_time']);?> <?php else:?> 暂未揭榜 <?php endif;?>">
                             </div>
                         </div>
                         <div class="form-group draggable">
                             <label class="col-sm-3 control-label">悬赏内容：</label>
                             <div class="col-sm-3">
-                                <input type="text" name="" class="form-control" value="">
+                                <input type="text" name="" disabled="disabled" class="form-control" value="{$data.re_content}">
                             </div>
                         </div>
                         <div class="form-group draggable">
                             <label class="col-sm-3 control-label">悬赏图片：</label>
                             <div class="col-sm-3">
-                                <img src="" alt="">
+                                <img width="500" height="300" src="__ROOT__/{$data.re_image}" alt="">
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group draggable">
                             <div class="col-sm-3 col-sm-offset-3">
-                                <button class="btn btn-primary" type="submit">保存内容</button>
                                 <a class="btn btn-white" href="{:U('Award/index')}">取消</a>
                             </div>
                         </div>

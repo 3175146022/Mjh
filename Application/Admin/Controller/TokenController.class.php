@@ -42,6 +42,7 @@ class TokenController extends CommonController{
             }else{
                 $temp['tok_num'] = $_POST['tok_num'];
                 $temp['tok_level'] = $_POST['tok_level'];
+                $temp['phone'] = $_POST['phone'];
                 $result = M('Token')->where(array('token_id'=>$post['token_id']))->save($temp);
                 if($result){
                     $this->success('修改成功！',U('Token/token'));
@@ -64,6 +65,7 @@ class TokenController extends CommonController{
                 $this->error($verify->getError());
             }else{
                 $data['tok_num'] = $_POST['tok_num'];
+                $data['phone'] = $_POST['phone'];
                 $data['tok_level'] = $_POST['tok_level'];
                 $result = M('Token')->add($data);
                 if($result){

@@ -17,34 +17,62 @@
             <p class="today"></p>
             <div class="author">
                 <span><i class="user"></i>许愿者：<?php echo base64_decode($data['author'])?></span>
-                <span class="fr"><i class="time"></i>倒计时：80天 12:43:47</span>
+                <span class="fr"><i class="time"></i><em class="daojishi">倒计时：00天 00:00:00</em></span>
             </div>
         </div>
         {$data.re_content}
-        <form action="{:U('Reward/undertake')}" method="post" id="subform">
-            <a href="javascript:void(0);" class="btn">
-                <?php switch($data['re_status']){
-                    case 0: echo "接受悬赏";break;
-                    case 1: echo "已揭榜";break;
-                }?>
-            </a>
-        </form>
+        <a href="javascript:;" class="btn" <?php if(($data['author'] != $user['user_name']) && ($data['end_time'] > NOW_TIME)):?>onclick="subform('{$data.reward_id}')"<?php endif;?>>
+            <?php switch($data['re_status']){
+                case 1: echo "接受悬赏";break;
+                case 2: echo "已完成";break;
+                case 3: echo "已揭榜";break;
+            }?>
+        </a>
     </div>
 </div>
 </div>
 </body>
 <script>
     $(".iphone").css("height",$(window).height() )
-    $('.btn').click(function () {
-        $str = $('.btn').html();
+    function subform(id) {
         $.ajax({
-            type: "POST",
-            url: "{:U('Reward/show')}",
-            data: "json",
+            type: "GET",
+            data: '',
+            url: "__ROOT__/home/Reward/jiebang/id/" + id,
+            dataType: "json",
             success: function(msg){
-                alert($str);
+                if(msg['str'] = 3){
+                    $(".btn").text("已揭榜");
+                    $(".btn").addClass("did").attr("disabled","disabled");
+                }
             }
-        });
-    })
+        })
+    }
+    function mov() {
+        var xiaban = "{$data['end_time']}";
+
+        var now= Math.round( new Date()/1000 )
+
+        var gg = xiaban - now
+
+        var day1=Math.floor(gg/(60*60*24));
+        var hour=Math.floor((gg-day1*24*60*60)/(3600));
+        var minute=Math.floor((gg-day1*24*60*60-hour*(3600))/(60));
+
+        var second=Math.floor(( gg-day1*(60*60*24)-hour*(60*60)-minute*(60) )) ;
+
+        var hs=gg-day1*(1000*60*60*24)-hour*(1000*60*60)-minute*(1000*60)-second*1000;
+
+        var html ="倒数计时："+ day1 + "天" + hour +":"+ minute +":"+second
+
+        if(gg >= 0){
+            $(".daojishi").text( html )
+        }else {
+            $(".daojishi").text("悬赏已结束")
+        }
+    }
+    window.onload = function () {
+        setInterval(mov,1000)
+    }
 </script>
 </html>

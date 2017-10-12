@@ -32,18 +32,42 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="gradeX">
-                            <td>Trident</td>
-                            <td>Win 95+</td>
-                            <td style="width: 100px;height: 50px;"><img src=""></td>
-                            <td>4</td>
-                            <td>4</td>
-                            <td>4</td>
-                            <td>
-                                <a class="btn btn-primary btn-rounded" href="{:U('Award/award_detail')}">查看详情</a>
-                                <a class="btn btn-primary btn-rounded" href="#">删除</a>
-                            </td>
-                        </tr>
+                        <volist name="data" id="vo">
+                            <tr class="gradeX">
+                                <td>{$vo.reward_id}</td>
+                                <td>{$vo.re_title}</td>
+                                <td style="width: 100px;height: 50px;"><img width="100" height="50" src="__ROOT__/{$vo.re_image}"></td>
+                                <td><?php echo date('Y-m-d H:i:s',$vo['add_time'])?></td>
+                                <td><?php echo base64_decode($vo['author'])?></td>
+                                <td>
+                                    <?php
+                                        switch ($vo['re_status']){
+                                            case 0:
+                                                echo '未审核';
+                                                break;
+                                            case 1:
+                                                echo '悬赏中';
+                                                break;
+                                            case 2:
+                                                echo '已完成';
+                                                break;
+                                            case 3:
+                                                echo '已揭榜';
+                                                break;
+                                            default:
+                                                break;
+                                        }
+                                    ?>
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary btn-rounded" href="{:U('Award/award_detail',['reward_id' => $vo['reward_id']])}">查看详情</a>
+                                    <?php if($vo['re_status'] == 0):?>
+                                    <a class="btn btn-primary btn-rounded" href="javascript:;" onclick="check({$vo.reward_id})">审核</a>
+                                    <?php endif;?>
+                                    <a class="btn btn-primary btn-rounded" href="javascript:;" onclick="delete_act({$vo.reward_id})">删除</a>
+                                </td>
+                            </tr>
+                        </volist>
                         </tbody>
                     </table>
                 </div>
@@ -65,6 +89,54 @@
 
 <script>
     $(document).ready(function(){$(".dataTables-example").dataTable();var a=$("#editable").dataTable();a.$("td").editable("../example_ajax.php",{"callback":function(d,c){var b=a.fnGetPosition(this);a.fnUpdate(d,b[0],b[1])},"submitdata":function(c,b){return{"row_id":this.parentNode.getAttribute("id"),"column":a.fnGetPosition(this)[2]}},"width":"90%","height":"100%"})});function fnClickAddRow(){$("#editable").dataTable().fnAddData(["Custom row","New row","New row","New row","New row"])};
+</script>
+
+<script>
+    function delete_act(id) {
+        layer.confirm('是否删除该条数据', {
+            btn: ['确定','取消'] //按钮
+        }, function(){
+            $.post("__ROOT__/admin/award/destroy/id/"+id,{},function (data) {
+                var json = eval('('+data+')');
+                if (json.status==1){
+                    layer.msg(json.msg, {icon:6},function(){
+                        window.location.href = window.location.href;
+                    });
+                }else if (json.status == 2){
+                    layer.msg(json.msg,{icon:5})
+                }else {
+                    layer.msg(json.msg,{icon:5})
+                }
+            });
+        }, function(){
+//            layer.msg('也可以这样', {
+//                time: 20000, //20s后自动关闭
+//                btn: ['明白了', '知道了']
+//            });
+        });
+    }
+    
+    function check(id) {
+        layer.confirm('确定审核通过？', {
+            btn: ['确定','取消'] //按钮
+        }, function(){
+            $.post("__ROOT__/admin/award/check_reward/id/"+id,{},function (data) {
+                var json = eval('('+data+')');
+                if (json.status==1){
+                    layer.msg(json.msg, {icon:6},function(){
+                        window.location.href = window.location.href;
+                    });
+                }else {
+                    layer.msg(json.msg,{icon:5})
+                }
+            });
+        }, function(){
+//            layer.msg('也可以这样', {
+//                time: 20000, //20s后自动关闭
+//                btn: ['明白了', '知道了']
+//            });
+        });
+    }
 </script>
 <!--<script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>-->
 <!--统计代码，可删除-->

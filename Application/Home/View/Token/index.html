@@ -20,6 +20,7 @@
 
     <div class="pass">
         <form action="{:U('Token/index')}" method="post" class="cf">
+            <input type="text" name="phone" id="" placeholder="请输入手机号"/>
             <input type="text" name="tok_num" id="" placeholder="请输入江湖令通关码"/>
             <input type="submit" value="确定" class="btn"/>
         </form>
@@ -37,6 +38,13 @@
 </body>
 <script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-    $(".iphone").css("height",$(window).height() )
+    $(".iphone").css("height",$(window).height() );
+    $(".invit").on("click",function(){
+        var href = $(this).attr("href")
+        console.log(href,window.parent.location)
+        window.parent.location.href = href
+//		$(window,window.parent.document).Location = href;
+        return false;
+    })
 </script>
 </html>

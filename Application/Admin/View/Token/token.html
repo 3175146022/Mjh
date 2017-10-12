@@ -24,6 +24,7 @@
                         <tr>
                             <th>令牌序号</th>
                             <th>令牌编号</th>
+                            <th>令牌归属手机号</th>
                             <th>令牌等级</th>
                             <th>操作</th>
                         </tr>
@@ -33,6 +34,7 @@
                             <tr class="gradeX">
                                 <td>{$list.token_id}</td>
                                 <td>{$list.tok_num}</td>
+                                <td>{$list.phone}</td>
                                 <td><?php
                                         switch($list['tok_level']){
                                             case 1: echo "欢喜令";break;

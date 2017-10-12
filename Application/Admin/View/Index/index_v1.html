@@ -21,13 +21,19 @@
                     <h3>待审核悬赏</h3>
                     <p class="small"><i class="fa fa-hand-o-up"></i> 注意：</p>
                     <ul class="sortable-list connectList agile-list">
-                        <li class="warning-element">
-                            加强过程管理，及时统计教育经费使用情况，做到底码清楚，
-                            <div class="agile-detail">
-                                <a href="#" class="pull-right btn btn-xs btn-white">标签</a>
-                                <i class="fa fa-clock-o"></i> 2015.09.01
-                            </div>
-                        </li>
+                        <?php if($reward == ''):?>
+                        <volist name="reward" id="vo">
+                            <li class="warning-element">
+                                <?php mb_substr($vo['re_content'],0,3,'utf-8')?>
+                                <div class="agile-detail">
+                                    <a href="{:U('Award/index')}" class="pull-right btn btn-xs btn-white">查看</a>
+                                    <i class="fa fa-clock-o"></i> <?php echo date('Y-m-d H:i:s',$vo['add_time'])?>
+                                </div>
+                            </li>
+                        </volist>
+                        <?php else:?>
+                            暂无需审核内容！
+                        <?php endif;?>
                     </ul>
                 </div>
             </div>

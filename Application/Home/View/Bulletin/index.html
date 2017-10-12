@@ -14,8 +14,8 @@
     <volist name="list" id="vo">
         <li class="cf">
             <a href="{:U('Bulletin/show',array('id'=>$vo['news_id']))}">
-                <div class="img_box fl">
-                    <img src="__ROOT__/{$vo.picture}" alt="" />
+                <div class="img_box fl" style="background: url(__ROOT__/{$vo.picture}) no-repeat center center;background-size: cover;">
+                    <!--<img src="" alt="" />-->
                 </div>
                 <div class="list_t fr">
                     <h2>{$vo.title}</h2>

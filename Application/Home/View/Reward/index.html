@@ -1,111 +1,133 @@
 <!doctype html>
 <html>
 
-<head>
-    <meta charset="UTF-8">
-    <title>江湖悬赏</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
-    <link rel="stylesheet" type="text/css" href="__HOME__css/style.css"/>
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<title>江湖悬赏</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
+		<link rel="stylesheet" type="text/css" href="__HOME__css/style.css"/>
+	</head>
 
-<body>
-<div class="iphone">
-<div class="xs-list cf">
-    <i class="doing active"></i>
-    <i class="did"></i>
-    <i class="done"></i>
-    <span class="slider slider0"></span>
-</div>
+	<body>
+	<div class="iphone">
+		<div class="xs-list cf">
+			<i class="doing active"></i>
+			<i class="done"></i>
+			<span class="slider slider0"></span>
+		</div>
+		
+		<form action="" method="post" class="search cf">
+			<input type="text" name="select_name" value="" placeholder="搜索" class="f">
+			<input type="submit" value="" class="btn fr">
+		</form>
+		
+		<div class="hide">
+			<div class="tab cf">
+				<ul class="card-list fl">
+					<volist name="list" id="vo">
+						<if condition="($vo.re_status eq 1)">
+							<li>
+								<a href="{:U('Reward/show',array('id'=>$vo['reward_id']))}">
+									<div class="card-img" style="background: url(__ROOT__/{$vo.re_image}) no-repeat center center;"></div>
+									<h5>{$vo.re_title}</h5>
+									<p>{$vo.re_content|mb_substr=0,15,'utf-8'}</p>
+									<div class="author">
+										<span><i class="user"></i>许愿者：<?php echo mb_substr(base64_decode($vo['author']),0,3,'utf-8')?>...</span>
+										<span class="fr"><i class="time"></i><em class="daojishi">倒计时：00天 00:00:00</em></span>
+									</div>
+								</a>
+							</li>
+						</if>
+					</volist>
+				</ul>
+				<input id="str" type="hidden" value='{$str}'>
+				<ul class="card-list fl">
+					<volist name="list" id="vo">
+						<?php if($vo['re_status'] == 2):?>
+							<li>
+								<a href="{:U('Reward/show',array('id'=>$vo['reward_id']))}">
+									<div class="card-img" style="background: url(__ROOT__/{$vo.re_image}) no-repeat center center;"></div>
+									<h5>{$vo.re_title}</h5>
+									<p>{$vo.re_content|mb_substr=0,15,'utf-8'}</p>
+									<div class="author">
+										<span><i class="user"></i>许愿者：<?php echo mb_substr(base64_decode($vo['author']),0,3,'utf-8')?>...</span>
+										<span class="fr"><i class="time"></i><em class="daojishi">倒计时：00天 00:00:00</em></span>
+									</div>
 
-<form action="{:U(Reward/search)}" method="post" class="search cf">
-    <input type="text" value="" placeholder="搜索" class="f">
-    <input type="submit" value="" class="btn fr">
-</form>
-
-<div class="hide">
-    <div class="tab cf">
-        <ul class="card-list fl">
-            <volist name="list" id="vo">
-                <if condition="($vo.re_status eq 0)">
-                    <li>
-                        <a href="{:U('Reward/show',array('id'=>$vo['reward_id']))}">
-                            <div class="card-img" style="background: url(__ROOT__/{$vo.re_image}) no-repeat center center;"></div>
-                            <h5>{$vo.re_title}</h5>
-                            <p>{$vo.re_content|mb_substr=0,15,'utf-8'}</p>
-                            <div class="author">
-                                <span><i class="user"></i>许愿者：<?php echo mb_substr(base64_decode($vo['author']),0,3,'utf-8')?>...</span>
-                                <span class="fr"><i class="time"></i>倒计时：80天 12:43:47</span>
-                            </div>
-                        </a>
-                    </li>
-                </if>
-            </volist>
-        </ul>
-
-        <ul class="card-list fl">
-            <volist name="list" id="vo">
-                <if condition="($vo.re_status eq 1)">
-                    <li>
-                        <a href="{:U('Reward/show',array('id'=>$vo['reward_id']))}">
-                            <div class="card-img" style="background: url(__ROOT__/{$vo.re_image}) no-repeat center center;"></div>
-                            <h5>{$vo.re_title}</h5>
-                            <p>{$vo.re_content|mb_substr=0,15,'utf-8'}</p>
-                            <div class="author">
-                                <span><i class="user"></i>许愿者：<?php echo mb_substr(base64_decode($vo['author']),0,3,'utf-8')?>...</span>
-                                <span class="fr"><i class="time"></i>倒计时：80天 12:43:47</span>
-                            </div>
-                        </a>
-                    </li>
-                </if>
-            </volist>
-        </ul>
-
-        <ul class="card-list fl">
-            <volist name="list" id="vo">
-                <if condition="($vo.re_status eq 2)">
-                    <li>
-                        <a href="{:U('Reward/show',array('id'=>$vo['reward_id']))}">
-                            <div class="card-img" style="background: url(__ROOT__/{$vo.re_image}) no-repeat center center;"></div>
-                            <h5>{$vo.re_title}</h5>
-                            <p>{$vo.re_content|mb_substr=0,15,'utf-8'}</p>
-                            <div class="author">
-                                <span><i class="user"></i>许愿者：<?php echo mb_substr(base64_decode($vo['author']),0,3,'utf-8')?>...</span>
-                                <span class="fr"><i class="time"></i>倒计时：80天 12:43:47</span>
-                            </div>
-                        </a>
-                    </li>
-                </if>
-            </volist>
-        </ul>
-    </div>
-</div>
-
-<a href="{:U('Reward/issue')}" class="publish">
-
-</a>
-</div>
-</body>
+								</a>
+							</li>
+						<?php endif;?>
+					</volist>
+				</ul>
+			</div>	
+		</div>
+		
+		<a href="{:U('Reward/issue')}" class="publish"></a>
+	</div>
+	</body>
 </html>
 <script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
+
     $(".iphone").css("height",$(window).height() )
-    window.onload = function(){
+	window.onload = function(){
 
-        $(".xs-list i").on("click",function(){
-            $(this).addClass("active").siblings().removeClass("active");
-            var i = $(this).index();
-            var w = $(window).width();
+		$(".xs-list i").on("click",function(){
+			$(this).addClass("active").siblings().removeClass("active");
+			var i = $(this).index();
+			var w = $(window).width();
 
-            var klass = "slider" + i
-            $(".slider").removeClass().addClass("slider " + klass)
-            $(".tab").css("transform","translate("+ -i * w+"px)")
+			var klass = "slider" + i;
+			$(".slider").removeClass().addClass("slider " + klass);
+			$(".tab").css("transform","translate("+ -i * w+"px)")	
 
-        })
+		})
+		setInterval(jishiqi,1000)
+	}
+    var json = $("#str").attr("value");
+    var times = eval("(" + json + ")");
+	function jishiqi() {
+        for ( var i = 0; i < times.length ; i ++){
+            //times[i] --;
+            mov( times[i],i )
+            console.log(times[i])
+        }
     }
 
+    function mov( time , i) {
+        var xiaban = time
+		console.log( time )
+		var i = i
+        var now= Math.round( new Date()/1000 )
+
+        var gg = xiaban - now
+
+        var day1=Math.floor(gg/(60*60*24));
+        var hour=Math.floor((gg-day1*24*60*60)/(3600));
+        var minute=Math.floor((gg-day1*24*60*60-hour*(3600))/(60));
+
+        var second=Math.floor(( gg-day1*(60*60*24)-hour*(60*60)-minute*(60) )) ;
+
+        var hs=gg-day1*(1000*60*60*24)-hour*(1000*60*60)-minute*(1000*60)-second*1000;
+
+        var html ="倒数计时："+ day1 + "天" + hour +":"+ minute +":"+second
 
 
+
+        if(gg >= 0){
+			$(".card-list li").eq(i).find(".daojishi").text( html )
+        }else {
+            $(".card-list li").eq(i).find(".daojishi").text("悬赏已完成")
+        }
+
+
+//
+//        $(".day").text(day1)
+//        $(".min").text(minute)
+//        $(".hr").text(hour)
+
+    }
 
 
 </script>

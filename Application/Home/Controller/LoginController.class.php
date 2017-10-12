@@ -7,12 +7,14 @@ class LoginController extends Controller{
 
     //微信登录
     public function index(){
+        $id = $_GET['id'];
+        $rurl = base64_decode($id);
         if(isset($_GET['user_id'])){
             $_SESSION['friends_user'] = $_GET['user_id'];
         }
             $member = M('user')->where(array('user_id'=>$_SESSION['user_id']))->find();
             if(empty($_SESSION['user_id']) || empty($member)){
-                $redirect_uri ='http://wap.manjianghu.com/index.php/Home/Login/nofity';
+                $redirect_uri ='http://wap.manjianghu.com/index.php/Home/Login/nofity/id/'.$id;
                 $url ='https://open.weixin.qq.com/connect/oauth2/authorize?appid='.C('WX_OPENID').'&redirect_uri='.$redirect_uri.'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect1';
                 redirect($url);
             }else{
@@ -20,12 +22,13 @@ class LoginController extends Controller{
                 if(isset($_GET['user_id']) && $user['pid'] == null){
                     $this->friend();
                 }
-                redirect(U('Index/index'));
+                redirect("http://wap.manjianghu.com".$rurl);
             }
 
     }
 
     public function nofity($code){
+        $id = $_GET['id'];
         $url ='https://api.weixin.qq.com/sns/oauth2/access_token?appid='.C('WX_OPENID').'&secret='.C('WX_SECRET').'&code='.$code.'&grant_type=authorization_code';
         $info_data = $this->http($url);
         if($info_data[0]==200){
@@ -49,7 +52,8 @@ class LoginController extends Controller{
                     if($_SESSION['friends_user']){
                         $this->friend();
                     }
-                    redirect(U('Index/index'));
+                    $rurl = base64_decode($id);
+                    redirect("http://wap.manjianghu.com".$rurl);
                 }else{
                     $arr['open_id'] = $data->openid;
                     $arr['avatar'] = $data->headimgurl;
@@ -80,7 +84,8 @@ class LoginController extends Controller{
                     if($_SESSION['friends_user']){
                         $this->friend();
                     }
-                    redirect(U('Index/index'));
+                    $rurl = base64_decode($id);
+                    redirect("http://wap.manjianghu.com".$rurl);
                 }
             }else{
                 echo '获取用户信息失败失败！';die;

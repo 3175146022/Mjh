@@ -7,6 +7,21 @@
     <link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
     <script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
     <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js" type="text/javascript" charset="utf-8"></script>
+    <style rel="stylesheet">
+        .ind_fixed{
+            position:fixed;
+            left:0;
+            top:0;
+            right:0;
+            bottom:50px;
+            z-index:10;
+            display:none;
+        }
+        
+        .ind_fixed.active{
+            display: block;
+        }
+    </style>
 </head>
 <body>
 <div id="all">
@@ -19,7 +34,7 @@
             <ul>
                 <li><a class="xuzhi" href="{:U('Notice/index')}"></a></li>
                 <li><a class="gaoshi" href="{:U('Bulletin/index')}"></a></li>
-                <li><a class="xuanshang" href="javascript:;" id="jsz" onclick="jsz()"></a></li>
+                <li><a class="xuanshang" href="{:U('Reward/index')}"></a></li>
                 <li><a class="rank" href="{:U('Rank/index')}"></a></li>
             </ul>
         </i>
@@ -33,6 +48,7 @@
         </em>
         <a href="{:U('User/index')}" class="my_home"><i class="my fr"></i></a>
     </div>
+    <div class="ind_fixed"></div>
 </div>
 </body>
 </html>
@@ -83,12 +99,12 @@
 
 
 
-    function jsz() {
-        $('#jsz').click(function () {
-            alert("建设中！");
-            window.location = window.location;
-        });
-    }
+//    function jsz() {
+//        $('#jsz').click(function () {
+//            alert("建设中！");
+//            window.location = window.location;
+//        });
+//    }
 
     $(function(){
 
@@ -96,16 +112,31 @@
 
         $(".if_box").css("height",$(window).height()-50)
 
+//        $(".if_box").on("click",function () {
+//            alert(111)
+///*            $(".list_text ul").removeClass("active")
+//            $("#activity ul").removeClass("active")*/
+//        })
+
+
+
 //		设置iframe高度
         $(".list_text").on("click",function(){
             $("#activity ul").removeClass("active")
             $(".list_text ul").toggleClass("active")
-
+            $(".ind_fixed").addClass("active")
         })
 
         $("#activity").on("click",function(){
             $(".list_text ul").removeClass("active")
             $("#activity ul").toggleClass("active")
+            $(".ind_fixed").addClass("active")
+        })
+
+        $(".ind_fixed").click(function () {
+            $(this).removeClass("active")
+            $(".list_text ul").removeClass("active")
+            $("#activity ul").removeClass("active")
         })
 //		列表弹出框
 

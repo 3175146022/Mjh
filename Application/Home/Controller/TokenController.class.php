@@ -14,7 +14,11 @@ class TokenController extends CommonController{
             $this->redirect('Token/token',array('id'=>$a['user_id']));
         }else {
             if (IS_POST) {
-                $number = M('Token')->where(array('tok_num'=>$_POST['tok_num']))->find();
+                $where = array(
+                    'tok_num' => $_POST['tok_num'],
+                    'phone' => $_POST['phone'],
+                );
+                $number = M('Token')->where($where)->find();
                 $bind = M('Token as t')->join('user as u ON t.token_id = u.token_id')->where(array('tok_num'=>$_POST['tok_num']))->find();
                 //var_dump($bind);exit;
                 if($number && ($bind == null)){

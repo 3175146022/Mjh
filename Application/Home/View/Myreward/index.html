@@ -1,188 +1,221 @@
 <!doctype html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>我的悬赏</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <link rel="stylesheet" type="text/css" href="__HOME__css/style.css"/>
-    <link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
-</head>
-<body>
-<div class="iphone">
-<div id="xs">
-    <div class="card-img" style="background: url(__HOME__images/a4.jpg) no-repeat center center;">
-        <a href=""><i class="head-big head" style="background:#fff url(__HOME__images/x7.png) no-repeat center center; background-size: 80%!important;"></i></a>
-    </div>
-
-    <div class="info cf">
-        <a href="#" class="doing active"></a>
-        <a href="#" class="did"></a>
-    </div>
-
-
-
-    <div class="hide">
-        <div class="tab cf">
-            <div class="xs_doing">
-
-                <div class="xs-list cf">
-                    <i class="doing active"></i>
-                    <i class="did"></i>
-                    <i class="done"></i>
-                    <span class="slider slider0"></span>
-                </div>
-
-                <div class="tab2">
-                    <ul class="card-list fl">
-                        <volist name="list" id="vo">
-                            <if condition="($vo.re_status eq 0)">
-                                <li>
-                                    <a href="{:U('Reward/show',array('id'=>$vo['reward_id']))}">
-                                        <div class="card-img" style="background: url(__ROOT__/{$vo.re_image}) no-repeat center center;"></div>
-                                        <h5>{$vo.re_title}</h5>
-                                        <p>{$vo.re_content|mb_substr=0,15,'utf-8'}</p>
-                                        <div class="author">
-                                            <span><i class="user"></i>许愿者：<?php echo mb_substr(base64_decode($vo['author']),0,3,'utf-8')?>...</span>
-                                            <span class="fr"><i class="time"></i>倒计时：80天 12:43:47</span>
-                                        </div>
-                                    </a>
-                                </li>
-                            </if>
-                        </volist>
-                    </ul>
-
-                    <ul class="card-list fl">
-                        <volist name="list" id="vo">
-                            <if condition="($vo.re_status eq 1)">
-                                <li>
-                                    <a href="{:U('Reward/show',array('id'=>$vo['reward_id']))}">
-                                        <div class="card-img" style="background: url(__ROOT__/{$vo.re_image}) no-repeat center center;"></div>
-                                        <h5>{$vo.re_title}</h5>
-                                        <p>{$vo.re_content|mb_substr=0,15,'utf-8'}</p>
-                                        <div class="author">
-                                            <span><i class="user"></i>许愿者：<?php echo mb_substr(base64_decode($vo['author']),0,3,'utf-8')?>...</span>
-                                            <span class="fr"><i class="time"></i>倒计时：80天 12:43:47</span>
-                                        </div>
-                                    </a>
-                                </li>
-                            </if>
-                        </volist>
-                    </ul>
-
-                    <ul class="card-list fl">
-                        <volist name="list" id="vo">
-                            <if condition="($vo.re_status eq 2)">
-                                <li>
-                                    <a href="{:U('Reward/show',array('id'=>$vo['reward_id']))}">
-                                        <div class="card-img" style="background: url(__ROOT__/{$vo.re_image}) no-repeat center center;"></div>
-                                        <h5>{$vo.re_title}</h5>
-                                        <p>{$vo.re_content|mb_substr=0,15,'utf-8'}</p>
-                                        <div class="author">
-                                            <span><i class="user"></i>许愿者：<?php echo mb_substr(base64_decode($vo['author']),0,3,'utf-8')?>...</span>
-                                            <span class="fr"><i class="time"></i>倒计时：80天 12:43:47</span>
-                                        </div>
-                                    </a>
-                                </li>
-                            </if>
-                        </volist>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="xs_did">
-                <div class="xs-list cf">
-                    <i class="doing active"></i>
-                    <i class="done"></i>
-                    <span class="slider slider0"></span>
-                </div>
-
-                <div class="tab3">
-                    <ul class="card-list fl">
-                        <li>
-                            <a href="{:U('Stroy/index')}">
-                                <div class="card-img" style="background: url(__HOME__images/a2.jpg) no-repeat center center;"></div>
-                                <h5>悬赏一个故事计划？</h5>
-                                <p>来说说你曾经扶危济困、斩奸锄恶的快意...</p>
-                                <div class="author">
-                                    <span><i class="user"></i>许愿者：Arthas</span>
-                                    <span class="fr"><i class="time"></i>倒计时：80天 12:43:47</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{:U('Stroy/index')}">
-                                <div class="card-img" style="background: url(__HOME__images/a2.jpg) no-repeat center center;"></div>
-                                <h5>悬赏一个故事计划？</h5>
-                                <p>来说说你曾经扶危济困、斩奸锄恶的快意...</p>
-                                <div class="author">
-                                    <span><i class="user"></i>许愿者：Arthas</span>
-                                    <span class="fr"><i class="time"></i>倒计时：80天 12:43:47</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{:U('Stroy/index')}">
-                                <div class="card-img" style="background: url(__HOME__images/a2.jpg) no-repeat center center;"></div>
-                                <h5>悬赏一个故事计划？</h5>
-                                <p>来说说你曾经扶危济困、斩奸锄恶的快意...</p>
-                                <div class="author">
-                                    <span><i class="user"></i>许愿者：Arthas</span>
-                                    <span class="fr"><i class="time"></i>倒计时：80天 12:43:47</span>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-
-                    <ul class="card-list fl">
-                        <li>
-                            <a href="{:U('Stroy/index')}">
-                                <div class="card-img" style="background: url(__HOME__images/a2.jpg) no-repeat center center;"></div>
-                                <h5>悬赏一个故事计划？</h5>
-                                <p>来说说你曾经扶危济困、斩奸锄恶的快意...</p>
-                                <div class="author">
-                                    <span><i class="user"></i>许愿者：Arthas</span>
-                                    <span class="fr"><i class="time"></i>倒计时：80天 12:43:47</span>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title>我的悬赏</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+   		<link rel="stylesheet" type="text/css" href="__HOME__css/style.css"/>
+   		<link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
+	</head>
+	<body>
+	<div class="iphone">
+		<div id="xs">
+			<div class="card-img" style="background: url(__HOME__images/a4.jpg) no-repeat center center;">
+				<a href=""><i class="head-big head" style="background:#fff url(__HOME__images/x7.png) no-repeat center center; background-size: 80%!important;"></i></a>
+			</div>
+			
+			<div class="info cf">
+					<a href="#" class="doing active"></a>
+					<a href="#" class="did"></a>
+				</div>
+			
+			
+			
+			<div class="hide">
+				<div class="tab cf">
+					<div class="xs_doing">
+						
+						<div class="xs-list cf my">
+							<i class="doing active"></i>
+							<i class="did"></i>
+							<i class="done"></i>
+							<span class="slider slider0"></span>
+						</div>
+						
+						<div class="tab2">
+							<input type="hidden" id="str" value='{$str}'>
+							<ul class="card-list fl">
+								<volist name="list" id="vo">
+									<if condition="($vo.re_status eq 1 or $vo.re_status eq 3)">
+										<li>
+											<a href="{:U('Reward/show',array('id'=>$vo['reward_id']))}">
+												<div class="card-img" style="background: url(__ROOT__/{$vo.re_image}) no-repeat center center;"></div>
+												<h5>{$vo.re_title}</h5>
+												<p>{$vo.re_content|mb_substr=0,15,'utf-8'}</p>
+												<div class="author">
+													<span><i class="user"></i>许愿者：<?php echo mb_substr(base64_decode($vo['author']),0,3,'utf-8')?>...</span>
+													<span class="fr"><i class="time"></i><em class="daojishi">倒计时：00天 00:00:00</em></span>
+												</div>
+											</a>
+										</li>
+									</if>
+								</volist>
+							</ul>
+					
+							<ul class="card-list fl">
+								<volist name="list" id="vo">
+									<if condition="($vo.re_status eq 0)">
+										<li>
+											<a href="{:U('Reward/show',array('id'=>$vo['reward_id']))}">
+												<div class="card-img" style="background: url(__ROOT__/{$vo.re_image}) no-repeat center center;"></div>
+												<h5>{$vo.re_title}</h5>
+												<p>{$vo.re_content|mb_substr=0,15,'utf-8'}</p>
+												<div class="author">
+													<span><i class="user"></i>许愿者：<?php echo mb_substr(base64_decode($vo['author']),0,3,'utf-8')?>...</span>
+													<span class="fr"><i class="time"></i><em class="daojishi">倒计时：00天 00:00:00</em></span>
+												</div>
+											</a>
+										</li>
+									</if>
+								</volist>
+							</ul>
+							
+							<ul class="card-list fl">
+								<volist name="list" id="vo">
+									<?php if($vo['re_status'] == 2 || $vo['end_time'] <= time()):?>
+										<li>
+											<a href="{:U('Reward/show',array('id'=>$vo['reward_id']))}">
+												<div class="card-img" style="background: url(__ROOT__/{$vo.re_image}) no-repeat center center;"></div>
+												<h5>{$vo.re_title}</h5>
+												<p>{$vo.re_content|mb_substr=0,15,'utf-8'}</p>
+												<div class="author">
+													<span><i class="user"></i>许愿者：<?php echo mb_substr(base64_decode($vo['author']),0,3,'utf-8')?>...</span>
+													<span class="fr"><i class="time"></i><em class="daojishi">倒计时：00天 00:00:00</em></span>
+												</div>
+											</a>
+										</li>
+									<?php endif;?>
+								</volist>
+							</ul>
+						</div>
+					</div>
+					
+					<div class="xs_did">
+						<div class="xs-list cf">
+							<i class="doing active"></i>
+							<i class="done"></i>
+							<span class="slider slider0"></span>
+						</div>
+						
+						<div class="tab3">
+							<ul class="card-list fl">
+								<volist name="take" id="vo">
+									<if condition="($vo.re_status eq 3)">
+										<li>
+											<a href="{:U('Reward/show',array('id'=>$vo['reward_id']))}">
+												<div class="card-img" style="background: url(__ROOT__/{$vo.re_image}) no-repeat center center;"></div>
+												<h5>{$vo.re_title}</h5>
+												<p>{$vo.re_content|mb_substr=0,15,'utf-8'}</p>
+												<div class="author">
+													<span><i class="user"></i>许愿者：<?php echo mb_substr(base64_decode($vo['author']),0,3,'utf-8')?>...</span>
+													<span class="fr"><i class="time"></i><em class="daojishi">倒计时：00天 00:00:00</em></span>
+												</div>
+											</a>
+										</li>
+									</if>
+								</volist>
+							</ul>
+							
+							<ul class="card-list fl">
+								<volist name="take" id="vo">
+									<if condition="($vo.re_status eq 2)">
+										<li>
+											<a href="{:U('Reward/show',array('id'=>$vo['reward_id']))}">
+												<div class="card-img" style="background: url(__ROOT__/{$vo.re_image}) no-repeat center center;"></div>
+												<h5>{$vo.re_title}</h5>
+												<p>{$vo.re_content|mb_substr=0,15,'utf-8'}</p>
+												<div class="author">
+													<span><i class="user"></i>许愿者：<?php echo mb_substr(base64_decode($vo['author']),0,3,'utf-8')?>...</span>
+													<span class="fr"><i class="time"></i><em class="daojishi">倒计时：00天 00:00:00</em></span>
+												</div>
+											</a>
+										</li>
+									</if>
+								</volist>
+							</ul>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</div>
+	</body>
 </html>
 <script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
     $(".iphone").css("height",$(window).height() )
-    $(".info a").on("click",function(){
-        $(this).addClass("active").siblings().removeClass("active");
-        var i = $(this).index();
-        var w = $(window).width();
+    setInterval(jishiqi,1000);
 
-        $(".tab").css("transform","translate("+ -i * w+"px)")
-    })
+	var json = $("#str").attr("value");
+	var times = eval("(" + json + ")");
+	function jishiqi() {
+		for ( var i = 0; i < times.length ; i ++){
+           var time11 = eval( times[i] );
+			console.log(times);
+           if( time11 != null ){
+               for(var a= 0; a < time11.length;a++){
+                   mov( time11[a],i,a )
+               }
+		   }
+		}
+	}
 
-    $(".xs_doing .xs-list i").on("click",function(){
-        $(this).addClass("active").siblings().removeClass("active");
-        var i = $(this).index();
-        var w = $(window).width();
+    function mov( time , i, a) {
+        var xiaban = time
 
-        var klass = "slider" + i
-        $(".xs_doing .slider").removeClass().addClass("slider " + klass)
-        $(".tab2").css("transform","translate("+ -i * w+"px)")
-    })
+        var i = i
+		var a = a
 
-    $(".xs_did .xs-list i").on("click",function(){
-        $(this).addClass("active").siblings().removeClass("active");
-        var i = $(this).index();
-        var w = $(window).width();
+        var now= Math.round( new Date()/1000 )
 
-        var klass = "slider" + i
-        $(".xs_did .slider").removeClass().addClass("slider " + klass)
-        $(".tab3").css("transform","translate("+ -i * w+"px)")
-    })
+        var gg = xiaban - now
 
+        var day1=Math.floor(gg/(60*60*24));
+        var hour=Math.floor((gg-day1*24*60*60)/(3600));
+        var minute=Math.floor((gg-day1*24*60*60-hour*(3600))/(60));
+
+        var second=Math.floor(( gg-day1*(60*60*24)-hour*(60*60)-minute*(60) )) ;
+
+        var hs=gg-day1*(1000*60*60*24)-hour*(1000*60*60)-minute*(1000*60)-second*1000;
+
+        var html ="倒数计时："+ day1 + "天" + hour +":"+ minute +":"+second
+
+        if(gg >= 0){
+            $(".card-list").eq(i).find(".daojishi").eq(a).text( html )
+        }else {
+            $(".card-list").eq(i).find(".daojishi").eq(a).text("悬赏已结束")
+        }
+    }
+
+
+
+
+	$(".info a").on("click",function(){
+			$(this).addClass("active").siblings().removeClass("active");
+			var i = $(this).index();
+			var w = $(window).width();
+
+			$(".tab").css("transform","translate("+ -i * w+"px)")	
+	})
+	
+	$(".xs_doing .xs-list i").on("click",function(){
+			$(this).addClass("active").siblings().removeClass("active");
+			var i = $(this).index();
+			var w = $(window).width();
+			
+			var klass = "slider" + i
+			$(".xs_doing .slider").removeClass().addClass("slider " + klass)
+			$(".tab2").css("transform","translate("+ -i * w+"px)")	
+	})
+	
+	$(".xs_did .xs-list i").on("click",function(){
+			$(this).addClass("active").siblings().removeClass("active");
+			var i = $(this).index();
+			var w = $(window).width();
+			
+			var klass = "slider" + i
+			$(".xs_did .slider").removeClass().addClass("slider " + klass)
+			$(".tab3").css("transform","translate("+ -i * w+"px)")	
+	})
+	
 </script>
