@@ -7,6 +7,10 @@ class ActivityController extends CommonController{
     public function __construct(){
         parent::__construct();
     }
+    //活动框架
+    public function activity(){
+        $this->display();
+    }
     //江湖活动列表
     public function index(){
         $list = M('Activity')->join('activity_cate on activity_cate.act_cate_id = activity.act_cate_id')->select();

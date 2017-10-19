@@ -11,7 +11,7 @@
 <div class="iphone">
 <div id="content">
     <div class="text">
-        <h5>{$data.title}</h5>
+        <!--<h5>{$data.title}</h5>-->
         <div class="cf" style="margin-bottom: 10px;">
             <!--<span class="fr mark"> <i></i>收藏</span>-->
         </div>
@@ -27,4 +27,26 @@
     $(".mark i").on("click",function(){
         $(this).toggleClass("active")
     })
+</script>
+<script>
+    $(function(){
+        getHistory();
+        var flag = false;
+        setTimeout(function(){
+            flag = true;
+        },1000);
+        window.addEventListener('popstate',function(e){
+            if(flag){
+                window.location = 'http://wap.manjianghu.com/index.php/Home/Bulletin/index.html';
+            }
+            getHistory();
+        },false);
+        function getHistory(){
+            var state = {
+                title : 'title',
+                url : '#'
+            };
+            window.history.pushState(state,'title','#');
+        }
+    });
 </script>

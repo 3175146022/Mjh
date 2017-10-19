@@ -12,9 +12,12 @@ class AwardController extends CommonController{
         $this->assign('data',$a);
         $this->display();
     }
+    //悬赏详情
     public function award_detail(){
         if ($_GET['reward_id']){
             $a = M('reward')->where('reward_id ='.$_GET['reward_id'])->find();
+            $b = M('RePicture')->where(array('reward_id'=>$_GET['reward_id']))->select();
+            $this->assign('img',$b);
             $this->assign('data',$a);
             $this->display();
         }
@@ -25,8 +28,13 @@ class AwardController extends CommonController{
         if ($_GET['id']){
             $a = M('reward')->where('reward_id = '.$_GET['id'])->find();
             $b = unlink($a['re_image']);
+            $e = M('RePicture')->where(array('reward_id'=>$_GET['id']))->select();
+            foreach ($e as $k=>$v){
+                $f = unlink($v['re_picture']);
+            }
             if ($b){
                 $c = M('reward')->where('reward_id = '.$_GET['id'])->delete();
+                $g = M('RePicture')->where(array('reward_id'=>$_GET['id']))->delete();
                 if ($c){
                     $data = [
                         "status" => 1,

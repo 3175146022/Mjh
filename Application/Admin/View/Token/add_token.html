@@ -72,7 +72,30 @@
                     </form>
                     <div class="clearfix"></div>
                 </div>
-            </div>
+                <div class="ibox-content">
+                    <form action="{:U('Token/upload')}" method="post" enctype="multipart/form-data">
+                        <div class="form-group draggable">
+                            <label class="col-sm-6 control-label">令牌等级：</label>
+                            <div class="col-sm-6">
+                                <select class="form-control" name="tok_level">
+                                    <option value="1">欢喜令</option>
+                                    <option value="2">义士令</option>
+                                    <option value="3">英雄令</option>
+                                    <option value="4">大侠令</option>
+                                    <option value="5">大谦令</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group draggable">
+                            <label class="col-sm-6 control-label">文件：</label>
+                            <div class="col-sm-6">
+                                <input type="file" name="excelData">
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" type="submit">批量添加</button>
+                    </form>
+                    </div>
+                </div>
         </div>
     </div>
 

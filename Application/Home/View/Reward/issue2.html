@@ -1,0 +1,220 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>发布悬赏</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="__HOME__css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
+    <style rel="stylesheet" type="text/css" >
+        .tankuang{
+            width: 80%;
+            padding: 10px 15px;
+            position: fixed;
+            left:50%;
+            top:50%;
+            transform: translate(-50%,-50%);
+            -webkit-transform: translate(-50%,-50%);
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 5px 5px rgba(0,0,0,.6);
+            visibility: hidden;
+            border:1px solid #ccc;
+            text-align: center;
+        }
+
+        .tankuang.active{
+            visibility: visible;
+        }
+
+        .tankuang p{
+            margin-top: 40px;
+        }
+
+        .tankuang a{
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="iphone">
+    <div id="fabu" style="padding-top: 20px">
+        <form action="{:U('Reward/issue2')}" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="TOKEN" value="{:session('TOKEN')}">
+            <div class="form-group cf">
+                <label for="">上传封面图</label>
+                <div class="img_load cf img_load1">
+                    <div class="load_btn fl">
+                        <input type="file" name="re_image" />
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group cf" style="margin-top: 15px">
+                <label for="">上传内容图</label>
+                <div class="img_load fl img_load2" style="width: 70%">
+
+                    <div class="load_btn fl">
+                        <input type="file" name="re_picture0" />
+                    </div>
+
+                </div>
+            </div>
+            <input type="submit" value="提交" class="btn" onclick="tanchu()"/>
+        </form>
+    </div>
+    <div class="tankuang">
+        <h2><img src="__HOME__images/loading.gif" alt=""></h2>
+        <p>发布中，请稍后</p>
+
+        <!--<a class="btn queding" href="#">确定</a>-->
+    </div>
+</div>
+
+</body>
+</html>
+<script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+
+    function tanchu() {
+        $(".tankuang").addClass("active")
+    }
+
+
+    $(".queding").click(function () {
+        $(".tankuang").removeClass("active")
+        return false;
+    })
+
+
+    $(".iphone").css("height",$(window).height() )
+    var i = 0;
+    var a= 0;
+
+    $(".load_btn input").eq(0).change(function(){
+        loadImg()
+    })
+
+    $(".img_load2").on("change","input",function () {
+        var _this =$( this ) ;
+        var _that = this
+        if(a<3){
+            loadImg2( _this )
+        }else if( _this.parent("div").hasClass("havabackground") ){
+            loadImg3(_that,_this)
+        }else {
+            alert("最多可以上传三张图片")
+        }
+    })
+    function loadImg(){
+        //获取文件
+        var file = $(".load_btn").find("input")[0].files[0];
+        //创建读取文件的对象
+        var reader = new FileReader();
+        //创建文件读取相关的变量
+        var imgFile;
+        //为文件读取成功设置事件
+        reader.onload=function(e) {
+            imgFile = e.target.result;
+            if (i == 0){
+                var html = "<div class='fl img_show img_show1' style='background: url("+imgFile+") no-repeat center center;background-size: cover;'></div>"
+                $(".img_load1").prepend( html )
+                i++;
+            }else {
+                $(".img_show1").css({"background":" url("+imgFile+") no-repeat center center","background-size":"cover"})
+            }
+
+        };
+        //正式读取文件
+        reader.readAsDataURL(file);
+    }
+
+    function loadImg2(_this){
+        //获取文件
+        var file = $(".img_load2").find("input")[a].files[0];
+
+
+
+//        $(".img_load2").find("input").eq(0).attr("name","re_picture"+a);
+
+        //创建读取文件的对象
+        var reader = new FileReader();
+        //创建文件读取相关的变量
+        var imgFile;
+        //为文件读取成功设置事件
+        reader.onload=function(e) {
+            imgFile = e.target.result;
+
+//        var html = "<div class='fl img_show' style='background: url("+imgFile+") no-repeat center center;;'> <input type='file' > </div>"
+            _this.parent(".load_btn").css({
+                "background":"url("+imgFile+") no-repeat center center",
+                "background-size": "cover"
+            }).addClass("havabackground")
+            console.log( _this.parent(".load_btn") )
+
+        var html = " <div class='load_btn fl'> <input type='file' name='re_picture"+a+"' /></div>"
+        $(".img_load2").append( html )
+
+        };
+        a++;
+        //正式读取文件
+        reader.readAsDataURL(file);
+    }
+
+    function loadImg3(_that,_this) {
+
+        var file = _that.files[0];
+
+        console.log(file)
+
+
+
+//        $(".img_load2").find("input").eq(0).attr("name","re_picture"+a);
+
+        //创建读取文件的对象
+        var reader = new FileReader();
+        //创建文件读取相关的变量
+        var imgFile;
+        //为文件读取成功设置事件
+        reader.onload=function(e) {
+            imgFile = e.target.result;
+
+//        var html = "<div class='fl img_show' style='background: url("+imgFile+") no-repeat center center;;'> <input type='file' > </div>"
+            _this.parent(".load_btn").css({
+                "background":"url("+imgFile+") no-repeat center center",
+                "background-size": "cover"
+            }).addClass("havabackground")
+            console.log( _this.parent(".load_btn") )
+
+//            var html = " <div class='load_btn fl'> <input type='file' name='re_picture"+a+"' /></div>"
+//            $(".img_load2").append( html )
+
+        };
+        //正式读取文件
+        reader.readAsDataURL(file);
+    }
+</script>
+<script>
+    $(function(){
+        getHistory();
+        var flag = false;
+        setTimeout(function(){
+            flag = true;
+        },1000);
+        window.addEventListener('popstate',function(e){
+            if(flag){
+                window.location = 'http://wap.manjianghu.com/index.php/Home/Reward/index.html';
+            }
+            getHistory();
+        },false);
+        function getHistory(){
+            var state = {
+                title : 'title',
+                url : '#'
+            };
+            window.history.pushState(state,'title','#');
+        }
+    });
+</script>

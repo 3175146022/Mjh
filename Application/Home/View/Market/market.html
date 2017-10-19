@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>慢江湖</title>
+    <link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
+    <script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js" type="text/javascript" charset="utf-8"></script>
+    <style rel="stylesheet">
+        .ind_fixed{
+            position:fixed;
+            left:0;
+            top:0;
+            right:0;
+            bottom:50px;
+            z-index:10;
+            display:none;
+        }
+
+        .ind_fixed.active{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="all">
+    <div class="if_box">
+        <iframe src="{:U('Market/index')}"></iframe>
+    </div>
+    <div class="mt"></div>
+    <div class="nav">
+        <i class="list_text fl">
+            <ul>
+                <li><a class="xuzhi" href="{:U('Notice/index')}"></a></li>
+                <li><a class="gaoshi" href="{:U('Bulletin/index')}"></a></li>
+                <li><a class="xuanshang" href="{:U('Reward/index')}"></a></li>
+                <li><a class="rank" href="{:U('Rank/index')}"></a></li>
+            </ul>
+        </i>
+        <em id="activity">
+            <ul>
+                <li><a class="activity1" href="{:U('Activity/index')}"></a></li>
+                <li><a class="zhibo" href="{:U('Live/index')}"></a></li>
+                <li><a class="tuijie" href="{:U('Market/index')}"></a></li>
+                <li><a class="huodong" href="{:U('Story/index')}"></a></li>
+            </ul>
+        </em>
+        <a href="{:U('User/index')}" class="my_home"><i class="my fr"></i></a>
+    </div>
+    <div class="ind_fixed"></div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    wx.config({
+        debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+        appId: '<?php echo C('WX_OPENID')?>', // 必填，公众号的唯一标识
+        timestamp:'<?php echo $timestamp ?>', // 必填，生成签名的时间戳
+        nonceStr: '<?php echo $noncestr ?>', // 必填，生成签名的随机串
+        signature: '<?php echo $signature ?>',// 必填，签名，见附录1
+        jsApiList: ['onMenuShareAppMessage','onMenuShareTimeline'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+    });
+    wx.ready(function(){
+
+        wx.onMenuShareAppMessage({
+            title: '慢慢江湖!朋友帮！',
+            desc: '慢慢江湖路！朋友来帮助！持令者皆兄弟！', // 分享描述
+            link: 'http://wap.manjianghu.com', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: 'http://wap.manjianghu.com/Public/Home/images/token.png', // 分享图标
+            type: '', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+                alert('分享成功！');
+            },
+            cancel: function () {
+                location.href = location.href
+                // 用户取消分享后执行的回调函数
+            }
+        });
+
+        wx.onMenuShareTimeline({
+            title: '慢慢江湖!朋友帮！', // 分享标题
+            link: 'http://wap.manjianghu.com', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: 'http://wap.manjianghu.com/Public/Home/images/token.png', // 分享图标
+            success: function () {
+                alert('分享成功！');
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+
+    });
+    wx.error(function(res){
+        // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+    });
+
+
+
+    //    function jsz() {
+    //        $('#jsz').click(function () {
+    //            alert("建设中！");
+    //            window.location = window.location;
+    //        });
+    //    }
+
+    $(function(){
+
+        $("#all").css("height",$(window).height())
+
+        $(".if_box").css("height",$(window).height()-50)
+
+//        $(".if_box").on("click",function () {
+//            alert(111)
+///*            $(".list_text ul").removeClass("active")
+//            $("#activity ul").removeClass("active")*/
+//        })
+
+
+
+//		设置iframe高度
+        $(".list_text").on("click",function(){
+            $("#activity ul").removeClass("active")
+            $(".list_text ul").toggleClass("active")
+            $(".ind_fixed").addClass("active")
+        })
+
+        $("#activity").on("click",function(){
+            $(".list_text ul").removeClass("active")
+            $("#activity ul").toggleClass("active")
+            $(".ind_fixed").addClass("active")
+        })
+
+        $(".ind_fixed").click(function () {
+            $(this).removeClass("active")
+            $(".list_text ul").removeClass("active")
+            $("#activity ul").removeClass("active")
+        })
+//		列表弹出框
+
+//		$(".nav").find('a').on('click', function () {
+//		  	var $el = $(this)
+//		    	id = $el.attr('href');
+//			$('iframe').attr("src",id)
+//			$(".active").removeClass("active")
+//			$(this).addClass("active")
+//
+//			var background = $el.css("background")
+//			$(".list_text").css("background",background)
+//
+//		  return false;
+//		});
+
+        $(".list_text").find('a').on('click', function () {
+            var $el = $(this)
+            id = $el.attr('href');
+            $('iframe').attr("src",id)
+            $(".active").removeClass("active")
+            $(this).addClass("active")
+
+            var cls= $el.attr("class")
+            $(".list_text").removeClass().addClass(cls + " list_text fl")
+
+            return false;
+        });
+
+        $("#activity").find('a').on('click', function () {
+            var $el = $(this)
+            id = $el.attr('href');
+            $('iframe').attr("src",id)
+            $(".active").removeClass("active")
+            $(this).addClass("active")
+
+            var cls= $el.attr("class")
+            $("#activity").removeClass().addClass(cls)
+
+            return false;
+        });
+
+        $(".my_home").on('click', function () {
+            var $el = $(this)
+            id = $el.attr('href');
+            $('iframe').attr("src",id)
+            $(".active").removeClass("active")
+            $(this).find("i").addClass("active")
+
+            $(".list_text").removeClass().addClass("list_text fl")
+            return false;
+        })
+
+    })
+
+    var overscroll = function(el) {
+        el.addEventListener('touchstart', function() {
+            var top = el.scrollTop
+                , totalScroll = el.scrollHeight
+                , currentScroll = top + el.offsetHeight;
+            //If we're at the top or the bottom of the containers
+            //scroll, push up or down one pixel.
+            //
+            //this prevents the scroll from "passing through" to
+            //the body.
+            if(top === 0) {
+                el.scrollTop = 1;
+            } else if(currentScroll === totalScroll) {
+                el.scrollTop = top - 1;
+            }
+        });
+        el.addEventListener('touchmove', function(evt) {
+            //if the content is actually scrollable, i.e. the content is long enough
+            //that scrolling can occur
+            if(el.offsetHeight < el.scrollHeight)
+                evt._isScroller = true;
+        });
+    }
+
+    overscroll(document.querySelector('#all'));
+    document.body.addEventListener('touchmove', function(evt) {
+        //In this case, the default behavior is scrolling the body, which
+        //would result in an overflow.  Since we don't want that, we preventDefault.
+        if(!evt._isScroller) {
+            evt.preventDefault();
+        }
+    });
+</script>

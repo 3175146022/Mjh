@@ -11,9 +11,32 @@
 <div id="content" class="name">
     <form action="{:U('Myinfo/interest_save')}" method="post">
         <input type="text" name="hobby" id="" value="{$user.hobby}" placeholder="记录特色自我..."/>
-        <p>让大家更好地了了解你</p>
+        <p>让江湖兄弟更好的了解你</p>
         <input type="submit" value="保存" class="btn"/>
     </form>
 </div>
 </body>
+<script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    $(function(){
+        getHistory();
+        var flag = false;
+        setTimeout(function(){
+            flag = true;
+        },1000);
+        window.addEventListener('popstate',function(e){
+            if(flag){
+                window.location = 'http://wap.manjianghu.com/index.php/Home/Myinfo/index.html';
+            }
+            getHistory();
+        },false);
+        function getHistory(){
+            var state = {
+                title : 'title',
+                url : '#'
+            };
+            window.history.pushState(state,'title','#');
+        }
+    });
+</script>
 </html>

@@ -20,6 +20,7 @@
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%,-50%);
+	-webkit-transform: translate(-50%,-50%);
 	width: 100%;
 	height: auto;
 }
@@ -128,6 +129,7 @@
 	position: absolute;
 	top: 8px;
 	transform: translateX(-50%);
+	-webkit-transform:translate(-50%);
 }
 
 .slider{
@@ -140,6 +142,7 @@
 	bottom:3px;
 	transition: .5s;
 	transform: translateX(-50%);
+	-webkit-transform: translate(-50%);
 }
 
 .slider0{
@@ -525,7 +528,7 @@
 	border-radius:0;
 }
 
-.my-info li:nth-child(4),.my-info li:nth-child(7){
+.my-info li:nth-child(6),.my-info li:nth-child(9){
 	margin-bottom: 15px;
 }
 
@@ -546,6 +549,7 @@
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%,-50%);
+	-webkit-transform: translate(-50%,-50%);
 	width: 60%;
 	background: #fff;
 	padding: 10px 15px;
@@ -614,6 +618,7 @@
 	line-height: 50px;
 	color: #333333;
 	padding: 0 10px;
+	margin-bottom: 10px;
 }
 
 .form-group label{
@@ -877,6 +882,7 @@
 	float: left;
 	width: 33.3%;
 	margin-bottom: 20px;
+	height: 110px;
 }
 
 #partner .invit img{
@@ -887,7 +893,7 @@
 	background: #8b1603;
 	width: 40%;
 	display: block;
-	margin: 20px auto 20px;
+	margin: 0 auto 20px;
 	text-align: center;
 	padding:5px 0;
 	border-radius: 5px;
@@ -955,30 +961,28 @@
 }
 
 .pass form{
-	width: 80%;
+	width: 65%;
 	display: block;
 	margin: 0 auto;
-	border: 1px solid #ececec;
-	border-radius: 5px;
 }
 
 .pass input{
-	border: none;
 	outline: none;
 }
 
 .pass input[type=text]{
 	background: none;
-	float: left;
-	height: 30px;
-	width: 68%;
+	margin: 10px auto;
+	width: 100%;
 	padding-left: 10px;
+	border: 1px solid #ececec;
+	border-radius: 5px;
+	height: 40px;
+	line-height: 40px;
 }
 
 .pass input[type=submit]{
-	float: right;
-	margin: 0;
-	width: 80px;
+	border: none;
 }
 
 /*直播页面*/
@@ -1005,6 +1009,7 @@
 	width: 50px;
 	height: 50px;
 	transform: translate(-50%,-50%);
+	-webkit-transform: translate(-50%,-50%);
 	display: block;
 	background: url(../images/play.png) no-repeat center center;
 	background-size: cover;
@@ -1217,7 +1222,7 @@
 .img_load div{
 	width: 60px;
 	height: 60px;
-	margin-right: 10px;
+	margin:10px 10px 0 0;
 	border: 1px solid #ececec;
 }
 

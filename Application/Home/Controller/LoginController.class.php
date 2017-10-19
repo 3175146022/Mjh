@@ -9,15 +9,27 @@ class LoginController extends Controller{
     public function index(){
         $id = $_GET['id'];
         $rurl = base64_decode($id);
+//        var_dump($_GET['user_id']);exit;
         if(isset($_GET['user_id'])){
             $_SESSION['friends_user'] = $_GET['user_id'];
         }
             $member = M('user')->where(array('user_id'=>$_SESSION['user_id']))->find();
             if(empty($_SESSION['user_id']) || empty($member)){
+
                 $redirect_uri ='http://wap.manjianghu.com/index.php/Home/Login/nofity/id/'.$id;
                 $url ='https://open.weixin.qq.com/connect/oauth2/authorize?appid='.C('WX_OPENID').'&redirect_uri='.$redirect_uri.'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect1';
                 redirect($url);
             }else{
+                header('Content-Type: text/html; charset=utf-8');
+                $access=$this->access();
+                $user = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$access.'&openid='.$member['open_id'].'&lang=zh_CN';
+                $memberss=$this->http($user);
+                $datas =json_decode($memberss[1]);
+                if($datas->subscribe ==null){
+                        redirect(U('Test/index'));
+                    //redirect('http://mp.weixin.qq.com/s?__biz=MzUzODE2OTQ0MA==&tempkey=OTI2X1o3K3AxU0o5OHdVTmJZQndrOGtrbGYzWEZURzJSUkNDczBmNDFMZmtFRndjOWRJY0x6Y09ha1VBYmRfcGlud25zbHk4N0pOX1VVRU5XdlZBWGlPeEVsdmxuXzNmZjZ1Q2ZvMjdNc1Q3bGJWWExScG1qZ0FyUkp3ZUoxT0FEbGtNSXduejFZekJRWkJuWnF2czA3X05lSEdhNGRHRnlaQjdKbS1XS3d%2Bfg%3D%3D&chksm=7ada98384dad112e91a7b0c54b32b109363daf882d68a4c3fbb81852a745ee5ace83a0a7af3f&scene=0&previewkey=04QDpm1ium9XmT%252Fx0Eu0fsNS9bJajjJKzz%252F0By7ITJA%253D#wechat_redirect');//124
+                    //header("Location:https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzUzODE2OTQ0MA==&scene=124#wechat_redirect");
+                }
                 $user = M('User')->where(array('user_id'=>$_SESSION['user_id']))->field('pid')->find();
                 if(isset($_GET['user_id']) && $user['pid'] == null){
                     $this->friend();
@@ -43,8 +55,9 @@ class LoginController extends Controller{
                 $memberss=$this->http($user);
                 $datas =json_decode($memberss[1]);
                 if($datas->subscribe ==null){
-                    redirect('https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzUzODE2OTQ0MA==&scene=110#wechat_redirect');
-
+                    redirect(U('Test/index'));
+                    //redirect('http://mp.weixin.qq.com/s?__biz=MzUzODE2OTQ0MA==&tempkey=OTI2X1o3K3AxU0o5OHdVTmJZQndrOGtrbGYzWEZURzJSUkNDczBmNDFMZmtFRndjOWRJY0x6Y09ha1VBYmRfcGlud25zbHk4N0pOX1VVRU5XdlZBWGlPeEVsdmxuXzNmZjZ1Q2ZvMjdNc1Q3bGJWWExScG1qZ0FyUkp3ZUoxT0FEbGtNSXduejFZekJRWkJuWnF2czA3X05lSEdhNGRHRnlaQjdKbS1XS3d%2Bfg%3D%3D&chksm=7ada98384dad112e91a7b0c54b32b109363daf882d68a4c3fbb81852a745ee5ace83a0a7af3f&scene=0&previewkey=04QDpm1ium9XmT%252Fx0Eu0fsNS9bJajjJKzz%252F0By7ITJA%253D#wechat_redirect');
+                    //header("Location:https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzUzODE2OTQ0MA==&scene=124#wechat_redirect");
                 }
                 $state =M('user')->where(array('open_id'=>$data->openid))->find();
                 if($state){
@@ -137,20 +150,51 @@ class LoginController extends Controller{
 
     //邀请好友
     public function friend(){
+        if($_SESSION['user_id'] == $_SESSION['friends_user']){
+            $data = [
+                'status' => 2,
+                'msg' => '不能邀请自己！'
+            ];
+            return $data;
+        }
         $user = M('user')->where(array('user_id'=>$_SESSION['user_id']))->field('pid')->find();
+        //查询判断是否有邀请人
         if(empty($user['pid'])){
-            $status = M('friend')->where(['user_id' => $_SESSION['user_id'],'friend_id' =>$_SESSION['friends_user']])->find();
+            $where = array(
+                'user_id' => $_SESSION['user_id'],
+                'friend_id' => $_SESSION['friends_user'],
+            );
+            $status = M('friend')->where($where)->find();
+            //查询判断双方是不是好友
             if ($status != null){
                 $data = [
                     'status' => 0,
                     'msg' => '你们已经是好友了!'
                 ];
             }else{
-                $save['pid'] = $_SESSION['friends_user'];
-                M('user')->where(array('user_id'=>$_SESSION['user_id']))->save($save);
-                $id = M('friend')->data('user_id='.$_SESSION['user_id'].'&friend_id='.$_SESSION['friends_user'])->add();
-                $id2 = M('friend')->data('user_id='.$_SESSION['friends_user'].'&friend_id='.$_SESSION['user_id'])->add();
+                $save = array(
+                    'pid' =>$_SESSION['friends_user'],
+                );
+                M('User')->where(array('user_id'=>$_SESSION['user_id']))->save($save);
+                $data1 = array(
+                    'user_id' => $_SESSION['user_id'],
+                    'friend_id' => $_SESSION['friends_user'],
+                    'add_time' => time(),
+                );
+                $data2 = array(
+                    'user_id' => $_SESSION['friends_user'],
+                    'friend_id' => $_SESSION['user_id'],
+                    'add_time' => time(),
+                );
+                $id = M('friend')->add($data1);
+                $id2 = M('friend')->add($data2);
                 if (is_numeric($id) && is_numeric($id2)){
+                    //增加声望
+                    $myuser = M('User')->where(array('user_id'=>$_SESSION['friends_user']))->field('reputation')->find();
+                    $po = array(
+                        'reputation' => $myuser['reputation'] + 3,
+                    );
+                    M('User')->where(array('user_id'=>$_SESSION['friends_user']))->save($po);
                     $data = [
                         'status' => 1,
                         'msg' => '好友添加成功。'
@@ -160,23 +204,14 @@ class LoginController extends Controller{
                         'status' => 2,
                         'msg' => '好友添加失败!'
                     ];
-
                 }
             }
-        }else{
-            $status = M('friend')->where(['user_id' => $_SESSION['user_id'],'friend_id' =>$_SESSION['friends_user']])->find();
-            if ($status != null){
-                $data = [
-                    'status' => 0,
-                    'msg' => '你们已经是好友了!'
-                ];
-            }else{
-                M('friend')->data('user_id='.$_SESSION['user_id'].'&friend_id='.$_SESSION['friends_user'])->add();
-                M('friend')->data('user_id='.$_SESSION['friends_user'].'&friend_id='.$_SESSION['user_id'])->add();
-            }
-
+        }else {
+            $data = [
+                'status' => 0,
+                'msg' => '你们已经是好友了!'
+            ];
         }
-        $_SESSION['friends_user']=null;
         return $data;
     }
 

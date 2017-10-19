@@ -25,7 +25,7 @@
 
         </div>
         <div class="form-group">
-            <input type="text" name="company" id="" value="{$company.company}" placeholder="机构组织"/>
+            <input type="text" name="company" id="" value="{$company.company}" placeholder="公司名称"/>
         </div>
         <input type="hidden" name="user_id" value="{$company.user_id}">
         <input type="submit" value="保存" class="btn"/>
@@ -37,5 +37,27 @@
 <script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
     $(".iphone").css("height",$(window).height() )
+</script>
+<script>
+    $(function(){
+        getHistory();
+        var flag = false;
+        setTimeout(function(){
+            flag = true;
+        },1000);
+        window.addEventListener('popstate',function(e){
+            if(flag){
+                window.location = 'http://wap.manjianghu.com/index.php/Home/Myinfo/index.html';
+            }
+            getHistory();
+        },false);
+        function getHistory(){
+            var state = {
+                title : 'title',
+                url : '#'
+            };
+            window.history.pushState(state,'title','#');
+        }
+    });
 </script>
 </html>

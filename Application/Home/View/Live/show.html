@@ -57,17 +57,17 @@
 						<p>{$vo.content}</p>
 						<div class="huifu">
 							<foreach name='vo["reply"]' item="aa" >
-								<p id="{$aa.comment_id}"><a href="javascript;">{$aa.user_name}</a>：{$aa.content}</p>
+								<p id="{$aa.comment_id}"><a >{$aa.user_name}</a>：{$aa.content}</p>
 								<foreach name='aa["three"]' item="bb">
-								<p id="{$aa.comment_id}"><a href='javascript;:'>{$bb.user_name}</a>回复{$bb.reply_name}：{$bb.content}</p>
+								<p id="{$aa.comment_id}"><a>{$bb.user_name}</a>回复{$bb.reply_name}：{$bb.content}</p>
 								</foreach>
 							</foreach>
-							<a href="#" class="zhankai">共{$vo.counts}条回复</a>
+							<a href="javascript:;" class="zhankai">共{$vo.counts}条回复</a>
 						</div>
 					</div>
 				</div>
 				<form class="cf pingl"  >
-					<div class="fr zb-form-group aa">
+					<div class="fr zb-form-group asc aa">
 					</div>
 				</form>
 			</li>
@@ -102,7 +102,7 @@
 	}
 
 
-	$(".zb-form-group").on("click",".btn",function(){
+	$(".asc").on("click",".btn",function(){
 			var _this = $(this);
 			var id = $(this).attr("id");
 			var ids = $(this).attr("ids");
@@ -139,7 +139,7 @@
 		}
 		$.post("{:U('Live/reply_edit')}",{b_content:b_content,ids:ids},function(data){
 			if(data.state == 200){
-				var html = "<p id="+data.id+"><a href='javascript:void(0);'>"+data.name+"</a>回复"+data.reply+"："+data.content+"</p>";
+				var html = "<p id="+data.id+"><a>"+data.name+"</a>回复"+data.reply+"："+data.content+"</p>";
 				user_self.parent().parent().siblings().find(".huifu").prepend( html )
 				$(".bb").remove();
 				$(".cc").remove();
@@ -170,6 +170,8 @@
 
     $(".com_text span").on("click",function(){
 		var id =$(this).attr('id');
+		$(".bb").remove();
+		$(".cc").remove();
         $(this).parent().parent().parent().siblings().toggleClass("active");
 		if($('form').hasClass('active')){
 			$(this).parent().parent().parent().siblings().find(".aa").append('<input type="text" name="z_content" class="bb" value="" placeholder="评论"/>' +
@@ -182,6 +184,9 @@
 	$(".huifu p").on("click",function(){
 		var nei =$(this).find("a").text();
 		var id =$(this).attr('id');
+		$(".bb").remove();
+		$(".cc").remove();
+		$(".pingl").removeClass("active");
 		$(this).parent().parent().parent().siblings().find(".cc").remove();
 		$(this).parent().parent().parent().siblings().toggleClass("active");
 		if($('form').hasClass('active')){
@@ -189,6 +194,7 @@
 					'<input type="button"  value="评论" class="btn cc" ids="'+id+'"/>');
 		}else{
 			$(".bb").remove();
+			$(".cc").remove();
 		}
 	});
 
@@ -198,4 +204,26 @@
         return false;
     })
 
+</script>
+<script>
+    $(function(){
+        getHistory();
+        var flag = false;
+        setTimeout(function(){
+            flag = true;
+        },1000);
+        window.addEventListener('popstate',function(e){
+            if(flag){
+                window.location = 'http://wap.manjianghu.com/index.php/Home/Live/index.html';
+            }
+            getHistory();
+        },false);
+        function getHistory(){
+            var state = {
+                title : 'title',
+                url : '#'
+            };
+            window.history.pushState(state,'title','#');
+        }
+    });
 </script>

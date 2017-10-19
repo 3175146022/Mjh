@@ -7,9 +7,13 @@ class LiveController extends CommonController{
     public function __construct(){
         parent::__construct();
     }
+    //直播框架
+    public function live(){
+        $this->display();
+    }
     //江湖直播列表
     public function index(){
-        $list = M('Solive')->select();
+        $list = M('Solive')->order('add_time desc')->select();
         $this->assign('list',$list);
         $this->display();//页面赋值
     }
@@ -179,14 +183,24 @@ class LiveController extends CommonController{
 
     public function reply_edit(){
         if(IS_POST){
-            $comment = M('comment')->where(array('comment_id'=>$_POST['ids']))->find();
-            if($comment['user_id'] == $_SESSION['user_id']){
+            $time =$_SESSION['hui_time']+15;
+            if($time >time()){
+                $a=$time - time();
                 $att=[
                     'state'=>201,
-                    'msg'=>'不能回复自己'
+                    'msg'=>$a.'秒后才能回复！'
                 ];
                 $this->ajaxReturn($att);
             }
+            $comments = M('comment')->where(array('pid'=>$_POST['ids']))->order('add_time desc')->find();
+            $comment = M('comment')->where(array('comment_id'=>$_POST['ids']))->find();
+//            if($comment['user_id'] == $_SESSION['user_id']){
+//                $att=[
+//                    'state'=>201,
+//                    'msg'=>'不能回复自己'
+//                ];
+//                $this->ajaxReturn($att);
+//            }
             $data['user_id'] = $_SESSION['user_id'];//用户id
             $data['solive_id'] = $comment['solive_id'];//直播id
             $data['add_time'] = time();
@@ -197,6 +211,7 @@ class LiveController extends CommonController{
             $user = M('user')->where(array('user_id'=>$_SESSION['user_id']))->find();
             $edit = M('user')->where(array('user_id'=>$comment['user_id']))->find();
             if($state){
+                $_SESSION['hui_time']=time();
                 $att=[
                     'state'=>200,
                     'id'=>$state,

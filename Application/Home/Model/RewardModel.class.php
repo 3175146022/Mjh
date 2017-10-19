@@ -13,8 +13,23 @@ class RewardModel extends Model{
             're_image' => $img_path,
             'author' => $user['user_name'],
         );
-        $result = M('Reward')->add($data);
-        return $result;
+        $res = M('Reward')->add($data);
+        $num = 0;
+        foreach ($info as $k=>$v){
+            if($k != 're_image'){
+                $num ++ ;
+                if($num <= 3){
+                    $url = 'Uploads/'.$v['savepath'].$v['savename'];
+                    $img = array(
+                        're_pic_id' => '',
+                        'reward_id' => $res,
+                        're_picture' => $url
+                    );
+                    M('RePicture')->add($img);
+                }
+            }
+        }
+        return $res;
     }
 }
 ?>

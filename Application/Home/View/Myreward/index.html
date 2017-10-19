@@ -11,16 +11,14 @@
 	<div class="iphone">
 		<div id="xs">
 			<div class="card-img" style="background: url(__HOME__images/a4.jpg) no-repeat center center;">
-				<a href=""><i class="head-big head" style="background:#fff url(__HOME__images/x7.png) no-repeat center center; background-size: 80%!important;"></i></a>
+				<a href="{:U('Reward/issue')}"><i class="head-big head" style="background:#fff url(__HOME__images/x7.png) no-repeat center center; background-size: 80%!important;"></i></a>
 			</div>
 			
 			<div class="info cf">
-					<a href="#" class="doing active"></a>
-					<a href="#" class="did"></a>
-				</div>
-			
-			
-			
+					<a href="javascript:;" class="doing active"></a>
+					<a href="javascript:;" class="did"></a>
+			</div>
+
 			<div class="hide">
 				<div class="tab cf">
 					<div class="xs_doing">
@@ -195,8 +193,10 @@
 			var i = $(this).index();
 			var w = $(window).width();
 
-			$(".tab").css("transform","translate("+ -i * w+"px)")	
-	})
+			$(".tab").css({"transform":"translate("+ -i * w+"px)",
+                "-webkit-transform":"translate("+ -i * w+"px)"
+            })
+    })
 	
 	$(".xs_doing .xs-list i").on("click",function(){
 			$(this).addClass("active").siblings().removeClass("active");
@@ -205,8 +205,10 @@
 			
 			var klass = "slider" + i
 			$(".xs_doing .slider").removeClass().addClass("slider " + klass)
-			$(".tab2").css("transform","translate("+ -i * w+"px)")	
-	})
+			$(".tab2").css({"transform":"translate("+ -i * w+"px)",
+                "-webkit-transform":"translate("+ -i * w+"px)"
+            })
+    })
 	
 	$(".xs_did .xs-list i").on("click",function(){
 			$(this).addClass("active").siblings().removeClass("active");
@@ -215,7 +217,31 @@
 			
 			var klass = "slider" + i
 			$(".xs_did .slider").removeClass().addClass("slider " + klass)
-			$(".tab3").css("transform","translate("+ -i * w+"px)")	
+			$(".tab3").css({"transform":"translate("+ -i * w+"px)",
+                			"-webkit-transform":"translate("+ -i * w+"px)"
+			})
 	})
 	
+</script>
+<script>
+    $(function(){
+        getHistory();
+        var flag = false;
+        setTimeout(function(){
+            flag = true;
+        },1000);
+        window.addEventListener('popstate',function(e){
+            if(flag){
+                window.location = 'http://wap.manjianghu.com/index.php/Home/User/index.html';
+            }
+            getHistory();
+        },false);
+        function getHistory(){
+            var state = {
+                title : 'title',
+                url : '#'
+            };
+            window.history.pushState(state,'title','#');
+        }
+    });
 </script>

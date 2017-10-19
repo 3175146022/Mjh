@@ -52,30 +52,21 @@ class MyinfoController extends CommonController{
         $this->display();
     }
 
-//    public function twodemcode(){
-//        $host=$_SERVER["HTTP_HOST"];
-//        vendor("phpqrcode.phpqrcode");
-//        $data ='http://www.zhihu.com/';
-//        // 纠错级别：L、M、Q、H
-//        $level = 'L';
-//        // 点的大小：1到10,用于手机端4就可以了
-//        $size = 4;
-//        // 下面注释了把二维码图片保存到本地的代码,如果要保存图片,用$fileName替换第二个参数false
-//        $path = "Public/Index/twodecode/";
-//        if(!file_exists($path))
-//        {
-//            mkdir($path, 0777);
+//    public function position()
+//    {
+//        if ($_GET['info_id'] != null){
+//            $a = M('user_info')->where('info_id = '.$_GET['info_id'])->find();
+//            $this->assign('data',$a);
+//            $this->display();
+//        }else{
+//            $this->display();
 //        }
-//        // 生成的文件名
-//        $fileName = $path.$username.'.png';
-//        ob_end_clean();//清空缓冲区
-//        QRcode::png($data, $fileName, $level, $size);
 //    }
-//
+
     public function position()
     {
-        if ($_GET['info_id'] != null){
-            $a = M('user_info')->where('info_id = '.$_GET['info_id'])->find();
+        if ($_GET['address'] != null){
+            $a = M('user')->where('user_id = '.$_SESSION['user_id'])->field('address')->find();
             $this->assign('data',$a);
             $this->display();
         }else{
@@ -83,31 +74,52 @@ class MyinfoController extends CommonController{
         }
     }
 
+//    public function position_save()
+//    {
+//
+//        if (!empty($_POST)) {
+//            C('TOKEN_ON',false);
+//            $verify = D('UserInfo');
+//            if(!$verify->create()){
+//                $this->error($verify->getError());
+//            }else{
+//                if ($_POST['info_id'] != null){
+//                    $a = M('user_info')->where('info_id = '.$_POST['info_id'])->save($_POST);
+//                    if ($a){
+//                        $this->success('地址更新成功！',U('Myinfo/index'));
+//                    }else{
+//                        $this->error('地址更新失败！');
+//                    }
+//                }else{
+//                    $info_id = M('user_info')->add($_POST);
+//                    if (is_numeric($info_id)){
+//                        $b = M('user')->where('user_id = '.$_SESSION['user_id'])->save(['info_id' => $info_id]);
+//                        if ($b){
+//                            $this->success('地址信息添加成功!',U('Myinfo/index'));
+//                        }else{
+//                            $this->error('地址信息添加失败！');
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+
     public function position_save()
     {
 
         if (!empty($_POST)) {
             C('TOKEN_ON',false);
-            $verify = D('UserInfo');
+            $verify = D('User');
             if(!$verify->create()){
                 $this->error($verify->getError());
             }else{
-                if ($_POST['info_id'] != null){
-                    $a = M('user_info')->where('info_id = '.$_POST['info_id'])->save($_POST);
-                    if ($a){
-                        $this->success('地址更新成功！',U('Myinfo/index'));
+                if ($_POST['address']){
+                    $a = M('user')->where('user_id = '.$_SESSION['user_id'])->save(['address' => $_POST['address']]);
+                    if (is_numeric($a)){
+                        $this->success('地址信息添加成功!',U('Myinfo/index'));
                     }else{
-                        $this->error('地址更新失败！');
-                    }
-                }else{
-                    $info_id = M('user_info')->add($_POST);
-                    if (is_numeric($info_id)){
-                        $b = M('user')->where('user_id = '.$_SESSION['user_id'])->save(['info_id' => $info_id]);
-                        if ($b){
-                            $this->success('地址信息添加成功!',U('Myinfo/index'));
-                        }else{
-                            $this->error('地址信息添加失败！');
-                        }
+                        $this->error('地址信息添加失败！');
                     }
                 }
             }
@@ -232,5 +244,60 @@ class MyinfoController extends CommonController{
                 }
             }
         }
+    }
+
+    public function phone_num()
+    {
+        $a = M('user')->where('user_id = '.$_SESSION['user_id'])->find();
+        //print_r($a);exit;
+        $this->assign('user',$a);
+        $this->display();
+    }
+
+    public function phone_save()
+    {
+        C('TOKEN_ON',false);
+        $verify = D('User');
+        $phone_num = $_POST['phone_num'];
+        if(!$verify->create(['phone_num'=>$phone_num])){
+            $this->error($verify->getError());
+        }else{
+            if($_POST['phone_num']){
+                $a = M('user')->where('user_id = '.$_SESSION['user_id'])->save(['phone_num' => $_POST['phone_num']]);
+                if(is_numeric($a)){
+                    $this->success('手机号更新成功！',U('Myinfo/index'));
+                }else{
+                    $this->error('手机号更新失败!');
+                }
+            }
+        }
+
+    }
+
+    public function user_wx()
+    {
+        $a = M('user')->where('user_id = '.$_SESSION['user_id'])->find();
+        $this->assign('user',$a);
+        $this->display();
+    }
+
+    public function user_wx_save()
+    {
+        C('TOKEN_ON',false);
+        $verify = D('User');
+        $user_wx = $_POST['user_wx'];
+        if(!$verify->create(['user_wx'=>$user_wx])){
+            $this->error($verify->getError());
+        }else{
+            if($_POST['user_wx']){
+                $a = M('user')->where('user_id = '.$_SESSION['user_id'])->save(['user_wx' => $_POST['user_wx']]);
+                if(is_numeric($a)){
+                    $this->success('微信号更新成功！',U('Myinfo/index'));
+                }else{
+                    $this->error('微信号更新失败!');
+                }
+            }
+        }
+
     }
 }

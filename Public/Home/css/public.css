@@ -110,12 +110,13 @@ body{
 	margin-left: -50px;
 	background: #fff;
 	box-shadow: 0 0 20px rgba(95,95,95,.5);
-	display: none;
+	visibility:hidden;
+	transition: .5s;
 	z-index: 2;
 }
 
 .list_text ul.active,#activity ul.active{
-		display: block;
+		visibility: visible;
 }
 
 #activity ul{
@@ -225,7 +226,7 @@ body{
 	width: 70px;
 	height: 70px;
 	border-radius: 50px;
-	background:#fff url(../images/7.png) no-repeat center center;
+	background:#fff url(../images/x24.png) no-repeat center center;
 	background-size: 60%!important;
 	box-shadow: 0 0 20px rgba(95,95,95,.5);
 	left: 50%;
@@ -255,14 +256,15 @@ body{
 	max-width: 750px;
 	height: 100vh;
 	min-height: 500px;
-	background: url(../images/bg.jpg);
+	/*background: url(../images/bg.jpg);*/
 }
 
 #partner{
 	background: url(../images/bg.jpg);
 	max-width: 750px;
-	height: 100vh;
+	min-height: 100vh;
 	border-top:1px solid #fff;
+	padding-bottom: 30px;
 }
 
 .mt{

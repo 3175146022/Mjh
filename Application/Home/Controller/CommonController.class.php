@@ -8,15 +8,25 @@ class CommonController extends Controller{
     public function __construct()
     {
         parent::__construct();
-        if(empty($_SESSION['user_id'])){
+        $member = M('user')->where(array('user_id'=>$_SESSION['user_id']))->find();
+        if(empty($_SESSION['user_id']) || empty($member)){
             $rurl = $_SERVER['REQUEST_URI'];
             $rul = base64_encode($rurl);
             redirect(U('Login/index',array('id'=>$rul)));
         }
-        $member = M('user')->where(array('user_id'=>$_SESSION['user_id']))->find();
-        if(empty($member)){
-            redirect(U('Login/index'));
+
+        header('Content-Type: text/html; charset=utf-8');
+        $access=$this->access();
+        $user = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$access.'&openid='.$member['open_id'].'&lang=zh_CN';
+        $memberss=$this->http($user);
+        $datas =json_decode($memberss[1]);
+        if($datas->subscribe ==null){
+              redirect(U('Test/index'));
+            //redirect('http://mp.weixin.qq.com/s?__biz=MzUzODE2OTQ0MA==&tempkey=OTI2X1o3K3AxU0o5OHdVTmJZQndrOGtrbGYzWEZURzJSUkNDczBmNDFMZmtFRndjOWRJY0x6Y09ha1VBYmRfcGlud25zbHk4N0pOX1VVRU5XdlZBWGlPeEVsdmxuXzNmZjZ1Q2ZvMjdNc1Q3bGJWWExScG1qZ0FyUkp3ZUoxT0FEbGtNSXduejFZekJRWkJuWnF2czA3X05lSEdhNGRHRnlaQjdKbS1XS3d%2Bfg%3D%3D&chksm=7ada98384dad112e91a7b0c54b32b109363daf882d68a4c3fbb81852a745ee5ace83a0a7af3f&scene=0&previewkey=04QDpm1ium9XmT%252Fx0Eu0fsNS9bJajjJKzz%252F0By7ITJA%253D#wechat_redirect');
+//            header("Location:https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzUzODE2OTQ0MA==&scene=124#wechat_redirect");
+
         }
+
     }
 
     //收藏and取消收藏
@@ -112,6 +122,28 @@ class CommonController extends Controller{
         }
         return $number;
 
+    }
+
+
+    public function http($url,$headers = array()){
+        $ci = curl_init();
+        /* Curl settings */
+        curl_setopt($ci, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+        curl_setopt($ci, CURLOPT_CONNECTTIMEOUT, 30);
+        curl_setopt($ci, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($ci, CURLOPT_SSL_VERIFYHOST, FALSE);
+        curl_setopt($ci, CURLOPT_TIMEOUT, 30);
+        curl_setopt($ci, CURLOPT_RETURNTRANSFER, true);
+
+        curl_setopt($ci, CURLOPT_URL, $url);
+        curl_setopt($ci, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ci, CURLINFO_HEADER_OUT, true);
+
+        $response = curl_exec($ci);
+        $http_code = curl_getinfo($ci, CURLINFO_HTTP_CODE);
+
+        curl_close($ci);
+        return array($http_code, $response);
     }
 
 //    /**

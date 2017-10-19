@@ -15,8 +15,19 @@
 				<li>	
 					<a href="{:U('Live/show',array('id'=>$vo['solive_id']))}">
 						<div class="video_box" style="background: url(__ROOT__/{$vo.img}) no-repeat center center;">
-							<h5>{$vo.so_title}</h5>
-							<p>内容简介：{$vo.so_detail} <span class="fr">{$vo.add_time|date='Y-m-d',###}</span></p>
+							<h5><?php if(strlen($vo['so_title'])>30):?>
+									{$vo.so_title|mb_substr=0,12,'utf-8'}...
+								<?php else:?>
+									{$vo.so_title}
+								<?php endif;?>
+							</h5>
+							<p>内容简介：
+								<?php if(strlen($vo['so_detail'])>10):?>
+									{$vo.so_detail|mb_substr=0,10,'utf-8'}...
+								<?php else:?>
+									{$vo.so_detail}
+								<?php endif;?>
+								<span class="fr">{$vo.add_time|date='Y-m-d',###}</span></p>
 							<i></i>
 						</div>
 					</a>
@@ -30,5 +41,27 @@
 	<script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
         $(".iphone").css("height",$(window).height() )
+	</script>
+	<script>
+        $(function(){
+            getHistory();
+            var flag = false;
+            setTimeout(function(){
+                flag = true;
+            },1000);
+            window.addEventListener('popstate',function(e){
+                if(flag){
+                    window.location = 'http://wap.manjianghu.com/index.php/Home/User/index.html';
+                }
+                getHistory();
+            },false);
+            function getHistory(){
+                var state = {
+                    title : 'title',
+                    url : '#'
+                };
+                window.history.pushState(state,'title','#');
+            }
+        });
 	</script>
 </html>

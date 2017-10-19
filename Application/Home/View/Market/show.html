@@ -11,11 +11,17 @@
 <div class="iphone">
 <div id="content">
 	<div class="text">
-		<h5>{$data.title}</h5>
-		<div class="cf" style="margin-bottom: 10px;">
-			<span class="fr mark"> <i></i>收藏</span>
-		</div>
+		<!--<h5>{$data.title}</h5>-->
 		{$data.content}
+		<div class="cf" style="margin-bottom: 10px;">
+			<span class="fr mark" news_id ='{$data.news_id}' type ='3'>
+			<if condition="$keep eq null ">
+				<i></i>
+				<else />
+				<i class="active"></i>
+			</if>
+			收藏</span>
+		</div>
 	</div>
 </div>
 </div>
@@ -24,7 +30,40 @@
 <script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
     $(".iphone").css("height",$(window).height() )
+</script>
+<script type="text/javascript">
+    $(".iphone").css("height",$(window).height() )
     $(".mark i").on("click",function(){
-        $(this).toggleClass("active")
+        var collect = $('.mark').attr('news_id');
+        var cate =$('.mark').attr('type');
+        $.post("{:U('Common/keep')}",{collect:collect,cate:cate},function(data){
+            if(data.state == 200 || data.state == 202){
+                $(".mark i").toggleClass("active")
+            }else{
+                alert('操作失败！');
+            }
+        });
     })
+</script>
+<script>
+    $(function(){
+        getHistory();
+        var flag = false;
+        setTimeout(function(){
+            flag = true;
+        },1000);
+        window.addEventListener('popstate',function(e){
+            if(flag){
+                window.location = 'http://wap.manjianghu.com/index.php/Home/Market/index.html';
+            }
+            getHistory();
+        },false);
+        function getHistory(){
+            var state = {
+                title : 'title',
+                url : '#'
+            };
+            window.history.pushState(state,'title','#');
+        }
+    });
 </script>

@@ -65,7 +65,13 @@
                 <tr>
                     <td>{$vo.place}</td>
                     <td><i class="head" style="background: url({$vo.avatar}) no-repeat center center;"></i></td>
-                    <td><?php echo base64_decode($vo[user_name]);?></td>
+                    <td>
+                        <?php if(strlen(base64_decode($vo[user_name]))>10):?>
+                            <?php echo mb_substr(base64_decode($vo[user_name]),0,4,'utf-8');?>...
+                        <?php else:?>
+                            <?php echo base64_decode($vo[user_name]);?>
+                        <?php endif;?>
+                    </td>
                     <td>
                         <?php
                             switch($vo['tok_level']){
@@ -125,3 +131,26 @@
         }
     });
 </script>
+<script>
+    $(function(){
+        getHistory();
+        var flag = false;
+        setTimeout(function(){
+            flag = true;
+        },1000);
+        window.addEventListener('popstate',function(e){
+            if(flag){
+                window.location = 'http://wap.manjianghu.com/index.php/Home/User/index.html';
+            }
+            getHistory();
+        },false);
+        function getHistory(){
+            var state = {
+                title : 'title',
+                url : '#'
+            };
+            window.history.pushState(state,'title','#');
+        }
+    });
+</script>
+

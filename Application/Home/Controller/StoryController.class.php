@@ -7,7 +7,10 @@ class StoryController extends CommonController{
     public function __construct(){
         parent::__construct();
     }
-
+    //故事框架
+    public function story(){
+        $this->display();
+    }
     //江湖故事列表
     public function index(){
         $list = M('news')->where(array('cate_name'=>'江湖故事'))->join('news_cate on news_cate.cate_id = news.cate_id')->select();

@@ -25,17 +25,8 @@
 			<label for="">详情描述</label>
 			<textarea name="re_content" rows="" cols=""></textarea>
 		</div>
-
-		<div class="form-group cf">
-			<label for="">上传照片</label>
-			<div class="img_load cf">
-				<div class="load_btn fl">
-					<input type="file" name="re_image" />
-				</div>
-			</div>
-
-		</div>
-		<input type="submit" value="提交" class="btn"/>
+		<input type="submit" value="下一步" class="btn"/>
+		<!--<a href="{:U('Reward/issue2')}" class="btn"/>下一步</a>-->
 	</form>
 </div>
 </div>
@@ -46,30 +37,25 @@
 <script type="text/javascript">
 
     $(".iphone").css("height",$(window).height() )
-    var i = 0;
-    $(".load_btn input").change(function(){
-        loadImg()
-    })
-    function loadImg(){
-        //获取文件
-        var file = $(".load_btn").find("input")[0].files[0];
-        //创建读取文件的对象
-        var reader = new FileReader();
-        //创建文件读取相关的变量
-        var imgFile;
-        //为文件读取成功设置事件
-        reader.onload=function(e) {
-            imgFile = e.target.result;
-            if (i == 0){
-                var html = "<div class='fl img_show' style='background: url("+imgFile+") no-repeat center center;background-size: cover;'></div>"
-                $(".img_load").prepend( html )
-                i++;
-            }else {
-                $(".img_show").css({"background":" url("+imgFile+") no-repeat center center","background-size":"cover"})
+    $(function(){
+        getHistory();
+        var flag = false;
+        setTimeout(function(){
+            flag = true;
+        },1000);
+        window.addEventListener('popstate',function(e){
+            if(flag){
+                window.location = 'http://wap.manjianghu.com/index.php/Home/Reward/index.html';
             }
+            getHistory();
+        },false);
+        function getHistory(){
+            var state = {
+                title : 'title',
+                url : '#'
+            };
+            window.history.pushState(state,'title','#');
+        }
+    });
 
-        };
-        //正式读取文件
-        reader.readAsDataURL(file);
-    }
 </script>

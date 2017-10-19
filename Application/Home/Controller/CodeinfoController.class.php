@@ -20,7 +20,11 @@ class CodeinfoController extends CommonController{
     {
         if ($_POST){
             if ($_POST['friend_id'] != $_SESSION['user_id']){
-                $status = M('friend')->where(['user_id' => $_SESSION['user_id'],'friend_id' => $_POST['friend_id']])->find();
+                $where = array(
+                    'user_id' => $_SESSION['user_id'],
+                    'friend_id' => $_POST['friend_id']
+                );
+                $status = M('Friend')->where($where)->find();
                 if ($status != null){
                     $data = [
                         'status' => 0,
@@ -28,9 +32,23 @@ class CodeinfoController extends CommonController{
                     ];
                     echo json_encode($data);
                 }else{
-                    $id = M('friend')->data('user_id='.$_SESSION['user_id'].'&friend_id='.$_POST['friend_id'])->add();
-                    $id2 = M('friend')->data('user_id='.$_POST['friend_id'].'&friend_id='.$_SESSION['user_id'])->add();
+                    $data1 = array(
+                        'user_id' => $_SESSION['user_id'],
+                        'friend_id' => $_POST['friend_id'],
+                    );
+                    $data2 = array(
+                        'user_id' => $_POST['friend_id'],
+                        'friend_id' => $_SESSION['user_id'],
+                    );
+                    $id = M('Friend')->add($data1);
+                    $id2 = M('Friend')->add($data2);
                     if (is_numeric($id) && is_numeric($id2)){
+                        $repu = M('User')->where(array('user_id'=>$_POST['friend_id']))->find();
+                        $dd = $repu['reputation'] + 1;
+                        $repuT = array(
+                            'reputation' => $dd,
+                        );
+                        $ss = M('User')->where(array('user_id'=>$_POST['friend_id']))->save($repuT);
                         $data = [
                             'status' => 1,
                             'msg' => '好友添加成功。'

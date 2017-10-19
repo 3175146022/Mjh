@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <title>慢慢江湖</title>
+    <title>慢江湖</title>
     <link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
     <script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
 </head>
@@ -18,7 +18,7 @@
             <ul>
                 <li><a class="xuzhi" href="{:U('Notice/index')}"></a></li>
                 <li><a class="gaoshi" href="{:U('Bulletin/index')}"></a></li>
-                <li><a class="xuanshang" href="javascript:;" id="jsz" onclick="jsz()"></a></li>
+                <li><a class="xuanshang" href="{:U('Reward/index')}"></a></li>
                 <li><a class="rank" href="{:U('Rank/index')}"></a></li>
             </ul>
         </i>
@@ -36,12 +36,6 @@
 </body>
 </html>
 <script type="text/javascript">
-    function jsz() {
-        $('#jsz').click(function () {
-            alert("建设中！");
-            window.location = window.location;
-        });
-    }
 
     $(function(){
         $("iframe,.if_box").css("height",$(window).height() )
@@ -110,4 +104,26 @@
 
     })
 
+</script>
+<script>
+    $(function(){
+        getHistory();
+        var flag = false;
+        setTimeout(function(){
+            flag = true;
+        },1000);
+        window.addEventListener('popstate',function(e){
+            if(flag){
+                window.location = 'http://wap.manjianghu.com/index.php/Home/User/index.html';
+            }
+            getHistory();
+        },false);
+        function getHistory(){
+            var state = {
+                title : 'title',
+                url : '#'
+            };
+            window.history.pushState(state,'title','#');
+        }
+    });
 </script>

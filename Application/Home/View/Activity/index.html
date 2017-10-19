@@ -89,5 +89,27 @@
 		    // 如果需要滚动条
 		  })     
 		</script>
+	<script>
+        $(function(){
+            getHistory();
+            var flag = false;
+            setTimeout(function(){
+                flag = true;
+            },1000);
+            window.addEventListener('popstate',function(e){
+                if(flag){
+                    window.location = 'http://wap.manjianghu.com/index.php/Home/User/index.html';
+                }
+                getHistory();
+            },false);
+            function getHistory(){
+                var state = {
+                    title : 'title',
+                    url : '#'
+                };
+                window.history.pushState(state,'title','#');
+            }
+        });
+	</script>
 	</body>
 </html>

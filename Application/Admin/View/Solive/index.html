@@ -52,6 +52,7 @@
                                 <td>{$list.so_author}</td>
                                 <td>
                                     <a class="btn btn-primary btn-rounded" href="{:U('Solive/update_solive',array('id'=>$list['solive_id']))}">修改</a>
+                                    <a class="btn btn-primary btn-rounded" href="{:U('Solive/reply',array('id'=>$list['solive_id']))}">评论</a>
                                     <a class="btn btn-primary btn-rounded" href="javascript:;" onclick="delete_solive('{$list.solive_id}')">删除</a>
                                 </td>
                             </tr>

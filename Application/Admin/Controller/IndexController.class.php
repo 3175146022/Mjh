@@ -20,7 +20,7 @@ class IndexController extends CommonController{
         //签名推广列表
         $mark = M('Genera')->order(array('add_time'=>'desc'))->limit(10)->select();
         //审核
-        $reward = M('reward')->where('re_status = 3')->limit(10)->select();
+        $reward = M('reward')->where('re_status = 0')->limit(10)->select();
         //var_dump($reward);exit;
         $this->assign('mark',$mark);
         $this->assign('list',$list);

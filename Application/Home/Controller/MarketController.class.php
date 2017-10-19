@@ -7,16 +7,22 @@ class MarketController extends CommonController{
     public function __construct(){
         parent::__construct();
     }
-    //江湖直播列表
+    //推介框架
+    public function market(){
+        $this->display();
+    }
+    //江湖推介列表
     public function index(){
         $list = M('news')->where(array('cate_name'=>'江湖推介'))->join('news_cate on news_cate.cate_id = news.cate_id')->select();
         $this->assign('list',$list);
         $this->display();//页面赋值
     }
-    //江湖直播详情
+    //江湖推介详情
     public function show(){
         $id = I('get.id');
-        $data = M('News')->where(array('news_id'=>$id))->field('title,content')->find();
+        $data = M('News')->where(array('news_id'=>$id))->field('title,content,news_id')->find();
+        $keep = M('collect')->where(array('collect'=>$data['news_id'],'cate'=>3,'user_id'=>$_SESSION['user_id']))->find();
+        $this->assign('keep',$keep);
         $this->assign('data',$data);
         $this->display();//页面赋值
     }

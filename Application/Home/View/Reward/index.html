@@ -26,14 +26,14 @@
 			<div class="tab cf">
 				<ul class="card-list fl">
 					<volist name="list" id="vo">
-						<if condition="($vo.re_status eq 1)">
+						<if condition="($vo.re_status eq 1 or $vo.re_status eq 3)">
 							<li>
 								<a href="{:U('Reward/show',array('id'=>$vo['reward_id']))}">
 									<div class="card-img" style="background: url(__ROOT__/{$vo.re_image}) no-repeat center center;"></div>
 									<h5>{$vo.re_title}</h5>
 									<p>{$vo.re_content|mb_substr=0,15,'utf-8'}</p>
 									<div class="author">
-										<span><i class="user"></i>许愿者：<?php echo mb_substr(base64_decode($vo['author']),0,3,'utf-8')?>...</span>
+										<span><i class="user"></i>发榜人：<?php echo mb_substr(base64_decode($vo['author']),0,3,'utf-8')?>...</span>
 										<span class="fr"><i class="time"></i><em class="daojishi">倒计时：00天 00:00:00</em></span>
 									</div>
 								</a>
@@ -51,7 +51,7 @@
 									<h5>{$vo.re_title}</h5>
 									<p>{$vo.re_content|mb_substr=0,15,'utf-8'}</p>
 									<div class="author">
-										<span><i class="user"></i>许愿者：<?php echo mb_substr(base64_decode($vo['author']),0,3,'utf-8')?>...</span>
+										<span><i class="user"></i>发榜人：<?php echo mb_substr(base64_decode($vo['author']),0,3,'utf-8')?>...</span>
 										<span class="fr"><i class="time"></i><em class="daojishi">倒计时：00天 00:00:00</em></span>
 									</div>
 
@@ -80,24 +80,23 @@
 
 			var klass = "slider" + i;
 			$(".slider").removeClass().addClass("slider " + klass);
-			$(".tab").css("transform","translate("+ -i * w+"px)")	
-
-		})
-		setInterval(jishiqi,1000)
+			//$(".tab").css("transform","translate("+ -i * w+"px)")
+            $(".tab").css("transform","translate3d("+ -i * w+"px,0,0)")
+        })
+//        setInterval(,1000);
+        jishiqi()
 	}
+
     var json = $("#str").attr("value");
     var times = eval("(" + json + ")");
 	function jishiqi() {
         for ( var i = 0; i < times.length ; i ++){
-            //times[i] --;
             mov( times[i],i )
-            console.log(times[i])
         }
     }
 
     function mov( time , i) {
         var xiaban = time
-		console.log( time )
 		var i = i
         var now= Math.round( new Date()/1000 )
 
@@ -114,20 +113,34 @@
         var html ="倒数计时："+ day1 + "天" + hour +":"+ minute +":"+second
 
 
-
         if(gg >= 0){
 			$(".card-list li").eq(i).find(".daojishi").text( html )
-        }else {
+        }
+        else {
             $(".card-list li").eq(i).find(".daojishi").text("悬赏已完成")
         }
 
-
-//
-//        $(".day").text(day1)
-//        $(".min").text(minute)
-//        $(".hr").text(hour)
-
     }
-
-
+</script>
+<script>
+    $(function(){
+		getHistory();
+		var flag = false;
+		setTimeout(function(){
+		    flag = true;
+		},1000);
+		window.addEventListener('popstate',function(e){
+		    if(flag){
+                window.location = 'http://wap.manjianghu.com/index.php/Home/User/index.html';
+			}
+			getHistory();
+		},false);
+		function getHistory(){
+		    var state = {
+		        title : 'title',
+				url : '#'
+			};
+			window.history.pushState(state,'title','#');
+		}
+	});
 </script>

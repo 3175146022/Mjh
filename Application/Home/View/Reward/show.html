@@ -7,32 +7,136 @@
     <link rel="stylesheet" type="text/css" href="__HOME__css/style.css"/>
     <link rel="stylesheet" type="text/css" href="__HOME__css/public.css"/>
     <script src="__HOME__js/zepto.js" type="text/javascript" charset="utf-8"></script>
+    <style rel="stylesheet" type="text/css" >
+        .tankuang{
+            width: 80%;
+            padding: 20px 15px;
+            position: fixed;
+            left:50%;
+            top:50%;
+            transform: translate(-50%,-50%);
+            -webkit-transform: translate(-50%,-50%);
+            background: #fff url("__HOME__images/x25.png") no-repeat left bottom;
+            background-size: 100%;
+            border-radius: 5px;
+            box-shadow: 0 5px 7px rgba(0,0,0,.6);
+            visibility: hidden;
+        }
+
+        .tankuang.active{
+            visibility: visible;
+        }
+
+        .tankuang p{
+            margin-top: 10px;
+        }
+
+        .tankuang h2{
+            text-align: center;
+        }
+
+        .pic_list{
+            margin: 20px 0 10px;
+        }
+
+        .pic_list li{
+            float: left;
+            width: 100px;
+            height: 100px;
+            position: relative;
+            margin: 0 3px;
+            overflow: hidden;
+        }
+
+        .pic_list li img{
+            position: absolute;
+            left:50%;
+            top:50%;
+            transform: translate(-50%,-50%);
+            -webkit-transform: translate(-50%,-50%);
+            width: 100%;
+        }
+
+        .pic_list li img.active{
+            position: fixed;
+            width: 100vw;
+            z-index:2;
+        }
+
+        .mengban{
+            position: fixed;
+            top:0;
+            left:0;
+            width: 100vw;
+            height:100vh;
+            z-index: 1;
+            display: none;
+            background: rgba(0,0,0,0.8);
+        }
+        
+        .mengban.active{
+            display: block;
+        }
+    </style>
 </head>
 <body>
 <div class="iphone">
 <div id="content">
     <div class="text">
         <div class="text_head">
-            <img src="__ROOT__/{$data.re_image}" alt="" />
+            <!--<img src="__ROOT__/{$data.re_image}" alt="" />-->
             <p class="today"></p>
             <div class="author">
-                <span><i class="user"></i>许愿者：<?php echo base64_decode($data['author'])?></span>
+                <span><i class="user"></i>发榜人：<?php echo base64_decode($data['author'])?></span>
                 <span class="fr"><i class="time"></i><em class="daojishi">倒计时：00天 00:00:00</em></span>
             </div>
         </div>
         {$data.re_content}
-        <a href="javascript:;" class="btn" <?php if(($data['author'] != $user['user_name']) && ($data['end_time'] > NOW_TIME)):?>onclick="subform('{$data.reward_id}')"<?php endif;?>>
+        <ul class="pic_list cf">
+            <volist name="picture" id="vo">
+                <li><img src="__ROOT__/{$vo.re_picture}" alt=""></li>
+            </volist>
+        </ul>
+        <!--<img src="__ROOT__/{$vo.re_picture}" alt="">-->
+        <a href="javascript:;" class="btn" <?php if($data['re_status'] == 3):?> onclick="tanchu()" <?php endif;?> <?php if(($data['author'] != $user['user_name']) && ($data['end_time'] > NOW_TIME)):?>onclick="subform('{$data.reward_id}')"<?php endif;?>>
             <?php switch($data['re_status']){
+                case 0: echo "审核中";break;
                 case 1: echo "接受悬赏";break;
                 case 2: echo "已完成";break;
                 case 3: echo "已揭榜";break;
             }?>
         </a>
     </div>
+    <div class="tankuang">
+        <h2>发榜人</h2>
+        <p>微信号：{$author.user_wx}</p>
+        <p>手机号：{$author.phone_num}</p>
+        <a class="btn queding" href="#" style="margin-top: 30px">确定</a>
+    </div>
+    <div class="mengban"></div>
 </div>
 </div>
 </body>
 <script>
+
+    $(".pic_list img").click(function () {
+        $(this).toggleClass("active")
+        $(".mengban").toggleClass("active")
+    })
+
+    function tanchu() {
+        $(".tankuang").addClass("active")
+    }
+
+
+        $(".queding").click(function () {
+             $(".tankuang").removeClass("active")
+            return false;
+        })
+
+
+
+
     $(".iphone").css("height",$(window).height() )
     function subform(id) {
         $.ajax({
@@ -74,5 +178,28 @@
     window.onload = function () {
         setInterval(mov,1000)
     }
+</script>
+<script>
+    $(function(){
+        getHistory();
+        var flag = false;
+        setTimeout(function(){
+            flag = true;
+        },1000);
+        window.addEventListener('popstate',function(e){
+            if(flag){
+                window.location = 'http://wap.manjianghu.com/index.php/Home/Reward/index.html';
+            }
+            getHistory();
+        },false);
+        function getHistory(){
+            var state = {
+                title : 'title',
+                url : '#'
+            };
+            window.history.pushState(state,'title','#');
+        }
+    });
+
 </script>
 </html>

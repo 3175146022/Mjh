@@ -81,6 +81,23 @@ class SoliveController extends CommonController{
         $id = I('get.id');
         $pic = M('Solive')->field('img')->where(array('news_id'=>$id))->find();
         unlink($pic['img']);
+
+        $list1= M('comment')->where(array('pid'=>$id))->select();
+        if(empty($list1)){
+           M('comment')->where(array('comment_id'=>$id))->delete();
+        }else{
+            foreach($list1 as $val){
+                $list2= M('comment')->where(array('pid'=>$val['comment_id']))->select();
+                if(empty($list2)){
+                    M('comment')->where(array('comment_id'=>$val['comment_id']))->delete();
+                }else{
+                    foreach($list2 as $key){
+                        M('comment')->where(array('comment_id'=>$key['comment_id']))->delete();
+                    }
+                    M('comment')->where(array('comment_id'=>$val['comment_id']))->delete();
+                }
+            }
+        }
         $result = M('Solive')->where(array('solive_id'=>$id))->delete();
         if ($result){
             $data = [
@@ -96,5 +113,110 @@ class SoliveController extends CommonController{
             echo json_encode($data);
         }
     }
+
+    //查看评论
+    public function reply(){
+        $id = I('get.id');
+        $comment = M('comment')->where(array('solive_id'=>$id,'reply_id'=>0,'pid'=>0))->order('add_time asc')->select();
+        foreach($comment as $val){
+            $one = M('user')->where(array('user_id'=>$val['user_id']))->find();
+            $val['user_name'] = base64_decode($one['user_name']);
+            $val['avatar'] = $one['avatar'];
+            $where['pid']=$val['comment_id'];
+            $reply_list=array();
+            $arr['count_1']=array();
+            $reply= M('comment')->where($where)->order('add_time asc')->select();
+            if($reply){
+                foreach($reply  as $key){
+                    $three_list=array();
+                    $where2['pid']=$key['comment_id'];
+                    $where2['solive_id']=$key['solive_id'];
+                    $three= M('comment')->where($where2)->order('add_time asc')->select();
+                    if($three){
+                        foreach($three as $num){
+                            $three_1= M('user')->where(array('user_id'=>$num['user_id']))->find();
+                            $three_2= M('user')->where(array('user_id'=>$num['reply_id']))->find();
+                            $num['user_name'] = base64_decode($three_1['user_name']);
+                            $num['reply_name'] = base64_decode($three_2['user_name']);
+                            $three_list[]=$num;
+                        }
+                    }
+                    $arr['count_1'][]=count($three);
+                    $key['three']=$three_list;
+                    $two = M('user')->where(array('user_id'=>$key['user_id']))->find();
+                    $key['user_name'] = base64_decode($two['user_name']);
+                    $reply_list[]=$key;
+                }
+            }
+
+            $val['counts']=array_sum($arr['count_1'])+count($reply);
+            $val['reply']=$reply_list;
+            $comment_list[]=$val;
+        }
+
+        $this->assign('reply_list',$comment_list);
+        $this->display();
+    }
+
+    public function del_replay()
+    {
+        $id =I('get.id');
+        $list1= M('comment')->where(array('pid'=>$id))->select();
+        if(empty($list1)){
+            $state =M('comment')->where(array('comment_id'=>$id))->delete();
+            if($state){
+                $data = [
+                    'status' => 1,
+                    'msg'    => '删除成功'
+                ];
+                echo json_encode($data);
+            }else{
+                $data = [
+                    'status' => 0,
+                    'msg'    => '删除失败，请稍后重试！'
+                ];
+                echo json_encode($data);
+            }
+        }else{
+            foreach($list1 as $val){
+                $list2= M('comment')->where(array('pid'=>$val['comment_id']))->select();
+                if(empty($list2)){
+                    $state =M('comment')->where(array('comment_id'=>$val['comment_id']))->delete();
+                    if($state){
+                        $data = [
+                            'status' => 1,
+                            'msg'    => '删除成功'
+                        ];
+                        echo json_encode($data);
+                    }else{
+                        $data = [
+                            'status' => 0,
+                            'msg'    => '删除失败，请稍后重试！'
+                        ];
+                        echo json_encode($data);
+                    }
+                }else{
+                    foreach($list2 as $key){
+                            M('comment')->where(array('comment_id'=>$key['comment_id']))->delete();
+                    }
+                    $state=M('comment')->where(array('comment_id'=>$val['comment_id']))->delete();
+                    if($state){
+                        $data = [
+                            'status' => 1,
+                            'msg'    => '删除成功'
+                        ];
+                        echo json_encode($data);
+                    }else{
+                        $data = [
+                            'status' => 0,
+                            'msg'    => '删除失败，请稍后重试！'
+                        ];
+                        echo json_encode($data);
+                    }
+                }
+            }
+        }
+    }
+
 }
 ?>

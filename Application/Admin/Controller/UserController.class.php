@@ -69,5 +69,8 @@ class UserController extends CommonController{
             }
         }
     }
+
+    
+
 }
 ?>

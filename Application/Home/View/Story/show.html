@@ -11,7 +11,8 @@
 <div class="iphone">
 <div id="content">
     <div class="text">
-        <h5>{$data.title}</h5>
+        <!--<h5>{$data.title}</h5>-->
+        {$data.content}
         <div class="cf" style="margin-bottom: 10px;">
             <span class="fr mark" news_id ='{$data.news_id}' type ='3'>
                 <if condition="$keep eq null ">
@@ -21,7 +22,7 @@
                 </if>
                 收藏</span>
         </div>
-        {$data.content}
+
     </div>
 </div>
 </div>
@@ -41,4 +42,26 @@
             }
         });
     })
+</script>
+<script>
+    $(function(){
+        getHistory();
+        var flag = false;
+        setTimeout(function(){
+            flag = true;
+        },1000);
+        window.addEventListener('popstate',function(e){
+            if(flag){
+                window.location = 'http://wap.manjianghu.com/index.php/Home/Story/index.html';
+            }
+            getHistory();
+        },false);
+        function getHistory(){
+            var state = {
+                title : 'title',
+                url : '#'
+            };
+            window.history.pushState(state,'title','#');
+        }
+    });
 </script>

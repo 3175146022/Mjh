@@ -4,8 +4,8 @@ return array(
     'DB_TYPE'                => 'mysql', // 数据库类型
     'DB_HOST'                => '127.0.0.1', // 服务器地址
     'DB_NAME'                => 'mjh', // 数据库名
-    'DB_USER'                => 'root', // 用户名
-    'DB_PWD'                 => 'yd199227', // 密码
+    'DB_USER'                => '', // 用户名
+    'DB_PWD'                 => '', // 密码
     'DB_PORT'                => '3306', // 端口
     'DB_PREFIX'              => '', // 数据库表前缀
     /* 页面样式路径 */
@@ -13,8 +13,8 @@ return array(
         '__STYLE__' => __ROOT__. '/Public/Admin/',
         '__HOME__' => __ROOT__.'/Public/Home/',
     ),
-//    'WX_OPENID'         => 'wxbad65c144dae20cf', // 微信公众open_id
-    'WX_OPENID'         => 'wx2110e3a3af718e1d', // 微信公众open_id
-//    'WX_SECRET'         => '28dd388095de619361c888251a7410ac' // 微信公众密匙
-    'WX_SECRET'         => '3774cf017c4cb42863c19b2f96eb6fbf' // 微信公众密匙
+
+    'WX_OPENID'         => '', // 微信公众open_id
+
+    'WX_SECRET'         => '' // 微信公众密匙
 );

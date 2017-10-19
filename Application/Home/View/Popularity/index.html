@@ -19,24 +19,35 @@
         <?php if($token_reputation['tr'] != null):?>
         <li class="cf"><span>{$token_reputation.bind_time|date='Y-m-d',###}</span><p>绑定<a style="color: red;">{$token_reputation.tn}</a>获得声望+{$token_reputation.tr}</p></li>
         <?php endif;?>
-
+        <volist name="friend" id="vo">
+            <li class="cf"><span>你邀请<a style="color: #8b1603"><?php echo base64_decode($vo['user_name'])?></a></span><p>签到获得声望+3</p></li>
+        </volist>
         <volist name="mark" id="vo">
             <li class="cf"><span>{$vo.mark_time|date='Y-m-d',###}</span><p>签到获得声望+1</p></li>
         </volist>
-        <!--<li class="cf"><span>2017-8-6</span><p>签到获得声望+1</p></li>-->
-        <!--<li class="cf"><span>2017-8-6</span><p>签到获得声望+1</p></li>-->
-        <!--<li class="cf"><span>2017-8-6</span><p>签到获得声望+1</p></li>-->
-        <!--<li class="cf"><span>2017-8-6</span><p>签到获得声望+1</p></li>-->
-        <!--<li class="cf"><span>2017-8-6</span><p>签到获得声望+1</p></li>-->
-        <!--<li class="cf"><span>2017-8-6</span><p>签到获得声望+1</p></li>-->
-        <!--<li class="cf"><span>2017-8-6</span><p>签到获得声望+1</p></li>-->
-        <!--<li class="cf"><span>2017-8-6</span><p>签到获得声望+1</p></li>-->
-        <!--<li class="cf"><span>2017-8-6</span><p>签到获得声望+1</p></li>-->
-        <!--<li class="cf"><span>2017-8-6</span><p>签到获得声望+1</p></li>-->
-        <!--<li class="cf"><span>2017-8-6</span><p>签到获得声望+1</p></li>-->
-        <!--<li class="cf"><span>2017-8-6</span><p>签到获得声望+1</p></li>-->
-        <!--<li class="cf"><span>2017-8-6</span><p>签到获得声望+1</p></li>-->
     </ul>
 </div>
 </body>
+<script>
+    $(function(){
+        getHistory();
+        var flag = false;
+        setTimeout(function(){
+            flag = true;
+        },1000);
+        window.addEventListener('popstate',function(e){
+            if(flag){
+                window.location = 'http://wap.manjianghu.com/index.php/Home/User/index.html';
+            }
+            getHistory();
+        },false);
+        function getHistory(){
+            var state = {
+                title : 'title',
+                url : '#'
+            };
+            window.history.pushState(state,'title','#');
+        }
+    });
+</script>
 </html>

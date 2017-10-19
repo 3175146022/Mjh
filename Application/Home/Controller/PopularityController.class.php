@@ -43,10 +43,18 @@ class PopularityController extends CommonController{
         ];
 
         $reputation = M('user')->where('user_id = '.$_SESSION['user_id'])->field('reputation')->find();
-        $mark = M('mark')->where('user_id = '.$_SESSION['user_id'])->order('mark_time desc')->select();
-        //var_dump($mark);exit;
+        $mark = M('mark')->where('user_id = '.$_SESSION['user_id'])->order('mark_time desc')->limit(3)->select();
+        $friend = M('friend')->where('friend_id = '.$_SESSION['user_id'])->order('add_time desc')->limit(3)->select();
+        foreach ($friend as $k => $v){
+            for ($i = 0;$i < count($friend);$i++){
+                $a[$i] = M('user')->where('user_id = '.$friend[$i]['user_id'])->field('user_name')->find();
+                $a[$i]['add_time'] = $friend[$i]['add_time'];
+            }
+        }
+        //print_r($a);exit;
         $this->assign('token_reputation',$tr);
         $this->assign('mark',$mark);
+        $this->assign('friend',$a);
         $this->assign('reputation',$reputation);
         $this->display();//页面赋值
     }
